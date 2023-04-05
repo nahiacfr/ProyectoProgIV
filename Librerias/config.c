@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "configuracion.h"
+#include "config.h"
 
 void guardar_configuracion(Configuracion config) {
     FILE *archivo = fopen("configuracion.txt", "w");

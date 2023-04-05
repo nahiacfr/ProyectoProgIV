@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h> //necesario para el sleep();
 
 #define MAX_OPTN 2
 #define MAX_LINE 20
+#define SECONDS_TO_CONTINUE 2000
 
 void inicioSesion();
 void registraUsuario();
@@ -15,6 +17,7 @@ void reservar(char nombre);
 //con fgets y sscanf no me salía bien
 int main() //MainMenu añadido al main principal
 {
+    system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_OPTN];
     char select;
 
@@ -68,7 +71,8 @@ void inicioSesion()
     //En caso de que el correo no existe o la contraseña está mal: repetir el proceso
 
     //Añadir delay para leer el texto con más calma
-    printf("Conexion realizada con exito.");
+    printf("Conexion realizada con exito.\n");
+    Sleep(SECONDS_TO_CONTINUE); //esperamos 2 segundos antes de "cambiar de pantalla"
     menuBuscar();
 
 }
@@ -111,14 +115,16 @@ void registraUsuario()
     //TO DO: conectarlo con la base de datos y añadir los datos nuevos
     //Añadir delay para leer el texto con más calma
     printf("Ususario creado correctamente.\n");
+    Sleep(SECONDS_TO_CONTINUE);
     menuBuscar();
 
 }
 
 int menuBuscar()
 {
+    system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_OPTN];
-    int select;
+    char select;
     printf("---------------------\nMENU BUSCAR\n---------------------\n");
     printf("1.Buscar libro por titulo\n2.Buscar libro por autor\n3.Volver menu principal\n");
     /*fgets(str, MAX_OPTN, stdin);
@@ -160,8 +166,19 @@ void buscarTitulo()
     printf("Pulse 1 para volver al menu de busqueda\n");
     //for con print para cada libro que salga
     scanf(" %c", &seleccion);
-    //obtendremos el id del libro seleccionado y llamamos a reservar()
-    reservar(seleccion); //o libro.nombre || libro->nombre
+
+    if (seleccion=='1')
+    {
+        printf("Volviendo al menu busqueda.\n");
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
+    }
+
+    else
+    {
+        //obtendremos el id del libro seleccionado y llamamos a reservar()
+        reservar(seleccion); //o libro.nombre || libro->nombre
+    }
 }
 
 void buscarAutor()
@@ -177,29 +194,41 @@ void buscarAutor()
     scanf(" %c", &autor);
 
     //buscar en la base de datos los autores que coincidan;
-    printf("Pulse el numero del autor para continuar con la reserva\n");
+    printf("Pulse el numero del libro para continuar con la reserva\n");
     printf("Pulse 1 para volver al menu de busqueda\n");
-    //for con print para cada libro que salga
     scanf(" %c", &seleccion);
+    
+    if (seleccion=='1')
+    {
+        printf("Volviendo al menu busqueda.\n");
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
+    }
 
+    else
+    {
+        //obtendremos el id del libro seleccionado y llamamos a reservar()
+        reservar(seleccion); //o libro.nombre || libro->nombre
+    }
 }
 
 void reservar(char nombre)
 {
     char seleccion;
-    printf("¿Desea reservar el libro %c?", nombre);
+    printf("¿Desea reservar el libro %c?\n", nombre);
     printf("1.Si\n2.No\n");
     scanf(" %c", &seleccion);
-
     
     switch (seleccion)
     {
     case '1':
-        printf("REserva realizada.");
-        exit(0);
-        //break;
+        printf("Reserva realizada, tiene X dias para devolverlo.\n");
+        exit(0);//salimos de la app
     case '2':
+        printf("Volviendo al menu busqueda");
+        Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
         break;
     }
 }
+
