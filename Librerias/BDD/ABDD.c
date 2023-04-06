@@ -27,7 +27,7 @@ void cerrarBDD(sqlite3 *dbM){
 }
 
 //Acciones con Usuarios
-void insertarNuevoUsuario(Usuario *us, char* contrasenya){
+void insertarUsuario(Usuario *us, char* contrasenya){
 	if (existeUsuario(us)==0){
 		char sql1[] = "insert into usuario values (?, ?, ?, ?, ?);";
 
@@ -145,7 +145,7 @@ void insertarLibro(Libro *lib){
 		printf("El libro ya existe\n");
 	}
 }
-void insertarLibroFichero(char *ruta){
+void insertarLibrosFichero(char *ruta){
 	//TODO
 }
 void eliminarLibro(Libro *lib){
@@ -204,7 +204,7 @@ void listadoLibros(Libro **listaLib, int tamanyoLista){
 void insertarAutor(Autor *au){
 	//TODO
 }
-void insertarAutorFichero(char *ruta){
+void insertarAutoresFichero(char *ruta){
 	//TODO
 }
 void eliminarAutor(Autor *au){
@@ -221,7 +221,7 @@ void listadoAutores(Autor **listaAu, int tamanyoLista){
 void insertarEditoriaL(Editorial *ed){
 	//TODO
 }
-void insertarEditorialFichero(char *ruta){
+void insertarEditorialesFichero(char *ruta){
 	//TODO
 }
 void eliminarEditorial(Editorial *ed){
@@ -236,5 +236,5 @@ void listadoEditoriales(Editorial **listaEd, int tamanyoLista){
 
 //Acciones con Reservas
 void listadoReservas(Usuario *us, Reserva *res){
-
+	//TODO
 }
