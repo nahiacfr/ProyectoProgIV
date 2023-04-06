@@ -14,9 +14,9 @@ int result;
 void inicializarBDD(char *nombre, sqlite3 *dbIni){
     db = dbIni;
 	if (sqlite3_open(nombre, &db) == 0){
-		printf("Conexion con la BDD exitosa");
+		printf("Conexion con la BDD exitosa\n");
 	}else{
-		printf("Error al conectar con la BDD");
+		printf("Error al conectar con la BDD\n");
 	}
 }
 
@@ -72,7 +72,25 @@ int existeUsuario(Usuario *us){
 	}
 }
 int verificarContrasenya(Usuario *us, char *contrasenya){
+	char sql3[] = "select contraseña from usuario where DNI = ?";
+	int count = 0;
+	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
+	sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
 
+	do {
+		result = sqlite3_step(stmt) ;
+		if (result == SQLITE_ROW) {
+			if(strcmp((char*) sqlite3_column_text(stmt, 0), contrasenya) == 0){
+				sqlite3_finalize(stmt);
+				printf("Contrasena correcta\n");
+				return 1;
+			}else{
+				sqlite3_finalize(stmt);
+				printf("Contrasena incorrecta\n");
+				return 0;
+			}
+		}
+	} while (result == SQLITE_ROW);
 }
 void eliminarUsuario(Usuario *us){
 
