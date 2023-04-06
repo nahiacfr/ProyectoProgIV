@@ -23,6 +23,20 @@ void eliminarLibro(Libro *lib);
 int existeLibro(Libro *lib);
 void listadoLibros(Libro **listaLib, int tamanyoLista);
 
+//Acciones con Autores
+void insertarAutor(Autor *au);
+void insertarAutorFichero(char *ruta);
+void eliminarAutor(Autor *au);
+int existeAutor(Autor *au);
+void listadoAutores(Autor **listaAu, int tamanyoLista);
+
+//Acciones con Editoriales
+void insertarEditoriaL(Editorial *ed);
+void insertarEditorialFichero(char *ruta);
+void eliminarEditorial(Editorial *ed);
+int existeEditorial(Editorial *ed);
+void listadoEditoriales(Editorial **listaEd, int tamanyoLista);
+
 //Acciones con Reservas
 void listadoReservas(Usuario *us, Reserva *res);
 

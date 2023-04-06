@@ -198,6 +198,40 @@ void listadoLibros(Libro **listaLib, int tamanyoLista){
 	} while (result == SQLITE_ROW);
 }
 
+//Acciones con Autores
+void insertarAutor(Autor *au){
+	//TODO
+}
+void insertarAutorFichero(char *ruta){
+	//TODO
+}
+void eliminarAutor(Autor *au){
+	//TODO
+}
+int existeAutor(Autor *au){
+	//TODO
+}
+void listadoAutores(Autor **listaAu, int tamanyoLista){
+	//TODO
+}
+
+//Acciones con Editoriales
+void insertarEditoriaL(Editorial *ed){
+	//TODO
+}
+void insertarEditorialFichero(char *ruta){
+	//TODO
+}
+void eliminarEditorial(Editorial *ed){
+	//TODO
+}
+int existeEditorial(Editorial *ed){
+	//TODO
+}
+void listadoEditoriales(Editorial **listaEd, int tamanyoLista){
+	//TODO
+}
+
 //Acciones con Reservas
 void listadoReservas(Usuario *us, Reserva *res){
 
