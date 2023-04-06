@@ -24,10 +24,16 @@ int main() //MainMenu añadido al main principal
 {
  
     system("cls"); //añadido para que la pantalla no se llene de mucha información
+    //Datos prueba
     Usuario us1 = {"22767695X", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     inicializarBDD("BibliotecaDeusto.db", dbM);
     insertarNuevoUsuario(&us1, "123456");
+    
+    Libro lib ={"libro1", "bJGDkbc682nk9", 2021, NULL, NULL};
+    insertarLibro(&lib);
+    
     cerrarBDD(dbM);
+    //Fin datos prueba
     char str[MAX_OPTN];
     char select;
 
