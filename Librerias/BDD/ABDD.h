@@ -6,7 +6,7 @@
 #include "..\EstructurasDatos\Libro.h"
 #include "..\EstructurasDatos\Reserva.h"
 
-void inicializarBDD(char *nombre);
+void inicializarBDD(char *nombre, sqlite3 *db);
 void cerrarBDD(sqlite3 *db);
 
 //Acciones con Usuarios

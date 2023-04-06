@@ -3,6 +3,7 @@
 #include <string.h>
 #include <windows.h> //necesario para el sleep();
 #include "Librerias\BDD\ABDD.h"
+#include "Librerias\BDD\sqlite3.h"
 
 #define MAX_OPTN 2
 #define MAX_LINE 20
@@ -15,14 +16,18 @@ void buscarTitulo();
 void buscarAutor();
 void reservar(char nombre);
 
+//Base de Datos
+sqlite3 *dbM;
+
 //con fgets y sscanf no me salía bien
 int main() //MainMenu añadido al main principal
 {
  
     system("cls"); //añadido para que la pantalla no se llene de mucha información
-    Usuario us1 = {"22767695V", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
-    inicializarBDD("BibliotecaDeusto.db");
+    Usuario us1 = {"22767695X", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
+    inicializarBDD("BibliotecaDeusto.db", dbM);
     insertarNuevoUsuario(&us1, "123456");
+    cerrarBDD(dbM);
     char str[MAX_OPTN];
     char select;
 
