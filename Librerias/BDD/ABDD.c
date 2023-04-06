@@ -93,7 +93,22 @@ int verificarContrasenya(Usuario *us, char *contrasenya){
 	} while (result == SQLITE_ROW);
 }
 void eliminarUsuario(Usuario *us){
+	if (existeUsuario(us)==1){
+		char sql1[] = "delete from usuario where DNI = ?";
+		sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL);
+		sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
 
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al eliminar el usuario\n");
+		}else{
+			printf("El usuario %s ha sido eliminado\n", us->nombre);
+		}
+
+		sqlite3_finalize(stmt);
+	}else{
+		printf("El susuario no existe\n");
+	}
 }
 void listadoUsuarios(Usuario *us){
 

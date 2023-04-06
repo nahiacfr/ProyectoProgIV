@@ -35,6 +35,8 @@ int main() //MainMenu añadido al main principal
     verificarContrasenya(&us1, "123456");
     verificarContrasenya(&us1, "654321");
 
+    eliminarUsuario(&us1);
+
     cerrarBDD(dbM);
 /*Fin datos prueba*/
     char str[MAX_OPTN];
