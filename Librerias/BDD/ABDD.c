@@ -123,6 +123,7 @@ void listadoUsuarios(Usuario **listaUs, int tamanyoLista){
 }
 
 //Acciones con Libros
+/* Faltan los autores y las editoriales*/
 void insertarLibro(Libro *lib){
 	if (existeLibro(lib)==0){
 		char sql6[] = "insert into libro values (?, ?, ?);";
@@ -145,7 +146,7 @@ void insertarLibro(Libro *lib){
 	}
 }
 void insertarLibroFichero(char *ruta){
-
+	//TODO
 }
 void eliminarLibro(Libro *lib){
 	if (existeLibro(lib)==1){
@@ -186,6 +187,7 @@ int existeLibro(Libro *lib){
 		return 0;
 	}
 }
+/* Faltan los autores y las editoriales*/
 void listadoLibros(Libro **listaLib, int tamanyoLista){
 	char sql10[] = "select * from libro";
 	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
