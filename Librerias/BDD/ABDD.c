@@ -27,7 +27,7 @@ void cerrarBDD(sqlite3 *dbM){
 
 //Acciones con Usuarios
 void insertarNuevoUsuario(Usuario *us, char* contrasenya){
-	if (existeUsuario==0){
+	if (existeUsuario(us)==0){
 		char sql1[] = "insert into usuario values (?, ?, ?, ?, ?);";
 
 		sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL);
@@ -46,25 +46,30 @@ void insertarNuevoUsuario(Usuario *us, char* contrasenya){
 
 		sqlite3_finalize(stmt);
 	}else{
-		printf("El usuario ya existe");
+		printf("El susuario ya existe\n");
 	}
 	
 }
 int existeUsuario(Usuario *us){
     char sql2[] = "select DNI from usuario where DNI = ?";
-
+	int count = 0;
 	sqlite3_prepare_v2(db, sql2, strlen(sql2), &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
 
 	do {
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
-			printf("%s\n", (char*) sqlite3_column_text(stmt, 0));
+			count++;
 		}
 	} while (result == SQLITE_ROW);
-	printf("\n");
 
 	sqlite3_finalize(stmt);
+
+	if (count >= 1){
+		return 1;
+	}else{
+		return 0;
+	}
 }
 int verificarContrasenya(Usuario *us, char *contrasenya){
 
