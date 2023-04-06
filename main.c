@@ -37,6 +37,10 @@ int main() //MainMenu añadido al main principal
 
     eliminarUsuario(&us1);
 
+    Usuario **Lista1 = (Usuario**)malloc(sizeof(Usuario*));
+    Lista1[0] = &us1;
+    listadoUsuarios(Lista1, 1);
+
     cerrarBDD(dbM);
 /*Fin datos prueba*/
     char str[MAX_OPTN];

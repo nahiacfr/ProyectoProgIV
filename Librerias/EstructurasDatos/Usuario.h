@@ -9,4 +9,6 @@ typedef struct
     char *correo;
 }Usuario;
 
+void anyadirUsuario(Usuario **listaUs, int tamanyoLista, Usuario *us);
+
 #endif

@@ -110,8 +110,15 @@ void eliminarUsuario(Usuario *us){
 		printf("El susuario no existe\n");
 	}
 }
-void listadoUsuarios(Usuario *us){
+void listadoUsuarios(Usuario **listaUs, int tamanyoLista){
+	char sql3[] = "select * from usuario";
+	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
 
+	do {
+		result = sqlite3_step(stmt) ;
+		Usuario aux ={(char*)sqlite3_column_text(stmt, 0), (char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 2), (char*)sqlite3_column_text(stmt, 3)};
+		anyadirUsuario(listaUs, tamanyoLista, &aux);
+	} while (result == SQLITE_ROW);
 }
 
 //Acciones con Libros
