@@ -1,4 +1,6 @@
 #include "log.h"
+#include <stdlib.h>
+#include <string.h>
 
 Log* crear_log(char *ruta_archivo) {
     Log *log = malloc(sizeof(Log));
