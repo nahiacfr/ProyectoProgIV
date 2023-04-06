@@ -1,5 +1,6 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "ABDD.h"
 #include "sqlite3.h"
@@ -94,8 +95,8 @@ int verificarContrasenya(Usuario *us, char *contrasenya){
 }
 void eliminarUsuario(Usuario *us){
 	if (existeUsuario(us)==1){
-		char sql1[] = "delete from usuario where DNI = ?";
-		sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL);
+		char sql4[] = "delete from usuario where DNI = ?";
+		sqlite3_prepare_v2(db, sql4, strlen(sql4) + 1, &stmt, NULL);
 		sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
 
 		result = sqlite3_step(stmt);
@@ -111,8 +112,8 @@ void eliminarUsuario(Usuario *us){
 	}
 }
 void listadoUsuarios(Usuario **listaUs, int tamanyoLista){
-	char sql3[] = "select * from usuario";
-	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
+	char sql5[] = "select * from usuario";
+	sqlite3_prepare_v2(db, sql5, strlen(sql5), &stmt, NULL) ;
 
 	do {
 		result = sqlite3_step(stmt) ;
@@ -124,9 +125,9 @@ void listadoUsuarios(Usuario **listaUs, int tamanyoLista){
 //Acciones con Libros
 void insertarLibro(Libro *lib){
 	if (existeLibro(lib)==0){
-		char sql1[] = "insert into libro values (?, ?, ?);";
+		char sql6[] = "insert into libro values (?, ?, ?);";
 
-		sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL);
+		sqlite3_prepare_v2(db, sql6, strlen(sql6) + 1, &stmt, NULL);
 		sqlite3_bind_text(stmt, 1, lib->titulo, strlen(lib->titulo), SQLITE_STATIC);
 		sqlite3_bind_text(stmt, 2, lib->isbn, strlen(lib->isbn), SQLITE_STATIC);
 	    sqlite3_bind_int(stmt, 3, lib->anio);
@@ -147,12 +148,27 @@ void insertarLibroFichero(char *ruta){
 
 }
 void eliminarLibro(Libro *lib){
+	if (existeLibro(lib)==1){
+		char sql8[] = "delete from libro where ISBN = ?";
+		sqlite3_prepare_v2(db, sql8, strlen(sql8) + 1, &stmt, NULL);
+		sqlite3_bind_text(stmt, 1, lib->isbn, strlen(lib->isbn), SQLITE_STATIC);
 
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al eliminar el libro\n");
+		}else{
+			printf("El libro %s ha sido eliminado\n", lib->titulo);
+		}
+
+		sqlite3_finalize(stmt);
+	}else{
+		printf("El susuario no libro\n");
+	}
 }
 int existeLibro(Libro *lib){
-	char sql2[] = "select ISBN from libro where ISBN = ?";
+	char sql9[] = "select ISBN from libro where ISBN = ?";
 	int count = 0;
-	sqlite3_prepare_v2(db, sql2, strlen(sql2), &stmt, NULL) ;
+	sqlite3_prepare_v2(db, sql9, strlen(sql9), &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, lib->isbn, strlen(lib->isbn), SQLITE_STATIC);
 
 	do {
@@ -170,8 +186,16 @@ int existeLibro(Libro *lib){
 		return 0;
 	}
 }
-void listadoLibros(Libro *lib){
+void listadoLibros(Libro **listaLib, int tamanyoLista){
+	char sql10[] = "select * from libro";
+	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
 
+	do {
+		result = sqlite3_step(stmt) ;
+		Libro aux ={(char*)sqlite3_column_text(stmt, 0), (char*)sqlite3_column_text(stmt, 1), sqlite3_column_int(stmt, 2), NULL, NULL};
+		anyadirLibro(listaLib, tamanyoLista, &aux);
+		printf("%s\n", aux.isbn);
+	} while (result == SQLITE_ROW);
 }
 
 //Acciones con Reservas

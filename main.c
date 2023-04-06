@@ -30,7 +30,12 @@ int main() //MainMenu añadido al main principal
     insertarNuevoUsuario(&us1, "123456");
     
     Libro lib ={"libro1", "bJGDkbc682nk9", 2021, NULL, NULL};
+    Libro lib2 ={"libro2", "bJ3Drbcko2nl7", 2018, NULL, NULL};
+    Libro lib3 ={"libro3", "ajkDrbcko2nl7", 2019, NULL, NULL};
+
     insertarLibro(&lib);
+    insertarLibro(&lib2);
+    insertarLibro(&lib3);
     
     verificarContrasenya(&us1, "123456");
     verificarContrasenya(&us1, "654321");
@@ -40,6 +45,12 @@ int main() //MainMenu añadido al main principal
     Usuario **Lista1 = (Usuario**)malloc(sizeof(Usuario*));
     Lista1[0] = &us1;
     listadoUsuarios(Lista1, 1);
+
+    eliminarLibro(&lib);
+
+    Libro **Lista2 = (Libro**)malloc(sizeof(Libro*));
+    Lista2[0] = &lib2;
+    listadoLibros(Lista2, 1);
 
     cerrarBDD(dbM);
 /*Fin datos prueba*/

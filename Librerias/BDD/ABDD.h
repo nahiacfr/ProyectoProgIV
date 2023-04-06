@@ -21,7 +21,7 @@ void insertarLibro(Libro *lib);
 void insertarLibroFichero(char *ruta);
 void eliminarLibro(Libro *lib);
 int existeLibro(Libro *lib);
-void listadoLibros(Libro *lib);
+void listadoLibros(Libro **listaLib, int tamanyoLista);
 
 //Acciones con Reservas
 void listadoReservas(Usuario *us, Reserva *res);

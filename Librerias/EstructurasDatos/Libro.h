@@ -17,10 +17,12 @@ typedef struct
 typedef struct
 {
     char *titulo;
-    char isbn[13];
+    char *isbn;
     int anio;
     Autor autor;
     Editorial editorial;
 }Libro;
+
+void anyadirLibro(Libro **listaLib, int tamanyoLista, Libro *lib);
 
 #endif
