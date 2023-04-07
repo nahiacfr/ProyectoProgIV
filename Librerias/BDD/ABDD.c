@@ -191,17 +191,17 @@ void eliminarLibro(char *isbn){
 
 		sqlite3_finalize(stmt);
 	}else{
-		printf("El susuario no libro\n");
+		printf("El libro no existe\n");
 	}
 }
 int existeLibro(char *isbn){
-	char sql9[] = "select ISBN from libro where ISBN = ?";
+	char sql9[] = "select * from libro where ISBN = ?";
 	int count = 0;
 	sqlite3_prepare_v2(db, sql9, strlen(sql9), &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, isbn, strlen(isbn), SQLITE_STATIC);
 
 	do {
-		result = sqlite3_step(stmt) ;
+		result = sqlite3_step(stmt);
 		if (result == SQLITE_ROW) {
 			count++;
 		}

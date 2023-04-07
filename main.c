@@ -89,6 +89,7 @@ int main() //MainMenu añadido al main principal
     insertarLibro(&lib3);
 
     eliminarLibro(lib.isbn);
+    eliminarLibro("");
 
     imprimirListadoLibros();
 
@@ -192,6 +193,7 @@ void administrarLibros()
         scanf(" %s", &year);
         sscanf(year, "%i", &anyo);
 
+        imprimirListadoAutores();
         printf("Codigo del Autor: \n");
         char cAutor[4];
         int idAu;
@@ -199,6 +201,7 @@ void administrarLibros()
         sscanf(cAutor, "%i", &idAu);
         Autor author=obtenerAutor(idAu);
 
+        imprimirListadoEditoriales();
         printf("Codigo de la Editorial: \n");
         char cEditorial[4];
         int idEd;
@@ -211,6 +214,7 @@ void administrarLibros()
 
         break;
     case '2': //Eliminar
+        imprimirListadoLibros();
         printf("Codigo isbn de libro a eliminar: \n");
         char isbnDel[10];
         scanf(" %s", &isbnDel);
@@ -229,7 +233,7 @@ void administrarLibros()
         }
         fclose(f);
         */
-       imprimirListadoLibros();
+        imprimirListadoLibros();
         break;
     default:
         printf("Choose again\n");
@@ -270,6 +274,7 @@ void administrarAutores()
 
         break;
     case '2': //Eliminar
+        imprimirListadoAutores();
         printf("Codigo del autor a eliminar: \n");
         char cAutorDel[10];
         int codigo;
@@ -326,6 +331,7 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
 
         break;
     case '2': //Eliminar
+        imprimirListadoEditoriales();
         printf("Codigo de la editorial a eliminar: \n");
         char cEdDel[10];
         int codigo;
