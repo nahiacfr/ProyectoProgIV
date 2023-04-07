@@ -324,9 +324,11 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
 
         printf("Codigo de la editorial: \n");
         char cEd[4];
+        int id;
         scanf(" %s", &cEd);
+        sscanf(cEd, "%i", &id);
         
-        Editorial newEditorial={(int)cEd, name};
+        Editorial newEditorial={id, name};
         insertarEditoriaL(&newEditorial);
 
         break;
