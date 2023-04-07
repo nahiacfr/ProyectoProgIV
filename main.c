@@ -187,19 +187,25 @@ void administrarLibros()
 
         printf("Anyo de publicacion: \n");
         char year[4];
+        int anyo;
         scanf(" %s", &year);
+        sscanf(year, "%i", &anyo);
 
         printf("Codigo del Autor: \n");
         char cAutor[4];
+        int idAu;
         scanf(" %s", &cAutor);
-        Autor author=obtenerAutor((int)cAutor);
+        sscanf(cAutor, "%i", &idAu);
+        Autor author=obtenerAutor(idAu);
 
         printf("Codigo de la Editorial: \n");
         char cEditorial[4];
+        int idEd;
         scanf(" %s", &cEditorial);
+        sscanf(cEditorial, "%i", &idEd);
         Editorial editor=obtenerEditorial((int)cEditorial);
         
-        Libro newBook={isbn, name, (int)year, author, editor};
+        Libro newBook={isbn, name, anyo, author, editor};
         insertarLibro(&newBook);
 
         break;
@@ -263,6 +269,7 @@ void administrarAutores()
         sscanf(cAutor, "%i", &id);
         
         Autor newAuthor={id, name, surname};
+
         insertarAutor(&newAuthor);
 
         break;
