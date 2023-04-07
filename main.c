@@ -337,7 +337,7 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
         int codigo;
         scanf(" %s", &cEdDel);
         sscanf(cEdDel, "%i", &codigo);
-        eliminarAutor(codigo);
+        eliminarEditorial(codigo);
         
         break;
     case '3': ;//Listado completo
