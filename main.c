@@ -44,9 +44,17 @@ int main() //MainMenu añadido al main principal
 
     verificarContrasenya(&us1, "123456");
     verificarContrasenya(&us1, "654321");
-    Usuario us2 = obtenerUsuario("22767695V");
-    printf("DNI: %s\nNombre: %s\n", us2.dni, us2.nombre);
+/*  Usuario *us2 = malloc(sizeof(Usuario));
+    *us2 = obtenerUsuario(us2, "22767695V");
 
+    if(strcmp("22767695V", us2->dni) == 0){
+        printf("Verdadero\n");
+    }
+    printf("DNI: %s\nNombre: %s\n", us2->dni, us2->nombre);
+    printf("DNI: %s\nNombre: %s\n", us1.dni, us1.nombre);
+
+    free(us2);
+*/
     Usuario **Lista1 = (Usuario**)malloc(sizeof(Usuario*));
     Lista1[0] = &us1;
     listadoUsuarios(Lista1, 1);
@@ -56,8 +64,13 @@ int main() //MainMenu añadido al main principal
     Autor au1 ={1, "Pedro", "de la Rosa"};
     Autor au2 ={2, "Alfredo", "Perez"};
 
+    insertarAutor(&au1);
+
     //Editoriales
+
     Editorial ed1 = {1, "Circulo"};
+
+    insertarEditoriaL(&ed1);
 
     //Libros
     Libro lib ={"bJGDkbc682nk9", "libro1", 2021, au1, ed1};
@@ -69,7 +82,10 @@ int main() //MainMenu añadido al main principal
     insertarLibro(&lib3);
 
     eliminarLibro(&lib);
-
+/*
+    Libro lib0 = obtenerLibro("ajkDrbcko2nl7");
+    printf("ISBN: %s", lib0.isbn);
+*/
     Libro **Lista2 = (Libro**)malloc(sizeof(Libro*));
     Lista2[0] = &lib2;
     listadoLibros(Lista2, 1);
@@ -238,13 +254,15 @@ void administrarAutores()
 
         printf("Apellido del autor: \n");
         char surname[MAX_LINE];
-        scanf(" %s", &name);
+        scanf(" %s", &surname);
 
         printf("Codigo del Autor: \n");
-        char cAutor[4];
+        char cAutor[MAX_LINE];
+        int id;
         scanf(" %s", &cAutor);
+        sscanf(cAutor, "%i", &id);
         
-        Autor newAuthor={(int)cAutor, name, surname};
+        Autor newAuthor={id, name, surname};
         insertarAutor(&newAuthor);
 
         break;

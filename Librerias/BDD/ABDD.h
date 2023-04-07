@@ -15,7 +15,7 @@ void insertarUsuario(Usuario *us, char* contrasenya);
 int existeUsuario(Usuario *us);
 int verificarContrasenya(Usuario *us, char *contrasenya);
 void eliminarUsuario(Usuario *us);
-Usuario obtenerUsuario(char* dniUs);
+Usuario obtenerUsuario(Usuario *usAux, char* dniUs);
 void listadoUsuarios(Usuario **listaUs, int tamanyoLista);
 
 //Acciones con Libros
