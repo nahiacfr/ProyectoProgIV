@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "Reserva.h"
 
 void anyadirReserva(Reserva **listaRes, int tamanyoLista, Reserva *ed){

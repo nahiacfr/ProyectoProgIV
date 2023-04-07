@@ -25,26 +25,37 @@ int main() //MainMenu añadido al main principal
  
     system("cls"); //añadido para que la pantalla no se llene de mucha información
 /*Datos prueba*/
+    //Usuarios
     Usuario us1 = {"22767695X", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     inicializarBDD("BibliotecaDeusto.db", dbM);
-    insertarNuevoUsuario(&us1, "123456");
+    insertarUsuario(&us1, "123456");
     
-    Libro lib ={"libro1", "bJGDkbc682nk9", 2021, NULL, NULL};
-    Libro lib2 ={"libro2", "bJ3Drbcko2nl7", 2018, NULL, NULL};
-    Libro lib3 ={"libro3", "ajkDrbcko2nl7", 2019, NULL, NULL};
+    eliminarUsuario(&us1);
 
-    insertarLibro(&lib);
-    insertarLibro(&lib2);
-    insertarLibro(&lib3);
-    
     verificarContrasenya(&us1, "123456");
     verificarContrasenya(&us1, "654321");
 
-    eliminarUsuario(&us1);
+    printf("DNI: %s\nNombre: %s", obtenerUsuario("22767695V").dni, obtenerUsuario("22767695V").nombre);
 
     Usuario **Lista1 = (Usuario**)malloc(sizeof(Usuario*));
     Lista1[0] = &us1;
     listadoUsuarios(Lista1, 1);
+
+    //Autores
+    Autor au1 ={1, "Pedro", "de la Rosa"};
+    Autor au2 ={2, "Alfredo", "Perez"};
+
+    //Editoriales
+    Editorial ed1 = {1, "Circulo"};
+
+    //Libros
+    Libro lib ={"bJGDkbc682nk9", "libro1", 2021, au1, ed1};
+    Libro lib2 ={"bJ3Drbcko2nl7", "libro2", 2018, au2, ed1};
+    Libro lib3 ={"ajkDrbcko2nl7", "libro3", 2019, au1, ed1};
+
+    insertarLibro(&lib);
+    insertarLibro(&lib2);
+    insertarLibro(&lib3);
 
     eliminarLibro(&lib);
 

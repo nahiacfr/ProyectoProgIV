@@ -4,6 +4,7 @@
 
 #include "ABDD.h"
 #include "sqlite3.h"
+#include "..\EstructurasDatos\Fecha.h"
 #include "..\EstructurasDatos\Usuario.h"
 #include "..\EstructurasDatos\Libro.h"
 #include "..\EstructurasDatos\Reserva.h"
@@ -111,8 +112,19 @@ void eliminarUsuario(Usuario *us){
 		printf("El susuario no existe\n");
 	}
 }
-void obtenerUsuario(char* dniUs){
-	//TODO
+Usuario obtenerUsuario(char* dniUs){
+	char sql3[] = "select * from usuario where DNI = ?";
+	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
+	sqlite3_bind_text(stmt, 1, dniUs, strlen(dniUs), SQLITE_STATIC);
+	Usuario usAux;
+	result = sqlite3_step(stmt) ;
+	usAux.dni = (char*) sqlite3_column_text(stmt, 0);
+	printf("%s\n", (char*) sqlite3_column_text(stmt, 0));
+	usAux.nombre = (char*) sqlite3_column_text(stmt, 1);
+	usAux.apellidos = (char*) sqlite3_column_text(stmt, 2);
+	usAux.correo = (char*) sqlite3_column_text(stmt, 3);
+	sqlite3_finalize(stmt);
+	return usAux;
 }
 void listadoUsuarios(Usuario **listaUs, int tamanyoLista){
 	char sql5[] = "select * from usuario";
@@ -190,8 +202,20 @@ int existeLibro(Libro *lib){
 		return 0;
 	}
 }
-void obtenerLibro(char* isbnLib){
-	//TODO
+Libro obtenerLibro(char* isbnLib){
+	char sql3[] = "select * from libro where ISBN = ?";
+		sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
+		sqlite3_bind_text(stmt, 1, isbnLib, strlen(isbnLib), SQLITE_STATIC);
+		Libro libAux;
+		do {
+			result = sqlite3_step(stmt) ;
+			libAux.isbn = (char*) sqlite3_column_text(stmt, 0);
+			libAux.titulo = (char*) sqlite3_column_text(stmt, 1);
+			libAux.anio = sqlite3_column_int(stmt, 2);
+			libAux.autor = obtenerAutor(sqlite3_column_int(stmt, 3));
+			libAux.editorial = obtenerEditorial(sqlite3_column_int(stmt, 4));
+		} while (result == SQLITE_ROW);
+		return libAux;
 }
 /* Faltan los autores y las editoriales*/
 void listadoLibros(Libro **listaLib, int tamanyoLista){
@@ -200,7 +224,7 @@ void listadoLibros(Libro **listaLib, int tamanyoLista){
 
 	do {
 		result = sqlite3_step(stmt) ;
-		Libro aux ={(char*)sqlite3_column_text(stmt, 0), (char*)sqlite3_column_text(stmt, 1), sqlite3_column_int(stmt, 2), NULL, NULL};
+		Libro aux ={(char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 0), sqlite3_column_int(stmt, 2), obtenerAutorPorLibro((char*)sqlite3_column_text(stmt, 1)), obtenerEditorialPorLibro((char*)sqlite3_column_text(stmt, 1))};
 		anyadirLibro(listaLib, tamanyoLista, &aux);
 		printf("%s\n", aux.isbn);
 	} while (result == SQLITE_ROW);
@@ -209,10 +233,10 @@ void listadoLibros(Libro **listaLib, int tamanyoLista){
 //Acciones con Autores
 void insertarAutor(Autor *au){
 	if (existeAutor(au)==0){
-		char sql6[] = "insert into autor values (?, ?, ?);";
+		char sql6[] = "insert into escritor values (?, ?, ?);";
 
 		sqlite3_prepare_v2(db, sql6, strlen(sql6) + 1, &stmt, NULL);
-		sqlite3_bind_text(stmt, 1, au->id, strlen(au->id), SQLITE_STATIC);
+		sqlite3_bind_int(stmt, 1, au->id);
 		sqlite3_bind_text(stmt, 2, au->nombre, strlen(au->nombre), SQLITE_STATIC);
 	    sqlite3_bind_text(stmt, 3, au->apellidos, strlen(au->apellidos), SQLITE_STATIC);
 
@@ -233,9 +257,9 @@ void insertarAutoresFichero(char *ruta){
 }
 void eliminarAutor(Autor *au){
 	if (existeAutor(au)==1){
-		char sql8[] = "delete from autor where ID = ?";
+		char sql8[] = "delete from escritor where ID = ?";
 		sqlite3_prepare_v2(db, sql8, strlen(sql8) + 1, &stmt, NULL);
-		sqlite3_bind_text(stmt, 1, au->id, strlen(au->id), SQLITE_STATIC);
+		sqlite3_bind_int(stmt, 1, au->id);
 
 		result = sqlite3_step(stmt);
 		if (result != SQLITE_DONE) {
@@ -250,10 +274,10 @@ void eliminarAutor(Autor *au){
 	}
 }
 int existeAutor(Autor *au){
-	char sql9[] = "select * from autor where ID = ?";
+	char sql9[] = "select * from escritor where ID = ?";
 	int count = 0;
 	sqlite3_prepare_v2(db, sql9, strlen(sql9), &stmt, NULL) ;
-	sqlite3_bind_text(stmt, 1, au->id, strlen(au->id), SQLITE_STATIC);
+	sqlite3_bind_int(stmt, 1, au->id);
 
 	do {
 		result = sqlite3_step(stmt) ;
@@ -270,16 +294,31 @@ int existeAutor(Autor *au){
 		return 0;
 	}
 }
-void obtenerAutor(int idAu){
+Autor obtenerAutor(int idAu){
+	char sql3[] = "select * from escritor where ID = ?";
+	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
+	sqlite3_bind_int(stmt, 1, idAu);
+	Autor auAux;
+	do {
+		result = sqlite3_step(stmt) ;
+		auAux.id = sqlite3_column_int(stmt, 0);
+		auAux.nombre = (char*) sqlite3_column_text(stmt, 1);
+		auAux.apellidos = (char*) sqlite3_column_text(stmt, 2);
+	} while (result == SQLITE_ROW);
+	return auAux;
+}
+Autor obtenerAutorPorLibro(char *isbn){
+	Autor au;
 	//TODO
+	return au;
 }
 void listadoAutores(Autor **listaAu, int tamanyoLista){
-	char sql10[] = "select * from autor";
+	char sql10[] = "select * from escritor";
 	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
 
 	do {
 		result = sqlite3_step(stmt) ;
-		Autor aux ={sqlite3_column_int(stmt, 0), (char*)sqlite3_column_text(stmt, 1), sqlite3_column_int(stmt, 2)};
+		Autor aux ={sqlite3_column_int(stmt, 0), (char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 2)};
 		anyadirAutor(listaAu, tamanyoLista, &aux);
 		printf("%s\n", aux.id);
 	} while (result == SQLITE_ROW);
@@ -313,7 +352,7 @@ void eliminarEditorial(Editorial *ed){
 	if (existeEditorial(ed)==1){
 		char sql8[] = "delete from editorial where ID = ?";
 		sqlite3_prepare_v2(db, sql8, strlen(sql8) + 1, &stmt, NULL);
-		sqlite3_bind_text(stmt, 1, ed->id, strlen(ed->id), SQLITE_STATIC);
+		sqlite3_bind_int(stmt, 1, ed->id);
 
 		result = sqlite3_step(stmt);
 		if (result != SQLITE_DONE) {
@@ -331,7 +370,7 @@ int existeEditorial(Editorial *ed){
 	char sql9[] = "select * from editorial where ID = ?";
 	int count = 0;
 	sqlite3_prepare_v2(db, sql9, strlen(sql9), &stmt, NULL) ;
-	sqlite3_bind_text(stmt, 1, ed->id, strlen(ed->id), SQLITE_STATIC);
+	sqlite3_bind_int(stmt, 1, ed->id);
 
 	do {
 		result = sqlite3_step(stmt) ;
@@ -348,8 +387,22 @@ int existeEditorial(Editorial *ed){
 		return 0;
 	}
 }
-void obtenerEditorial(int idEd){
+Editorial obtenerEditorial(int idEd){
+	char sql3[] = "select * from editorial where ID = ?";
+	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
+	sqlite3_bind_int(stmt, 1, idEd);
+	Editorial edAux;
+	do {
+		result = sqlite3_step(stmt) ;
+		edAux.id = sqlite3_column_int(stmt, 0);
+		edAux.nombre = (char*) sqlite3_column_text(stmt, 1);
+	} while (result == SQLITE_ROW);
+	return edAux;
+}
+Editorial obtenerEditorialPorLibro(char *isbn){
+	Editorial ed;
 	//TODO
+	return ed;
 }
 void listadoEditoriales(Editorial **listaEd, int tamanyoLista){
 	char sql10[] = "select * from editorial";
@@ -365,15 +418,24 @@ void listadoEditoriales(Editorial **listaEd, int tamanyoLista){
 
 //Acciones con Reservas
 void listadoReservas(Reserva **listaRes, int tamanyoLista, Usuario *us){
-	//DOING
 	char sql10[] = "select * from reserva where DNI = ?";
 	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
 
 	do {
 		result = sqlite3_step(stmt) ;
-		Reserva aux ={(char*)sqlite3_column_text(stmt, 0), sqlite3_column_int(stmt, 1),  NULL, NULL};
+		Reserva aux ={obtenerLibro((char*)sqlite3_column_text(stmt, 0)), obtenerUsuario((char*)sqlite3_column_text(stmt, 1)),  obtenerFechaIni((char*)sqlite3_column_text(stmt, 2)), obtenerFechaFin((char*)sqlite3_column_text(stmt, 3))};
 		anyadirReserva(listaRes, tamanyoLista, &aux);
 		printf("%s\n", aux.libro.isbn);
 	} while (result == SQLITE_ROW);
+}
+
+//Acciones con fechas
+Fecha obtenerFechaIni(char *res){
+	Fecha f1;
+	return f1;
+}
+Fecha obtenerFechaFin(char *res){
+	Fecha f1;
+	return f1;
 }

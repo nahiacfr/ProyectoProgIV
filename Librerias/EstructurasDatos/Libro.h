@@ -16,8 +16,8 @@ typedef struct
 
 typedef struct
 {
-    char *titulo;
     char *isbn;
+    char *titulo;
     int anio;
     Autor autor;
     Editorial editorial;
