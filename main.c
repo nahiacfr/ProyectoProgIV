@@ -37,8 +37,12 @@ int main() //MainMenu añadido al main principal
 /*Datos prueba*/
     //Usuarios
     Usuario us1 = {"22767695X", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
+    Usuario us2 = {"22767695V", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
+    Usuario us3 = {"22767695Z", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     inicializarBDD("BibliotecaDeusto.db", dbM);
     insertarUsuario(&us1, "123456");
+    insertarUsuario(&us2, "123456");
+    insertarUsuario(&us3, "123456");
     
     eliminarUsuario(us1.dni);
 
@@ -55,22 +59,25 @@ int main() //MainMenu añadido al main principal
 
     free(us2);
 */
-    Usuario **Lista1 = (Usuario**)malloc(sizeof(Usuario*));
-    Lista1[0] = &us1;
-    listadoUsuarios(Lista1, 1);
-    free(Lista1);
+
+    imprimirListadoUsuarios();
 
     //Autores
     Autor au1 ={1, "Pedro", "de la Rosa"};
     Autor au2 ={2, "Alfredo", "Perez"};
 
     insertarAutor(&au1);
+    insertarAutor(&au2);
+
+    imprimirListadoAutores();
 
     //Editoriales
 
     Editorial ed1 = {1, "Circulo"};
 
     insertarEditoriaL(&ed1);
+
+    imprimirListadoEditoriales();
 
     //Libros
     Libro lib ={"bJGDkbc682nk9", "libro1", 2021, au1, ed1};
@@ -82,14 +89,8 @@ int main() //MainMenu añadido al main principal
     insertarLibro(&lib3);
 
     eliminarLibro(lib.isbn);
-/*
-    Libro lib0 = obtenerLibro("ajkDrbcko2nl7");
-    printf("ISBN: %s", lib0.isbn);
-*/
-    Libro **Lista2 = (Libro**)malloc(sizeof(Libro*));
-    Lista2[0] = &lib2;
-    listadoLibros(Lista2, 1);
-    free(Lista2);
+
+    imprimirListadoLibros();
 
     cerrarBDD(dbM);
 /*Fin datos prueba*/

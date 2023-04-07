@@ -133,15 +133,21 @@ Usuario obtenerUsuario(Usuario *usAux, char* dniUs){
 	*usAux = aux;
 	return *usAux;
 }
-void listadoUsuarios(Usuario **listaUs, int tamanyoLista){
+void imprimirListadoUsuarios(){
 	char sql5[] = "select * from usuario";
-	sqlite3_prepare_v2(db, sql5, strlen(sql5), &stmt, NULL) ;
-
+	sqlite3_prepare_v2(db, sql5, strlen(sql5), &stmt, NULL);
+	
+	printf("///////////////////////\n");
+	printf("//Listado de Usuarios//\n");
+	printf("///////////////////////\n");
 	do {
-		result = sqlite3_step(stmt) ;
-		Usuario aux ={(char*)sqlite3_column_text(stmt, 0), (char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 2), (char*)sqlite3_column_text(stmt, 3)};
-		anyadirUsuario(listaUs, tamanyoLista, &aux);
+		result = sqlite3_step(stmt);
+		if((char*)sqlite3_column_text(stmt, 0)!= NULL){
+			printf("DNI: %s\nNombre: %s\nApellidos: %s\nCorreo electronico: %s\n",(char*)sqlite3_column_text(stmt, 0), (char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 2), (char*)sqlite3_column_text(stmt, 3));
+			printf("-----------------------------------------------------------------\n");
+		}
 	} while (result == SQLITE_ROW);
+	sqlite3_finalize(stmt);
 }
 
 //Acciones con Libros
@@ -235,16 +241,21 @@ Libro obtenerLibro(char* isbnLib){
 	return libAux;
 }
 
-void listadoLibros(Libro **listaLib, int tamanyoLista){
+void imprimirListadoLibros(){
 	char sql10[] = "select * from libro";
 	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
 
+	printf("/////////////////////\n");
+	printf("//Listado de Libros//\n");
+	printf("/////////////////////\n");
 	do {
-		result = sqlite3_step(stmt) ;
-		Libro aux ={(char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 0), sqlite3_column_int(stmt, 2), obtenerAutorPorLibro((char*)sqlite3_column_text(stmt, 1)), obtenerEditorialPorLibro((char*)sqlite3_column_text(stmt, 1))};
-		anyadirLibro(listaLib, tamanyoLista, &aux);
-		printf("%s\n", aux.isbn);
+		result = sqlite3_step(stmt);
+		if((char*)sqlite3_column_text(stmt, 1)!= NULL){
+			printf("ISBN: %s\nTitulo: %s\nAnyo de publicacion: %i\n",(char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 0), sqlite3_column_int(stmt, 2));
+			printf("-----------------------------------------------------------------\n");
+		}
 	} while (result == SQLITE_ROW);
+	sqlite3_finalize(stmt);
 }
 
 //Acciones con Autores
@@ -330,16 +341,21 @@ Autor obtenerAutorPorLibro(char *isbn){
 	//TODO
 	return au;
 }
-void listadoAutores(Autor **listaAu, int tamanyoLista){
+void imprimirListadoAutores(){
 	char sql10[] = "select * from escritor";
 	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
 
+	printf("//////////////////////\n");
+	printf("//Listado de Autores//\n");
+	printf("//////////////////////\n");
 	do {
-		result = sqlite3_step(stmt) ;
-		Autor aux ={sqlite3_column_int(stmt, 0), (char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 2)};
-		anyadirAutor(listaAu, tamanyoLista, &aux);
-		printf("%s\n", aux.id);
+		result = sqlite3_step(stmt);
+		if((char*)sqlite3_column_text(stmt, 0)!= NULL){
+			printf("ID: %i\nNombre: %s\nApellidos: %s\n",sqlite3_column_int(stmt, 0), (char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 2));
+			printf("-----------------------------------------------------------------\n");
+		}
 	} while (result == SQLITE_ROW);
+	sqlite3_finalize(stmt);
 }
 
 //Acciones con Editoriales
@@ -422,16 +438,21 @@ Editorial obtenerEditorialPorLibro(char *isbn){
 	//TODO
 	return ed;
 }
-void listadoEditoriales(Editorial **listaEd, int tamanyoLista){
+void imprimirListadoEditoriales(){
 	char sql10[] = "select * from editorial";
 	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
 
+	printf("//////////////////////////\n");
+	printf("**Listado de Editoriales**\n");
+	printf("//////////////////////////\n");
 	do {
-		result = sqlite3_step(stmt) ;
-		Editorial aux ={sqlite3_column_int(stmt, 0), (char*)sqlite3_column_text(stmt, 1)};
-		anyadirEditorial(listaEd, tamanyoLista, &aux);
-		printf("%s\n", aux.id);
+		result = sqlite3_step(stmt);
+		if((char*)sqlite3_column_text(stmt, 0)!= NULL){
+			printf("ID: %i\nNombre: %s\n",sqlite3_column_int(stmt, 0), (char*)sqlite3_column_text(stmt, 1));
+			printf("-----------------------------------------------------------------\n");
+		}
 	} while (result == SQLITE_ROW);
+	sqlite3_finalize(stmt);
 }
 
 //Acciones con Reservas

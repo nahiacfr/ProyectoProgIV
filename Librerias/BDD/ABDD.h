@@ -16,7 +16,7 @@ int existeUsuario(char *dni);
 int verificarContrasenya(Usuario *us, char *contrasenya);
 void eliminarUsuario(char *dni);
 Usuario obtenerUsuario(Usuario *usAux, char* dniUs);
-void listadoUsuarios(Usuario **listaUs, int tamanyoLista);
+void imprimirListadoUsuarios();
 
 //Acciones con Libros
 void insertarLibro(Libro *lib);
@@ -24,7 +24,7 @@ void insertarLibrosFichero(char *ruta);
 void eliminarLibro(char *isbn);
 int existeLibro(char *isbn);
 Libro obtenerLibro(char* isbnLib);
-void listadoLibros(Libro **listaLib, int tamanyoLista);
+void imprimirListadoLibros();
 
 //Acciones con Autores
 void insertarAutor(Autor *au);
@@ -33,7 +33,7 @@ void eliminarAutor(int idAu);
 int existeAutor(int idAu);
 Autor obtenerAutor(int idAu);
 Autor obtenerAutorPorLibro(char *isbn);
-void listadoAutores(Autor **listaAu, int tamanyoLista);
+void imprimirListadoAutores();
 
 //Acciones con Editoriales
 void insertarEditoriaL(Editorial *ed);
@@ -42,7 +42,7 @@ void eliminarEditorial(int idEd);
 int existeEditorial(int idEd);
 Editorial obtenerEditorial(int idEd);
 Editorial obtenerEditorialPorLibro(char *isbn);
-void listadoEditoriales(Editorial **listaEd, int tamanyoLista);
+void imprimirListadoEditoriales();
 
 //Acciones con Reservas
 void listadoReservas(Reserva **listaRes, int tamanyoLista, Usuario *us);
