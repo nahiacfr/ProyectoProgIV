@@ -218,7 +218,7 @@ void administrarLibros()
         
         break;
     case '3': ;//Listado completo
-        //leer de fichero
+        /*  leer de fichero
         FILE *f;
         char string[1000]="";
         f=fopen("Libro.txt","r");
@@ -228,7 +228,8 @@ void administrarLibros()
             printf("%s\n",string);
         }
         fclose(f);
-
+        */
+       imprimirListadoLibros();
         break;
     default:
         printf("Choose again\n");
@@ -278,7 +279,7 @@ void administrarAutores()
         
         break;
     case '3': ;//Listado completo
-        //leer de fichero
+       /* //leer de fichero
         FILE *f;
         char string[1000]="";
         f=fopen("Autor.txt","r");
@@ -288,7 +289,8 @@ void administrarAutores()
             printf("%s\n",string);
         }
         fclose(f);
-
+        */
+        imprimirListadoAutores();
         break;
     default:
         printf("Choose again\n");
@@ -300,7 +302,7 @@ void administrarEditoriales()
 {
 printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n");
     printf("Que desea hacer?\n");
-    printf("1.Anyadir\n2.Modificar\n3.Eliminar\n4.Listado completo\n");
+    printf("1.Anyadir\n2.Eliminar\n3.Listado completo\n");
     
     char select;
     scanf(" %c", &select);
@@ -333,7 +335,7 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
         
         break;
     case '3': ;//Listado completo
-        //leer de fichero
+        /*//leer de fichero
         FILE *f;
         char string[1000]="";
         f=fopen("Editorial.txt","r");
@@ -343,7 +345,8 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
             printf("%s\n",string);
         }
         fclose(f);
-
+        */
+        imprimirListadoEditoriales();
         break;
     default:
         printf("Choose again\n");

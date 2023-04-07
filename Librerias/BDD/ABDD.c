@@ -144,7 +144,7 @@ void imprimirListadoUsuarios(){
 		result = sqlite3_step(stmt);
 		if((char*)sqlite3_column_text(stmt, 0)!= NULL){
 			printf("DNI: %s\nNombre: %s\nApellidos: %s\nCorreo electronico: %s\n",(char*)sqlite3_column_text(stmt, 0), (char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 2), (char*)sqlite3_column_text(stmt, 3));
-			printf("-----------------------------------------------------------------\n");
+			printf("----------------------------------------\n");
 		}
 	} while (result == SQLITE_ROW);
 	sqlite3_finalize(stmt);
@@ -252,7 +252,7 @@ void imprimirListadoLibros(){
 		result = sqlite3_step(stmt);
 		if((char*)sqlite3_column_text(stmt, 1)!= NULL){
 			printf("ISBN: %s\nTitulo: %s\nAnyo de publicacion: %i\n",(char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 0), sqlite3_column_int(stmt, 2));
-			printf("-----------------------------------------------------------------\n");
+			printf("----------------------------------------\n");
 		}
 	} while (result == SQLITE_ROW);
 	sqlite3_finalize(stmt);
@@ -352,7 +352,7 @@ void imprimirListadoAutores(){
 		result = sqlite3_step(stmt);
 		if((char*)sqlite3_column_text(stmt, 0)!= NULL){
 			printf("ID: %i\nNombre: %s\nApellidos: %s\n",sqlite3_column_int(stmt, 0), (char*)sqlite3_column_text(stmt, 1), (char*)sqlite3_column_text(stmt, 2));
-			printf("-----------------------------------------------------------------\n");
+			printf("----------------------------------------\n");
 		}
 	} while (result == SQLITE_ROW);
 	sqlite3_finalize(stmt);
@@ -449,7 +449,7 @@ void imprimirListadoEditoriales(){
 		result = sqlite3_step(stmt);
 		if((char*)sqlite3_column_text(stmt, 0)!= NULL){
 			printf("ID: %i\nNombre: %s\n",sqlite3_column_int(stmt, 0), (char*)sqlite3_column_text(stmt, 1));
-			printf("-----------------------------------------------------------------\n");
+			printf("----------------------------------------\n");
 		}
 	} while (result == SQLITE_ROW);
 	sqlite3_finalize(stmt);
