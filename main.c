@@ -169,7 +169,7 @@ void administrarLibros()
 {
     printf("---------------------\nADMINISTRAR LIBROS\n---------------------\n");
     printf("Que desea hacer?\n");
-    printf("1.Anyadir\n2.Modificar\n3.Eliminar\n4.Listado completo\n");
+    printf("1.Anyadir\n2.Eliminar\n3.Listado completo\n");
     
     char select;
     scanf(" %c", &select);
@@ -210,21 +210,15 @@ void administrarLibros()
         insertarLibro(&newBook);
 
         break;
-    case '2': //Modificar
-        printf("Codigo isbn de libro a modificar: \n");
-        char isbnMod[14];
-        scanf(" %s", &isbnMod);
-
-        break;
-    case '3': //Eliminar
+    case '2': //Eliminar
         printf("Codigo isbn de libro a eliminar: \n");
-        char isbnDel[14];
+        char isbnDel[10];
         scanf(" %s", &isbnDel);
-        eliminarLibro(isbnDel); 
+        eliminarLibro(isbnDel);
         
         break;
-    case '4': ;//Listado completo
-        //leer de fichero?
+    case '3': ;//Listado completo
+        //leer de fichero
         FILE *f;
         char string[1000]="";
         f=fopen("Libro.txt","r");
@@ -246,7 +240,7 @@ void administrarAutores()
 {
     printf("---------------------\nADMINISTRAR AUTORES\n---------------------\n");
     printf("Que desea hacer?\n");
-    printf("1.Anyadir\n2.Modificar\n3.Eliminar\n4.Listado completo\n");
+    printf("1.Anyadir\n2.Eliminar\n3.Listado completo\n");
     
     char select;
     scanf(" %c", &select);
@@ -274,20 +268,16 @@ void administrarAutores()
         insertarAutor(&newAuthor);
 
         break;
-    case '2': //Modificar
-        printf("Codigo del autor a modificar: \n");
-        char cAutorMod[10];
-        scanf(" %s", &cAutorMod);
-
-        break;
-    case '3': //Eliminar
+    case '2': //Eliminar
         printf("Codigo del autor a eliminar: \n");
         char cAutorDel[10];
+        int codigo;
         scanf(" %s", &cAutorDel);
-        //eliminarAutor();
+        sscanf(cAutor, "%i", &codigo);
+        eliminarAutor(codigo);
         
         break;
-    case '4': ;//Listado completo
+    case '3': ;//Listado completo
         //leer de fichero
         FILE *f;
         char string[1000]="";
@@ -333,21 +323,17 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
         insertarEditoriaL(&newEditorial);
 
         break;
-    case '2': //Modificar
-        printf("Codigo del autor a modificar: \n");
-        char cEdMod[10];
-        scanf(" %s", &cEdMod);
-
-        break;
-    case '3': //Eliminar
-        printf("Codigo del autor a eliminar: \n");
+    case '2': //Eliminar
+        printf("Codigo de la editorial a eliminar: \n");
         char cEdDel[10];
+        int codigo;
         scanf(" %s", &cEdDel);
-        //eliminarAutor();
+        sscanf(cEdDel, "%i", &codigo);
+        eliminarAutor(codigo);
         
         break;
-    case '4': ;//Listado completo
-        //leer de fichero?- FIX
+    case '3': ;//Listado completo
+        //leer de fichero
         FILE *f;
         char string[1000]="";
         f=fopen("Editorial.txt","r");
@@ -357,7 +343,6 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
             printf("%s\n",string);
         }
         fclose(f);
-        //printf("Espere por favor \n");
 
         break;
     default:
