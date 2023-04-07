@@ -82,7 +82,6 @@ int main() //MainMenu añadido al main principal
     printf("1.Usuario\n2.Administrador\n");
     char select;
     scanf(" %c", &select);
-            printf("Esto: %c\n", select);
     switch (select)
     {
     case '1':
@@ -109,6 +108,7 @@ void verificarAdmin()
     if (code=='1') //prueba
     {
         printf("Acceso permitido.");
+        Sleep(SECONDS_TO_CONTINUE);
         mainMenuAdmin();
     }
     else
@@ -119,7 +119,7 @@ void verificarAdmin()
 
 void mainMenuAdmin()
 {
-    //
+    system("cls"); //añadido para que la pantalla no se llene de mucha información
     printf("---------------------\nMENU ADMINISTRADOR\n---------------------\n");
     printf("Que desea editar?\n");
     printf("1.Libros\n2.Autores\n3.Editoriales\n4.Reservas\n");
@@ -152,14 +152,14 @@ void administrarLibros()
 {
     printf("---------------------\nADMINISTRAR LIBROS\n---------------------\n");
     printf("Que desea hacer?\n");
-    printf("1.Añadir\n2.Modificar\n3.Eliminar\n4.Listado completo\n");
+    printf("1.Anyadir\n2.Modificar\n3.Eliminar\n4.Listado completo\n");
     
     char select;
     scanf(" %c", &select);
     
     switch (select)
     {
-    case '1':
+    case '1': //añadir
 
         printf("Nombre del libro: \n");
         char name[MAX_LINE];
@@ -187,14 +187,31 @@ void administrarLibros()
         insertarLibro(&newBook);
 
         break;
-    case '2':
-        printf("Espere por favor \n");
+    case '2': //Modificar
+        printf("Codigo isbn de libro a modificar: \n");
+        char isbnMod[10];
+        scanf(" %s", &isbnMod);
+
         break;
-    case '3':
-        printf("Espere por favor \n");
+    case '3': //Eliminar
+        printf("Codigo isbn de libro a eliminar: \n");
+        char isbnDel[10];
+        scanf(" %s", &isbnDel);
+        //eliminarLibro(NULL); 
+        
         break;
-    case '4':
-        printf("Espere por favor \n");
+    case '4': ;//Listado completo
+        //leer de fichero?
+        FILE *f;
+        char string[1000]="";
+        f=fopen("Libro.txt","r");
+
+        while (fgets(string, sizeof(string), f))
+        {
+            printf("%s\n",string);
+        }
+        fclose(f);
+
         break;
     default:
         printf("Choose again\n");
@@ -204,23 +221,171 @@ void administrarLibros()
 
 void administrarAutores()
 {
+    printf("---------------------\nADMINISTRAR AUTORES\n---------------------\n");
+    printf("Que desea hacer?\n");
+    printf("1.Anyadir\n2.Modificar\n3.Eliminar\n4.Listado completo\n");
+    
+    char select;
+    scanf(" %c", &select);
+    
+    switch (select)
+    {
+    case '1': //añadir
 
+        printf("Nombre del autor: \n");
+        char name[MAX_LINE];
+        scanf(" %s", &name);
+
+        printf("Apellido del autor: \n");
+        char surname[MAX_LINE];
+        scanf(" %s", &name);
+
+        printf("Codigo del Autor: \n");
+        char cAutor[4];
+        scanf(" %s", &cAutor);
+        
+        Autor newAuthor={(int)cAutor, name, surname};
+        insertarAutor(&newAuthor);
+
+        break;
+    case '2': //Modificar
+        printf("Codigo del autor a modificar: \n");
+        char cAutorMod[10];
+        scanf(" %s", &cAutorMod);
+
+        break;
+    case '3': //Eliminar
+        printf("Codigo del autor a eliminar: \n");
+        char cAutorDel[10];
+        scanf(" %s", &cAutorDel);
+        //eliminarAutor();
+        
+        break;
+    case '4': ;//Listado completo
+        //leer de fichero
+        FILE *f;
+        char string[1000]="";
+        f=fopen("Autor.txt","r");
+
+        while (fgets(string, sizeof(string), f))
+        {
+            printf("%s\n",string);
+        }
+        fclose(f);
+
+        break;
+    default:
+        printf("Choose again\n");
+        break;
+    }
 }
 
 void administrarEditoriales()
 {
+printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n");
+    printf("Que desea hacer?\n");
+    printf("1.Anyadir\n2.Modificar\n3.Eliminar\n4.Listado completo\n");
+    
+    char select;
+    scanf(" %c", &select);
+    
+    switch (select)
+    {
+    case '1': //añadir
 
+        printf("Nombre de la editorial: \n");
+        char name[MAX_LINE];
+        scanf(" %s", &name);
+
+        printf("Codigo de la editorial: \n");
+        char cEd[4];
+        scanf(" %s", &cEd);
+        
+        Editorial newEditorial={(int)cEd, name};
+        insertarEditoriaL(&newEditorial);
+
+        break;
+    case '2': //Modificar
+        printf("Codigo del autor a modificar: \n");
+        char cEdMod[10];
+        scanf(" %s", &cEdMod);
+
+        break;
+    case '3': //Eliminar
+        printf("Codigo del autor a eliminar: \n");
+        char cEdDel[10];
+        scanf(" %s", &cEdDel);
+        //eliminarAutor();
+        
+        break;
+    case '4': ;//Listado completo
+        //leer de fichero?- FIX
+        FILE *f;
+        char string[1000]="";
+        f=fopen("Editorial.txt","r");
+
+        while (fgets(string, sizeof(string), f))
+        {
+            printf("%s\n",string);
+        }
+        fclose(f);
+        //printf("Espere por favor \n");
+
+        break;
+    default:
+        printf("Choose again\n");
+        break;
+    }
 }
 
 void administrarReservas()
 {
+printf("---------------------\nADMINISTRAR RESERVAS\n---------------------\n");
+    printf("Que desea hacer?\n");
+    printf("1.Anyadir\n2.Modificar\n3.Eliminar\n4.Listado completo\n");
+    
+    char select;
+    scanf(" %c", &select);
+    
+    switch (select)
+    {
+    case '1': //añadir
+        //añadir Reserva
 
+        break;
+    case '2': //Modificar
+        //modificar Reserva
+
+        break;
+    case '3': //Eliminar
+        //eliminar Reserva
+        
+        break;
+    case '4': ;//Listado completo
+        //leer de fichero
+        FILE *f;
+        char string[1000]="";
+        f=fopen("Libros.txt","r"); //crear archivo de reservas?
+
+        while (fgets(string, sizeof(string), f))
+        {
+            printf("%s\n",string);
+        }
+        fclose(f);
+        //printf("Espere por favor \n");
+
+        break;
+    default:
+        printf("Choose again\n");
+        break;
+    }
 }
 
 
 //Menus del ususario
 void mainMenuUser()
 {
+    system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_OPTN];
     char select;
 
