@@ -202,14 +202,34 @@ void eliminarLibro(char *isbn){
 		char sql8[] = "delete from libro where ISBN = ?";
 		sqlite3_prepare_v2(db, sql8, strlen(sql8) + 1, &stmt, NULL);
 		sqlite3_bind_text(stmt, 1, isbn, strlen(isbn), SQLITE_STATIC);
-
 		result = sqlite3_step(stmt);
 		if (result != SQLITE_DONE) {
 			printf("Error al eliminar el libro\n");
 		}else{
 			printf("El libro %s ha sido eliminado\n", isbn);
 		}
+		sqlite3_finalize(stmt);
 
+		char sql2[] = "delete from autor where ISBN = ?";
+		sqlite3_prepare_v2(db, sql2, strlen(sql2) + 1, &stmt, NULL);
+		sqlite3_bind_text(stmt, 1, isbn, strlen(isbn), SQLITE_STATIC);
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al eliminar la relacion autor\n");
+		}else{
+			printf("La relacion autor ha sido eliminado\n");
+		}
+		sqlite3_finalize(stmt);
+
+		char sql3[] = "delete from pertenece where ISBN = ?";
+		sqlite3_prepare_v2(db, sql3, strlen(sql3) + 1, &stmt, NULL);
+		sqlite3_bind_text(stmt, 1, isbn, strlen(isbn), SQLITE_STATIC);
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al eliminar la relacion pertenece\n");
+		}else{
+			printf("La relacion pertenece ha sido eliminado\n");
+		}
 		sqlite3_finalize(stmt);
 	}else{
 		printf("El libro no existe\n");
