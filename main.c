@@ -40,7 +40,7 @@ int main() //MainMenu añadido al main principal
     inicializarBDD("BibliotecaDeusto.db", dbM);
     insertarUsuario(&us1, "123456");
     
-    eliminarUsuario(&us1);
+    eliminarUsuario(us1.dni);
 
     verificarContrasenya(&us1, "123456");
     verificarContrasenya(&us1, "654321");
@@ -81,7 +81,7 @@ int main() //MainMenu añadido al main principal
     insertarLibro(&lib2);
     insertarLibro(&lib3);
 
-    eliminarLibro(&lib);
+    eliminarLibro(lib.isbn);
 /*
     Libro lib0 = obtenerLibro("ajkDrbcko2nl7");
     printf("ISBN: %s", lib0.isbn);
@@ -203,7 +203,7 @@ void administrarLibros()
         int idEd;
         scanf(" %s", &cEditorial);
         sscanf(cEditorial, "%i", &idEd);
-        Editorial editor=obtenerEditorial((int)cEditorial);
+        Editorial editor=obtenerEditorial(idEd);
         
         Libro newBook={isbn, name, anyo, author, editor};
         insertarLibro(&newBook);
