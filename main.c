@@ -36,7 +36,7 @@ int main() //MainMenu añadido al main principal
     system("cls"); //añadido para que la pantalla no se llene de mucha información
 /*Datos prueba*/
     //Usuarios
-    Usuario us1 = {"22767695X", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
+    /*Usuario us1 = {"22767695X", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     Usuario us2 = {"22767695V", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     Usuario us3 = {"22767695Z", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     inicializarBDD("BibliotecaDeusto.db", dbM);
@@ -47,7 +47,7 @@ int main() //MainMenu añadido al main principal
     eliminarUsuario(us1.dni);
 
     verificarContrasenya(&us1, "123456");
-    verificarContrasenya(&us1, "654321");
+    verificarContrasenya(&us1, "654321");*/
 /*  Usuario *us2 = malloc(sizeof(Usuario));
     *us2 = obtenerUsuario(us2, "22767695V");
 
@@ -60,7 +60,7 @@ int main() //MainMenu añadido al main principal
     free(us2);
 */
 
-    imprimirListadoUsuarios();
+    /*imprimirListadoUsuarios();
 
     //Autores
     Autor au1 ={1, "Pedro", "de la Rosa"};
@@ -93,9 +93,11 @@ int main() //MainMenu añadido al main principal
 
     imprimirListadoLibros();
 
-    cerrarBDD(dbM);
+    cerrarBDD(dbM);*/
 /*Fin datos prueba*/
 
+    printf("---------------------\nBIBLIOTECA DEUSTO\n---------------------\n");
+    printf("Bienvenido\n");
     printf("Que eres?\n");
     printf("1.Usuario\n2.Administrador\n");
     char select;
@@ -212,6 +214,10 @@ void administrarLibros()
         Libro newBook={isbn, name, anyo, author, editor};
         insertarLibro(&newBook);
 
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        mainMenuAdmin();
+
         break;
     case '2': //Eliminar
         imprimirListadoLibros();
@@ -219,6 +225,10 @@ void administrarLibros()
         char isbnDel[10];
         scanf(" %s", &isbnDel);
         eliminarLibro(isbnDel);
+        
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        mainMenuAdmin();
         
         break;
     case '3': ;//Listado completo
@@ -234,6 +244,11 @@ void administrarLibros()
         fclose(f);
         */
         imprimirListadoLibros();
+        
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        mainMenuAdmin();
+
         break;
     default:
         printf("Choose again\n");
@@ -271,6 +286,10 @@ void administrarAutores()
         Autor newAuthor={id, name, surname};
 
         insertarAutor(&newAuthor);
+        
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        mainMenuAdmin();
 
         break;
     case '2': //Eliminar
@@ -281,6 +300,10 @@ void administrarAutores()
         scanf(" %s", &cAutorDel);
         sscanf(cAutor, "%i", &codigo);
         eliminarAutor(codigo);
+        
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        mainMenuAdmin();
         
         break;
     case '3': ;//Listado completo
@@ -296,6 +319,11 @@ void administrarAutores()
         fclose(f);
         */
         imprimirListadoAutores();
+        
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        mainMenuAdmin();
+        
         break;
     default:
         printf("Choose again\n");
@@ -328,6 +356,10 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
         
         Editorial newEditorial={id, name};
         insertarEditoriaL(&newEditorial);
+        
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        mainMenuAdmin();
 
         break;
     case '2': //Eliminar
@@ -338,6 +370,10 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
         scanf(" %s", &cEdDel);
         sscanf(cEdDel, "%i", &codigo);
         eliminarEditorial(codigo);
+        
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        mainMenuAdmin();
         
         break;
     case '3': ;//Listado completo
@@ -353,6 +389,11 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
         fclose(f);
         */
         imprimirListadoEditoriales();
+        
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        mainMenuAdmin();
+        
         break;
     default:
         printf("Choose again\n");
@@ -565,6 +606,10 @@ void buscarTitulo()
     {
         //obtendremos el id del libro seleccionado y llamamos a reservar()
         reservar(seleccion); //o libro.nombre || libro->nombre
+        
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
     }
 }
 
@@ -596,6 +641,10 @@ void buscarAutor()
     {
         //obtendremos el id del libro seleccionado y llamamos a reservar()
         reservar(seleccion); //o libro.nombre || libro->nombre
+
+        printf("Operacion realizada, volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
     }
 }
 
@@ -610,7 +659,10 @@ void reservar(char nombre)
     {
     case '1':
         printf("Reserva realizada, tiene X dias para devolverlo.\n");
-        exit(0);//salimos de la app
+        printf("Volviendo al menu anterior...");
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
+        break;
     case '2':
         printf("Volviendo al menu busqueda");
         Sleep(SECONDS_TO_CONTINUE);
