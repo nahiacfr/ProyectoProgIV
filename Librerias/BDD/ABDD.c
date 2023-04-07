@@ -114,12 +114,13 @@ void eliminarUsuario(Usuario *us){
 }
 Usuario obtenerUsuario(char* dniUs){
 	char sql3[] = "select * from usuario where DNI = ?";
+	Usuario usAux;
 	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, dniUs, strlen(dniUs), SQLITE_STATIC);
-	Usuario usAux;
 	result = sqlite3_step(stmt) ;
 	usAux.dni = (char*) sqlite3_column_text(stmt, 0);
 	printf("%s\n", (char*) sqlite3_column_text(stmt, 0));
+	printf("%s\n", usAux.dni);
 	usAux.nombre = (char*) sqlite3_column_text(stmt, 1);
 	usAux.apellidos = (char*) sqlite3_column_text(stmt, 2);
 	usAux.correo = (char*) sqlite3_column_text(stmt, 3);
@@ -421,10 +422,9 @@ void listadoReservas(Reserva **listaRes, int tamanyoLista, Usuario *us){
 	char sql10[] = "select * from reserva where DNI = ?";
 	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
-
 	do {
-		result = sqlite3_step(stmt) ;
-		Reserva aux ={obtenerLibro((char*)sqlite3_column_text(stmt, 0)), obtenerUsuario((char*)sqlite3_column_text(stmt, 1)),  obtenerFechaIni((char*)sqlite3_column_text(stmt, 2)), obtenerFechaFin((char*)sqlite3_column_text(stmt, 3))};
+		result = sqlite3_step(stmt);
+		Reserva aux ={obtenerLibro((char*)sqlite3_column_text(stmt, 0)), obtenerUsuario((char*)sqlite3_column_text(stmt, 1)), obtenerFechaIni((char*)sqlite3_column_text(stmt, 2)), obtenerFechaFin((char*)sqlite3_column_text(stmt, 3))};
 		anyadirReserva(listaRes, tamanyoLista, &aux);
 		printf("%s\n", aux.libro.isbn);
 	} while (result == SQLITE_ROW);

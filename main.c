@@ -34,12 +34,13 @@ int main() //MainMenu añadido al main principal
 
     verificarContrasenya(&us1, "123456");
     verificarContrasenya(&us1, "654321");
-
-    printf("DNI: %s\nNombre: %s", obtenerUsuario("22767695V").dni, obtenerUsuario("22767695V").nombre);
+    Usuario us2 = obtenerUsuario("22767695V");
+    printf("DNI: %s\nNombre: %s\n", us2.dni, us2.nombre);
 
     Usuario **Lista1 = (Usuario**)malloc(sizeof(Usuario*));
     Lista1[0] = &us1;
     listadoUsuarios(Lista1, 1);
+    free(Lista1);
 
     //Autores
     Autor au1 ={1, "Pedro", "de la Rosa"};
@@ -62,6 +63,7 @@ int main() //MainMenu añadido al main principal
     Libro **Lista2 = (Libro**)malloc(sizeof(Libro*));
     Lista2[0] = &lib2;
     listadoLibros(Lista2, 1);
+    free(Lista2);
 
     cerrarBDD(dbM);
 /*Fin datos prueba*/
