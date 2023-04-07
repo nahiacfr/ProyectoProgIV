@@ -6,9 +6,19 @@
 #include "Librerias\BDD\sqlite3.h"
 
 #define MAX_OPTN 2
-#define MAX_LINE 20
+#define MAX_LINE 50
 #define SECONDS_TO_CONTINUE 2000
 
+//Administrador
+void verificarAdmin();
+void mainMenuAdmin();
+void administrarLibros();
+void administrarAutores();
+void administrarEditoriales();
+void administrarReservas();
+
+//Ususario
+void mainMenuUser();
 void inicioSesion();
 void registraUsuario();
 int menuBuscar();
@@ -67,6 +77,150 @@ int main() //MainMenu añadido al main principal
 
     cerrarBDD(dbM);
 /*Fin datos prueba*/
+
+    printf("Que eres?\n");
+    printf("1.Usuario\n2.Administrador\n");
+    char select;
+    scanf(" %c", &select);
+            printf("Esto: %c\n", select);
+    switch (select)
+    {
+    case '1':
+        mainMenuUser();
+        break;
+    case '2':
+        verificarAdmin();
+        break;
+    default:
+        printf("Choose again\n");
+        break;
+    }
+    
+    return 0;
+}
+
+
+//Menus del administrador
+void verificarAdmin()
+{
+    printf("Inserte el codigo de verificacion: ");
+    char code;
+    scanf(" %c", &code);
+    if (code=='1') //prueba
+    {
+        printf("Acceso permitido.");
+        mainMenuAdmin();
+    }
+    else
+    {
+        printf("Acceso denegado.");
+    }
+}
+
+void mainMenuAdmin()
+{
+    //
+    printf("---------------------\nMENU ADMINISTRADOR\n---------------------\n");
+    printf("Que desea editar?\n");
+    printf("1.Libros\n2.Autores\n3.Editoriales\n4.Reservas\n");
+    
+    char select;
+    scanf(" %c", &select);
+    
+    switch (select)
+    {
+    case '1':
+        administrarLibros();
+        break;
+    case '2':
+        administrarAutores();
+        break;
+    case '3':
+        administrarEditoriales();
+        break;
+    case '4':
+        administrarReservas();
+        break;
+    default:
+        printf("Choose again\n");
+        break;
+    }
+    
+}
+
+void administrarLibros()
+{
+    printf("---------------------\nADMINISTRAR LIBROS\n---------------------\n");
+    printf("Que desea hacer?\n");
+    printf("1.Añadir\n2.Modificar\n3.Eliminar\n4.Listado completo\n");
+    
+    char select;
+    scanf(" %c", &select);
+    
+    switch (select)
+    {
+    case '1':
+
+        printf("Nombre del libro: \n");
+        char name[MAX_LINE];
+        scanf(" %s", &name);
+
+        printf("Codigo isbn del libro: \n");
+        char isbn[10];
+        scanf(" %s", &isbn);
+
+        printf("Anyo de publicacion: \n");
+        char year[4];
+        scanf(" %s", &year);
+
+        printf("Codigo del Autor: \n");
+        char cAutor[4];
+        scanf(" %s", &cAutor);
+        Autor author=obtenerAutor((int)cAutor);
+
+        printf("Codigo de la Editorial: \n");
+        char cEditorial[4];
+        scanf(" %s", &cEditorial);
+        Editorial editor=obtenerEditorial((int)cEditorial);
+        
+        Libro newBook={isbn, name, (int)year, author, editor};
+        insertarLibro(&newBook);
+
+        break;
+    case '2':
+        printf("Espere por favor \n");
+        break;
+    case '3':
+        printf("Espere por favor \n");
+        break;
+    case '4':
+        printf("Espere por favor \n");
+        break;
+    default:
+        printf("Choose again\n");
+        break;
+    }
+}
+
+void administrarAutores()
+{
+
+}
+
+void administrarEditoriales()
+{
+
+}
+
+void administrarReservas()
+{
+
+}
+
+
+//Menus del ususario
+void mainMenuUser()
+{
     char str[MAX_OPTN];
     char select;
 
@@ -77,7 +231,6 @@ int main() //MainMenu añadido al main principal
     sscanf(str, "%d", &select);*/
     
     scanf(" %c", &select);
-            printf("Esto: %c\n", select);
     
     switch (select)
     {
@@ -94,8 +247,6 @@ int main() //MainMenu añadido al main principal
         printf("Choose again\n");
         break;
     }
-
-    return 0;
 }
 
 void inicioSesion()
