@@ -7,12 +7,12 @@
 
 typedef struct 
 {
+    Libro libro;
+    Usuario usuario;
     Fecha fechaIni;
     Fecha fechaFin;
-    Usuario usuario;
-    Libro libro;
 }Reserva;
 
-
+void anyadirReserva(Reserva **listaRes, int tamanyoLista, Reserva *ed);
 
 #endif

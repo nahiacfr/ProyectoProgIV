@@ -3,15 +3,15 @@
 
 typedef struct
 {
+    int id;
     char *nombre;
     char *apellidos;
-    int id;
 }Autor;
 
 typedef struct
 {
-    char *nombre;
     int id;
+    char *nombre;
 }Editorial;
 
 typedef struct
@@ -24,5 +24,7 @@ typedef struct
 }Libro;
 
 void anyadirLibro(Libro **listaLib, int tamanyoLista, Libro *lib);
+void anyadirAutor(Autor **listaAu, int tamanyoLista, Autor *au);
+void anyadirEditorial(Editorial **listaEd, int tamanyoLista, Editorial *ed);
 
 #endif

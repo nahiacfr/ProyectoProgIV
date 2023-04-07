@@ -111,6 +111,9 @@ void eliminarUsuario(Usuario *us){
 		printf("El susuario no existe\n");
 	}
 }
+void obtenerUsuario(char* dniUs){
+	//TODO
+}
 void listadoUsuarios(Usuario **listaUs, int tamanyoLista){
 	char sql5[] = "select * from usuario";
 	sqlite3_prepare_v2(db, sql5, strlen(sql5), &stmt, NULL) ;
@@ -187,6 +190,9 @@ int existeLibro(Libro *lib){
 		return 0;
 	}
 }
+void obtenerLibro(char* isbnLib){
+	//TODO
+}
 /* Faltan los autores y las editoriales*/
 void listadoLibros(Libro **listaLib, int tamanyoLista){
 	char sql10[] = "select * from libro";
@@ -202,39 +208,172 @@ void listadoLibros(Libro **listaLib, int tamanyoLista){
 
 //Acciones con Autores
 void insertarAutor(Autor *au){
-	//TODO
+	if (existeAutor(au)==0){
+		char sql6[] = "insert into autor values (?, ?, ?);";
+
+		sqlite3_prepare_v2(db, sql6, strlen(sql6) + 1, &stmt, NULL);
+		sqlite3_bind_text(stmt, 1, au->id, strlen(au->id), SQLITE_STATIC);
+		sqlite3_bind_text(stmt, 2, au->nombre, strlen(au->nombre), SQLITE_STATIC);
+	    sqlite3_bind_text(stmt, 3, au->apellidos, strlen(au->apellidos), SQLITE_STATIC);
+
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al insertar el autor\n");
+		}else{
+			printf("Autor registrado correctamente");
+		}
+
+		sqlite3_finalize(stmt);
+	}else{
+		printf("El autor ya existe\n");
+	}
 }
 void insertarAutoresFichero(char *ruta){
 	//TODO
 }
 void eliminarAutor(Autor *au){
-	//TODO
+	if (existeAutor(au)==1){
+		char sql8[] = "delete from autor where ID = ?";
+		sqlite3_prepare_v2(db, sql8, strlen(sql8) + 1, &stmt, NULL);
+		sqlite3_bind_text(stmt, 1, au->id, strlen(au->id), SQLITE_STATIC);
+
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al eliminar el autor\n");
+		}else{
+			printf("El autor %s ha sido eliminado\n", au->nombre);
+		}
+
+		sqlite3_finalize(stmt);
+	}else{
+		printf("El autor no existe\n");
+	}
 }
 int existeAutor(Autor *au){
+	char sql9[] = "select * from autor where ID = ?";
+	int count = 0;
+	sqlite3_prepare_v2(db, sql9, strlen(sql9), &stmt, NULL) ;
+	sqlite3_bind_text(stmt, 1, au->id, strlen(au->id), SQLITE_STATIC);
+
+	do {
+		result = sqlite3_step(stmt) ;
+		if (result == SQLITE_ROW) {
+			count++;
+		}
+	} while (result == SQLITE_ROW);
+
+	sqlite3_finalize(stmt);
+
+	if (count >= 1){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+void obtenerAutor(int idAu){
 	//TODO
 }
 void listadoAutores(Autor **listaAu, int tamanyoLista){
-	//TODO
+	char sql10[] = "select * from autor";
+	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
+
+	do {
+		result = sqlite3_step(stmt) ;
+		Autor aux ={sqlite3_column_int(stmt, 0), (char*)sqlite3_column_text(stmt, 1), sqlite3_column_int(stmt, 2)};
+		anyadirAutor(listaAu, tamanyoLista, &aux);
+		printf("%s\n", aux.id);
+	} while (result == SQLITE_ROW);
 }
 
 //Acciones con Editoriales
 void insertarEditoriaL(Editorial *ed){
-	//TODO
+	if (existeEditorial(ed)==0){
+		char sql6[] = "insert into editorial values (?, ?);";
+
+		sqlite3_prepare_v2(db, sql6, strlen(sql6) + 1, &stmt, NULL);
+		sqlite3_bind_int(stmt, 1, ed->id);
+		sqlite3_bind_text(stmt, 2, ed->nombre, strlen(ed->nombre), SQLITE_STATIC);
+
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al insertar la editorial\n");
+		}else{
+			printf("Editorial registrada correctamente");
+		}
+
+		sqlite3_finalize(stmt);
+	}else{
+		printf("La editorial ya existe\n");
+	}
 }
 void insertarEditorialesFichero(char *ruta){
 	//TODO
 }
 void eliminarEditorial(Editorial *ed){
-	//TODO
+	if (existeEditorial(ed)==1){
+		char sql8[] = "delete from editorial where ID = ?";
+		sqlite3_prepare_v2(db, sql8, strlen(sql8) + 1, &stmt, NULL);
+		sqlite3_bind_text(stmt, 1, ed->id, strlen(ed->id), SQLITE_STATIC);
+
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al eliminar la editorial\n");
+		}else{
+			printf("La editorial %s ha sido eliminado\n", ed->nombre);
+		}
+
+		sqlite3_finalize(stmt);
+	}else{
+		printf("La editorial no existe\n");
+	}
 }
 int existeEditorial(Editorial *ed){
+	char sql9[] = "select * from editorial where ID = ?";
+	int count = 0;
+	sqlite3_prepare_v2(db, sql9, strlen(sql9), &stmt, NULL) ;
+	sqlite3_bind_text(stmt, 1, ed->id, strlen(ed->id), SQLITE_STATIC);
+
+	do {
+		result = sqlite3_step(stmt) ;
+		if (result == SQLITE_ROW) {
+			count++;
+		}
+	} while (result == SQLITE_ROW);
+
+	sqlite3_finalize(stmt);
+
+	if (count >= 1){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+void obtenerEditorial(int idEd){
 	//TODO
 }
 void listadoEditoriales(Editorial **listaEd, int tamanyoLista){
-	//TODO
+	char sql10[] = "select * from editorial";
+	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
+
+	do {
+		result = sqlite3_step(stmt) ;
+		Editorial aux ={sqlite3_column_int(stmt, 0), (char*)sqlite3_column_text(stmt, 1)};
+		anyadirEditorial(listaEd, tamanyoLista, &aux);
+		printf("%s\n", aux.id);
+	} while (result == SQLITE_ROW);
 }
 
 //Acciones con Reservas
-void listadoReservas(Usuario *us, Reserva *res){
-	//TODO
+void listadoReservas(Reserva **listaRes, int tamanyoLista, Usuario *us){
+	//DOING
+	char sql10[] = "select * from reserva where DNI = ?";
+	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
+	sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
+
+	do {
+		result = sqlite3_step(stmt) ;
+		Reserva aux ={(char*)sqlite3_column_text(stmt, 0), sqlite3_column_int(stmt, 1),  NULL, NULL};
+		anyadirReserva(listaRes, tamanyoLista, &aux);
+		printf("%s\n", aux.libro.isbn);
+	} while (result == SQLITE_ROW);
 }
