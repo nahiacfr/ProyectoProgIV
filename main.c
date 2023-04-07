@@ -36,7 +36,7 @@ int main() //MainMenu añadido al main principal
     system("cls"); //añadido para que la pantalla no se llene de mucha información
 /*Datos prueba*/
     //Usuarios
-    /*Usuario us1 = {"22767695X", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
+    Usuario us1 = {"22767695X", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     Usuario us2 = {"22767695V", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     Usuario us3 = {"22767695Z", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     inicializarBDD("BibliotecaDeusto.db", dbM);
@@ -47,7 +47,7 @@ int main() //MainMenu añadido al main principal
     eliminarUsuario(us1.dni);
 
     verificarContrasenya(&us1, "123456");
-    verificarContrasenya(&us1, "654321");*/
+    verificarContrasenya(&us1, "654321");
 /*  Usuario *us2 = malloc(sizeof(Usuario));
     *us2 = obtenerUsuario(us2, "22767695V");
 
@@ -60,7 +60,7 @@ int main() //MainMenu añadido al main principal
     free(us2);
 */
 
-    /*imprimirListadoUsuarios();
+    imprimirListadoUsuarios();
 
     //Autores
     Autor au1 ={1, "Pedro", "de la Rosa"};
@@ -93,7 +93,7 @@ int main() //MainMenu añadido al main principal
 
     imprimirListadoLibros();
 
-    cerrarBDD(dbM);*/
+    cerrarBDD(dbM);
 /*Fin datos prueba*/
 
     printf("---------------------\nBIBLIOTECA DEUSTO\n---------------------\n");

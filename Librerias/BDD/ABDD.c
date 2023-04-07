@@ -155,19 +155,40 @@ void imprimirListadoUsuarios(){
 void insertarLibro(Libro *lib){
 	if (existeLibro(lib->isbn)==0){
 		char sql6[] = "insert into libro values (?, ?, ?);";
-
 		sqlite3_prepare_v2(db, sql6, strlen(sql6) + 1, &stmt, NULL);
 		sqlite3_bind_text(stmt, 1, lib->titulo, strlen(lib->titulo), SQLITE_STATIC);
 		sqlite3_bind_text(stmt, 2, lib->isbn, strlen(lib->isbn), SQLITE_STATIC);
 	    sqlite3_bind_int(stmt, 3, lib->anio);
-
 		result = sqlite3_step(stmt);
 		if (result != SQLITE_DONE) {
 			printf("Error al insertar el libro\n");
 		}else{
 			printf("Libro registrado correctamente\n");
 		}
+		sqlite3_finalize(stmt);
 
+		char sql2[] = "insert into autor values (?, ?);";
+		sqlite3_prepare_v2(db, sql2, strlen(sql2) + 1, &stmt, NULL);
+		sqlite3_bind_text(stmt, 1, lib->isbn, strlen(lib->titulo), SQLITE_STATIC);
+		sqlite3_bind_int(stmt, 2, lib->autor.id);
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al insertar la relacio autor\n");
+		}else{
+			printf("Relacio autor registrada correctamente\n");
+		}
+		sqlite3_finalize(stmt);
+
+		char sql3[] = "insert into pertenece values (?, ?);";
+		sqlite3_prepare_v2(db, sql3, strlen(sql3) + 1, &stmt, NULL);
+		sqlite3_bind_text(stmt, 1, lib->isbn, strlen(lib->titulo), SQLITE_STATIC);
+		sqlite3_bind_int(stmt, 2, lib->editorial.id);
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al insertar la relacion pertenece\n");
+		}else{
+			printf("Relacion pertenece registrada correctamente\n");
+		}
 		sqlite3_finalize(stmt);
 	}else{
 		printf("El libro ya existe\n");
