@@ -326,7 +326,21 @@ void insertarAutoresFichero(char *ruta){
 }
 void eliminarAutor(int idAu){
 	if (existeAutor(idAu)==1){
-		char sql8[] = "delete from escritor where ID = ?";
+		char sql9[] = "select * from autor where ID = ?";
+		int count = 0;
+		sqlite3_prepare_v2(db, sql9, strlen(sql9), &stmt, NULL) ;
+		sqlite3_bind_int(stmt, 1, idAu);
+		do {
+			result = sqlite3_step(stmt) ;
+			if (result == SQLITE_ROW) {
+				count++;
+			}
+		} while (result == SQLITE_ROW);
+		sqlite3_finalize(stmt);	
+		if(count>=1){
+			printf("No se puede eliminar el autor, todfavia tiene libros asignados\nElimine todos los libros pertenecientes a este autor y vuelva a intentarlo\n");
+		}else{
+			char sql8[] = "delete from escritor where ID = ?";
 		sqlite3_prepare_v2(db, sql8, strlen(sql8) + 1, &stmt, NULL);
 		sqlite3_bind_int(stmt, 1, idAu);
 
@@ -338,6 +352,8 @@ void eliminarAutor(int idAu){
 		}
 
 		sqlite3_finalize(stmt);
+		}
+		
 	}else{
 		printf("El autor no existe\n");
 	}
@@ -357,7 +373,6 @@ int existeAutor(int idAu){
 	} while (result == SQLITE_ROW);
 
 	sqlite3_finalize(stmt);
-	printf("%i\n", count);
 	if (count >= 1){
 		return 1;
 	}else{
@@ -425,7 +440,21 @@ void insertarEditorialesFichero(char *ruta){
 }
 void eliminarEditorial(int idEd){
 	if (existeEditorial(idEd)==1){
-		char sql8[] = "delete from editorial where ID = ?";
+		char sql1[] = "select * from pertenece where ID = ?";
+		int count = 0;
+		sqlite3_prepare_v2(db, sql1, strlen(sql1), &stmt, NULL) ;
+		sqlite3_bind_int(stmt, 1, idEd);
+		do {
+			result = sqlite3_step(stmt) ;
+			if (result == SQLITE_ROW) {
+				count++;
+			}
+		} while (result == SQLITE_ROW);
+		sqlite3_finalize(stmt);	
+		if(count>=1){
+			printf("No se puede eliminar la editorial, todfavia tiene libros asignados\nElimine todos los libros pertenecientes a esta editorial y vuelva a intentarlo\n");
+		}else{
+			char sql8[] = "delete from editorial where ID = ?";
 		sqlite3_prepare_v2(db, sql8, strlen(sql8) + 1, &stmt, NULL);
 		sqlite3_bind_int(stmt, 1, idEd);
 
@@ -437,6 +466,7 @@ void eliminarEditorial(int idEd){
 		}
 
 		sqlite3_finalize(stmt);
+		}
 	}else{
 		printf("La editorial no existe\n");
 	}

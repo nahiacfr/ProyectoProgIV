@@ -70,6 +70,7 @@ int main() //MainMenu añadido al main principal
     insertarAutor(&au2);
 
     imprimirListadoAutores();
+    eliminarAutor(au1.id);
 
     //Editoriales
 
@@ -78,6 +79,8 @@ int main() //MainMenu añadido al main principal
     insertarEditoriaL(&ed1);
 
     imprimirListadoEditoriales();
+
+    eliminarEditorial(ed1.id);
 
     //Libros
     Libro lib ={"bJGDkbc682nk9", "libro1", 2021, au1, ed1};
@@ -89,7 +92,6 @@ int main() //MainMenu añadido al main principal
     insertarLibro(&lib3);
 
     eliminarLibro(lib.isbn);
-    eliminarLibro("");
 
     imprimirListadoLibros();
 
