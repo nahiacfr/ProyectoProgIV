@@ -32,14 +32,14 @@ sqlite3 *dbM;
 //con fgets y sscanf no me salía bien
 int main() //MainMenu añadido al main principal
 {
- 
     system("cls"); //añadido para que la pantalla no se llene de mucha información
+    inicializarBDD("BibliotecaDeusto.db", dbM);
 /*Datos prueba*/
-    //Usuarios
+/*    //Usuarios
     Usuario us1 = {"22767695X", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     Usuario us2 = {"22767695V", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
     Usuario us3 = {"22767695Z", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
-    inicializarBDD("BibliotecaDeusto.db", dbM);
+    
     insertarUsuario(&us1, "123456");
     insertarUsuario(&us2, "123456");
     insertarUsuario(&us3, "123456");
@@ -48,17 +48,6 @@ int main() //MainMenu añadido al main principal
 
     verificarContrasenya(&us1, "123456");
     verificarContrasenya(&us1, "654321");
-/*  Usuario *us2 = malloc(sizeof(Usuario));
-    *us2 = obtenerUsuario(us2, "22767695V");
-
-    if(strcmp("22767695V", us2->dni) == 0){
-        printf("Verdadero\n");
-    }
-    printf("DNI: %s\nNombre: %s\n", us2->dni, us2->nombre);
-    printf("DNI: %s\nNombre: %s\n", us1.dni, us1.nombre);
-
-    free(us2);
-*/
 
     imprimirListadoUsuarios();
 
@@ -96,9 +85,10 @@ int main() //MainMenu añadido al main principal
     imprimirListadoLibros();
 
     cerrarBDD(dbM);
+*/
 /*Fin datos prueba*/
-
-    printf("---------------------\nBIBLIOTECA DEUSTO\n---------------------\n");
+    mainMenuAdmin();
+/*  printf("---------------------\nBIBLIOTECA DEUSTO\n---------------------\n");
     printf("Bienvenido\n");
     printf("Que eres?\n");
     printf("1.Usuario\n2.Administrador\n");
@@ -116,10 +106,9 @@ int main() //MainMenu añadido al main principal
         printf("Choose again\n");
         break;
     }
-    
+*/    
     return 0;
 }
-
 
 //Menus del administrador
 void verificarAdmin()
@@ -144,7 +133,7 @@ void mainMenuAdmin()
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     printf("---------------------\nMENU ADMINISTRADOR\n---------------------\n");
     printf("Que desea editar?\n");
-    printf("1.Libros\n2.Autores\n3.Editoriales\n4.Reservas\n");
+    printf("1.Libros\n2.Autores\n3.Editoriales\n4.Reservas(Fuera de Servicio)\n");
     
     char select;
     scanf(" %c", &select);
@@ -161,10 +150,13 @@ void mainMenuAdmin()
         administrarEditoriales();
         break;
     case '4':
-        administrarReservas();
+        //administrarReservas();
+        printf("Choose again\n");
+        mainMenuAdmin();
         break;
     default:
         printf("Choose again\n");
+        mainMenuAdmin();
         break;
     }
     
@@ -254,6 +246,7 @@ void administrarLibros()
         break;
     default:
         printf("Choose again\n");
+        mainMenuAdmin();
         break;
     }
 }
@@ -329,6 +322,7 @@ void administrarAutores()
         break;
     default:
         printf("Choose again\n");
+        mainMenuAdmin();
         break;
     }
 }
@@ -399,6 +393,7 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
         break;
     default:
         printf("Choose again\n");
+        mainMenuAdmin();
         break;
     }
 }
@@ -428,7 +423,7 @@ printf("---------------------\nADMINISTRAR RESERVAS\n---------------------\n");
         break;
     case '4': ;//Listado completo
         //leer de fichero
-        FILE *f;
+    /*  FILE *f;
         char string[1000]="";
         f=fopen("Libros.txt","r"); //crear archivo de reservas?
 
@@ -438,7 +433,7 @@ printf("---------------------\nADMINISTRAR RESERVAS\n---------------------\n");
         }
         fclose(f);
         //printf("Espere por favor \n");
-
+    */
         break;
     default:
         printf("Choose again\n");
