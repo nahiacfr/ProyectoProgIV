@@ -211,15 +211,15 @@ void administrarLibros()
         break;
     case '2': //Modificar
         printf("Codigo isbn de libro a modificar: \n");
-        char isbnMod[10];
+        char isbnMod[14];
         scanf(" %s", &isbnMod);
 
         break;
     case '3': //Eliminar
         printf("Codigo isbn de libro a eliminar: \n");
-        char isbnDel[10];
+        char isbnDel[14];
         scanf(" %s", &isbnDel);
-        //eliminarLibro(NULL); 
+        eliminarLibro(isbnDel); 
         
         break;
     case '4': ;//Listado completo
