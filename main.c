@@ -135,34 +135,33 @@ void mainMenuAdmin()
     printf("Que desea editar?\n");
     printf("1.Libros\n2.Autores\n3.Editoriales\n4.Reservas(Fuera de Servicio)\n");
     
-    char select;
-    //int result;
-    //fgets(select, 2, stdin);
-    //printf("Break 1");
-    //sscanf(select, "%d", result);
-    //printf("Break 2");
-    scanf(" %c", &select);
+    char select[2];
+    int result;
+    fgets(select, 2, stdin);
+    sscanf(select, "%d", &result);
     
-    switch (select)
+    switch (result)
     {
-    case '1':
+    case 1:
         administrarLibros();
         break;
-    case '2':
+    case 2:
         administrarAutores();
         break;
-    case '3':
+    case 3:
         administrarEditoriales();
         break;
-    case '4':
+    case 4:
     printf("Break 3.1");
         //administrarReservas();
         printf("Choose again\n");
+        Sleep(SECONDS_TO_CONTINUE);
         mainMenuAdmin();
         break;
     default:
     printf("Break 3.2");
         printf("Choose again\n");
+        Sleep(SECONDS_TO_CONTINUE);
         mainMenuAdmin();
         break;
     }
@@ -175,12 +174,14 @@ void administrarLibros()
     printf("Que desea hacer?\n");
     printf("1.Anyadir\n2.Eliminar\n3.Listado completo\n");
     
-    char select;
-    scanf(" %c", &select);
+    char select[2];
+    int result;
+    fgets(select, 2, stdin);
+    sscanf(select, "%d", &result);
     
-    switch (select)
+    switch (result)
     {
-    case '1': //añadir
+    case 1: //añadir
 
         printf("Nombre del libro: \n");
         char name[MAX_LINE];
@@ -220,7 +221,7 @@ void administrarLibros()
         mainMenuAdmin();
 
         break;
-    case '2': //Eliminar
+    case 2: //Eliminar
         imprimirListadoLibros();
         printf("Codigo isbn de libro a eliminar: \n");
         char isbnDel[10];
@@ -232,7 +233,7 @@ void administrarLibros()
         mainMenuAdmin();
         
         break;
-    case '3': ;//Listado completo
+    case 3: ;//Listado completo
         /*  leer de fichero
         FILE *f;
         char string[1000]="";
@@ -264,12 +265,14 @@ void administrarAutores()
     printf("Que desea hacer?\n");
     printf("1.Anyadir\n2.Eliminar\n3.Listado completo\n");
     
-    char select;
-    scanf(" %c", &select);
+    char select[2];
+    int result;
+    fgets(select, 2, stdin);
+    sscanf(select, "%d", &result);
     
-    switch (select)
+    switch (result)
     {
-    case '1': //añadir
+    case 1: //añadir
 
         printf("Nombre del autor: \n");
         char name[MAX_LINE];
@@ -294,7 +297,7 @@ void administrarAutores()
         mainMenuAdmin();
 
         break;
-    case '2': //Eliminar
+    case 2: //Eliminar
         imprimirListadoAutores();
         printf("Codigo del autor a eliminar: \n");
         char cAutorDel[10];
@@ -308,7 +311,7 @@ void administrarAutores()
         mainMenuAdmin();
         
         break;
-    case '3': ;//Listado completo
+    case 3: ;//Listado completo
        /* //leer de fichero
         FILE *f;
         char string[1000]="";
@@ -340,12 +343,14 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
     printf("Que desea hacer?\n");
     printf("1.Anyadir\n2.Eliminar\n3.Listado completo\n");
     
-    char select;
-    scanf(" %c", &select);
+    char select[2];
+    int result;
+    fgets(select, 2, stdin);
+    sscanf(select, "%d", &result);
     
-    switch (select)
+    switch (result)
     {
-    case '1': //añadir
+    case 1: //añadir
 
         printf("Nombre de la editorial: \n");
         char name[MAX_LINE];
@@ -365,7 +370,7 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
         mainMenuAdmin();
 
         break;
-    case '2': //Eliminar
+    case 2: //Eliminar
         imprimirListadoEditoriales();
         printf("Codigo de la editorial a eliminar: \n");
         char cEdDel[10];
@@ -379,7 +384,7 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
         mainMenuAdmin();
         
         break;
-    case '3': ;//Listado completo
+    case 3: ;//Listado completo
         /*//leer de fichero
         FILE *f;
         char string[1000]="";
@@ -411,24 +416,26 @@ printf("---------------------\nADMINISTRAR RESERVAS\n---------------------\n");
     printf("Que desea hacer?\n");
     printf("1.Anyadir\n2.Modificar\n3.Eliminar\n4.Listado completo\n");
     
-    char select;
-    scanf(" %c", &select);
+    char select[2];
+    int result;
+    fgets(select, 2, stdin);
+    sscanf(select, "%d", &result);
     
-    switch (select)
+    switch (result)
     {
-    case '1': //añadir
+    case 1: //añadir
         //añadir Reserva
 
         break;
-    case '2': //Modificar
+    case 2: //Modificar
         //modificar Reserva
 
         break;
-    case '3': //Eliminar
+    case 3: //Eliminar
         //eliminar Reserva
         
         break;
-    case '4': ;//Listado completo
+    case 4: ;//Listado completo
         //leer de fichero
     /*  FILE *f;
         char string[1000]="";
@@ -454,7 +461,6 @@ void mainMenuUser()
 {
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_OPTN];
-    char select;
 
     printf("---------------------\nBIBLIOTECA DEUSTO\n---------------------\n");
     printf("Bienvenido a la biblioteca\n");
@@ -462,17 +468,20 @@ void mainMenuUser()
     /*fgets(str, MAX_OPTN, stdin); //no me va
     sscanf(str, "%d", &select);*/
     
-    scanf(" %c", &select);
+    char select[2];
+    int result;
+    fgets(select, 2, stdin);
+    sscanf(select, "%d", &result);
     
-    switch (select)
+    switch (result)
     {
-    case '1':
+    case 1:
         inicioSesion();
         break;
-    case '2':
+    case 2:
         registraUsuario();
         break;
-    case '3':
+    case 3:
         printf("Has salido de la app\n");
         break;
     default:
@@ -556,23 +565,23 @@ int menuBuscar()
 {
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_OPTN];
-    char select;
     printf("---------------------\nMENU BUSCAR\n---------------------\n");
     printf("1.Buscar libro por titulo\n2.Buscar libro por autor\n3.Volver menu principal\n");
-    /*fgets(str, MAX_OPTN, stdin);
-    sscanf(str, "%d", &select);*/
-    scanf(" %c", &select);
+    char select[2];
+    int result;
+    fgets(select, 2, stdin);
+    sscanf(select, "%d", &result);
             printf("Seleccion: %c\n", select);
     
-    switch (select)
+    switch (result)
     {
-    case '1':
+    case 1:
         buscarTitulo();
         break;
-    case '2':
+    case 2:
         buscarAutor();
         break;
-    case '3':
+    case 3:
         printf("Volviendo al menu principal\n");
         main();
         break;
@@ -654,20 +663,23 @@ void buscarAutor()
 
 void reservar(char nombre)
 {
-    char seleccion;
     printf("¿Desea reservar el libro %c?\n", nombre);
     printf("1.Si\n2.No\n");
-    scanf(" %c", &seleccion);
     
-    switch (seleccion)
+    char select[2];
+    int result;
+    fgets(select, 2, stdin);
+    sscanf(select, "%d", &result);
+    
+    switch (result)
     {
-    case '1':
+    case 1:
         printf("Reserva realizada, tiene X dias para devolverlo.\n");
         printf("Volviendo al menu anterior...");
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
         break;
-    case '2':
+    case 2:
         printf("Volviendo al menu busqueda");
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
