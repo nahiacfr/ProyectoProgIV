@@ -136,6 +136,11 @@ void mainMenuAdmin()
     printf("1.Libros\n2.Autores\n3.Editoriales\n4.Reservas(Fuera de Servicio)\n");
     
     char select;
+    //int result;
+    //fgets(select, 2, stdin);
+    //printf("Break 1");
+    //sscanf(select, "%d", result);
+    //printf("Break 2");
     scanf(" %c", &select);
     
     switch (select)
@@ -150,11 +155,13 @@ void mainMenuAdmin()
         administrarEditoriales();
         break;
     case '4':
+    printf("Break 3.1");
         //administrarReservas();
         printf("Choose again\n");
         mainMenuAdmin();
         break;
     default:
+    printf("Break 3.2");
         printf("Choose again\n");
         mainMenuAdmin();
         break;

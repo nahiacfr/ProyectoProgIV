@@ -19,6 +19,7 @@ Usuario obtenerUsuario(Usuario *usAux, char* dniUs);
 void imprimirListadoUsuarios();
 
 //Acciones con Libros
+
 void insertarLibro(Libro *lib);
 void insertarLibrosFichero(char *ruta);
 void eliminarLibro(char *isbn);
@@ -27,6 +28,7 @@ Libro obtenerLibro(char* isbnLib);
 void imprimirListadoLibros();
 
 //Acciones con Autores
+
 void insertarAutor(Autor *au);
 void insertarAutoresFichero(char *ruta);
 void eliminarAutor(int idAu);

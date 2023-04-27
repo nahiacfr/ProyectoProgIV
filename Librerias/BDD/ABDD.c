@@ -12,7 +12,9 @@
 sqlite3 *db;
 sqlite3_stmt *stmt;
 int result;
-
+/*
+	Inicializa la Base de Datos
+*/
 void inicializarBDD(char *nombre, sqlite3 *dbIni){
     db = dbIni;
 	if (sqlite3_open(nombre, &db) == 0){
@@ -21,15 +23,21 @@ void inicializarBDD(char *nombre, sqlite3 *dbIni){
 		printf("Error al conectar con la BDD\n");
 	}
 }
-
+/*
+	Cierra la conexion con la Base de Datos
+*/
 void cerrarBDD(sqlite3 *dbM){
     sqlite3_close(dbM);
 	sqlite3_close(db);
 }
 
-//Acciones con Usuarios
+/*
+	Inserta un usuario en la BDD
+*/
 void insertarUsuario(Usuario *us, char* contrasenya){
+	//COmprueba si el usuario existe en la BDD
 	if (existeUsuario(us->dni)==0){
+		//Introduce el usuario en la BDD
 		char sql1[] = "insert into usuario values (?, ?, ?, ?, ?);";
 
 		sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL);
@@ -52,12 +60,20 @@ void insertarUsuario(Usuario *us, char* contrasenya){
 	}
 	
 }
+/*
+	Comprueba, a traves del DNI, si el usuario existe en la BDD
+	Retorna:
+		0 --> False
+		1 --> True
+*/
 int existeUsuario(char *dni){
+	//Obtiene los usuarios de la BDD
     char sql2[] = "select DNI from usuario where DNI = ?";
 	int count = 0;
 	sqlite3_prepare_v2(db, sql2, strlen(sql2), &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, dni, strlen(dni), SQLITE_STATIC);
-
+	//Cuenta cuantos usuarios se han obtenido
+	//Solo deberian ser 1 o 0
 	do {
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
@@ -66,14 +82,18 @@ int existeUsuario(char *dni){
 	} while (result == SQLITE_ROW);
 
 	sqlite3_finalize(stmt);
-
+	//Si hay un usuario devuelve 1,  si no hay ninguno devuleve 0
 	if (count >= 1){
 		return 1;
 	}else{
 		return 0;
 	}
 }
+/*
+	Comprueba si la contraseña concuerda con la del usuario
+*/
 int verificarContrasenya(Usuario *us, char *contrasenya){
+	//Obtiene la contraseña del usuario
 	char sql3[] = "select contraseña from usuario where DNI = ?";
 	int count = 0;
 	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
@@ -82,6 +102,8 @@ int verificarContrasenya(Usuario *us, char *contrasenya){
 	do {
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
+			//Compara las dos contraseña
+			//Si son coinciden devuelve 1, si son diferentes devuelve 0
 			if(strcmp((char*) sqlite3_column_text(stmt, 0), contrasenya) == 0){
 				sqlite3_finalize(stmt);
 				printf("Contrasena correcta\n");
@@ -94,8 +116,13 @@ int verificarContrasenya(Usuario *us, char *contrasenya){
 		}
 	} while (result == SQLITE_ROW);
 }
+/*
+	Elimina un usuario de la BDD
+*/
 void eliminarUsuario(char *dni){
+	//Comprueba si el usuario existe en la BDD
 	if (existeUsuario(dni)==1){
+		//Elimina el usuario de la BDD
 		char sql4[] = "delete from usuario where DNI = ?";
 		sqlite3_prepare_v2(db, sql4, strlen(sql4) + 1, &stmt, NULL);
 		sqlite3_bind_text(stmt, 1, dni, strlen(dni), SQLITE_STATIC);
@@ -112,6 +139,9 @@ void eliminarUsuario(char *dni){
 		printf("El susuario no existe\n");
 	}
 }
+/*
+	Devuelve un usuario con los datos del usuario obtenidos de la BDD
+*/
 Usuario obtenerUsuario(Usuario *usAux, char* dniUs){
 	/*char sql3[] = "select * from usuario where DNI = ?";
 	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
@@ -141,6 +171,9 @@ Usuario obtenerUsuario(Usuario *usAux, char* dniUs){
 	*usAux = aux;
 	return *usAux;
 }
+/*
+	Imprime por consola una lista con todos los usuarios en la BDD
+*/
 void imprimirListadoUsuarios(){
 	//Obtenemos los usuarios de la BDD
 	char sql5[] = "select * from usuario";
@@ -160,9 +193,10 @@ void imprimirListadoUsuarios(){
 	sqlite3_finalize(stmt);
 }
 
-//Acciones con Libros
-/* Faltan los autores y las editoriales*/
-void insertarLibro(Libro *lib){
+/*
+	Introduce un libro nuevo en la BDD
+*/
+void insertarLibro(Libro *lib){ //Faltan los autores y las editoriales
 	//Comprueba si ya existe el libro en la BDD
 	if (existeLibro(lib->isbn)==0){
 		//Inserta el libro en la BDD
@@ -213,6 +247,9 @@ void insertarLibro(Libro *lib){
 void insertarLibrosFichero(char *ruta){
 	//TODO
 }
+/*
+	Elimina un libro de la BDD
+*/
 void eliminarLibro(char *isbn){
 	//Comprueba si existe el libro en la BDD
 	if (existeLibro(isbn)==1){
@@ -337,7 +374,6 @@ void imprimirListadoLibros(){
 	sqlite3_finalize(stmt);
 }
 
-//Acciones con Autores
 /*
 	Inserta un autor en la BDD
 */
@@ -493,7 +529,6 @@ void imprimirListadoAutores(){
 	sqlite3_finalize(stmt);
 }
 
-//Acciones con Editoriales
 /*
 	Inserta una nueva editorial en la BDD
 */
@@ -646,7 +681,6 @@ void imprimirListadoEditoriales(){
 	sqlite3_finalize(stmt);
 }
 
-//Acciones con Reservas
 /*
 	**TODO**
 	Devuelve un listado de las reservas de un usuario concreto
@@ -666,7 +700,6 @@ void listadoReservas(Reserva **listaRes, int tamanyoLista, Usuario *us){
 	*/
 }
 
-//Acciones con fechas
 Fecha obtenerFechaIni(char *res){
 	//TODO
 	Fecha f1;
