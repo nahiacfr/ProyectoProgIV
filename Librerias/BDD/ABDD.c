@@ -503,8 +503,12 @@ Autor obtenerAutor(int idAu){
 	Devuelve un autor a partir del ISBN de uno de sus libros
 */
 Autor obtenerAutorPorLibro(char *isbn){
-	Autor au;
-	//TODO
+	char sql20[] = "SELECT * FROM pertenece WHERE ISBN = ?";
+    sqlite3_prepare_v2(db, sql20, strlen(sql20), &stmt, NULL);
+    sqlite3_bind_text(stmt, 1, isbn, strlen(isbn), SQLITE_STATIC);
+	result = sqlite3_step(stmt);
+	int idAutor = sqlite3_column_int(stmt, 1);
+	Autor au = obtenerAutor(idAutor);
 	return au;
 }
 /*
