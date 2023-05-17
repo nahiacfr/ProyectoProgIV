@@ -13,6 +13,8 @@ Fecha* crearFecha(int dia, int mes, int anyo){
  }
 }
  
+ 
 int compararFechas(Fecha fecha1, Fecha fecha2){
+
 
 }
