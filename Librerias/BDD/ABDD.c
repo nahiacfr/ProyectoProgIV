@@ -751,10 +751,10 @@ void imprimirListadoEditoriales(){
 	Devuelve un listado de las reservas de un usuario concreto
 */
 void listadoReservas(Reserva **listaRes, int tamanyoLista, Usuario *us){
-	/*
-	char sql10[] = "select * from reserva where DNI = ?";
-	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL) ;
-	sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
+	
+	/*char sql10[] = "SELECT * FROM reserva WHERE DNI = ?";
+	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL);
+    sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
 	do {
 		result = sqlite3_step(stmt);
 		Usuario *us;
