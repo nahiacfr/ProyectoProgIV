@@ -405,7 +405,33 @@ void insertarAutor(Autor *au){
 	Inserta multiples autores en la base de datos leyendo los datos desde un fichero
 */
 void insertarAutoresFichero(char *ruta){
-	//TODO
+	FILE *archivo = fopen(ruta, "r");
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo\n");
+        return;
+    }
+	char linea[100];
+    while (fgets(linea, sizeof(linea), archivo) != NULL) {
+        // extraer nombre, apellidos id 
+        char *token = strtok(linea, ";");
+        char *nombre = token;
+        token = strtok(NULL, ";");
+        char *apellidos = token;
+        token = strtok(NULL, ";");
+        int id = atoi(token);
+
+        // crear nuevo autor para meter en bd
+        Autor *au = (Autor *)malloc(sizeof(Autor));
+        au->id = id;
+        au->nombre = nombre; 
+        au->apellidos = apellidos; 
+        insertarAutor(au);
+        free(au->nombre);
+        free(au->apellidos);
+        free(au);
+    }
+
+    fclose(archivo);
 }
 /*
 	Elimina una autor de la BDD
@@ -503,13 +529,15 @@ Autor obtenerAutor(int idAu){
 	Devuelve un autor a partir del ISBN de uno de sus libros
 */
 Autor obtenerAutorPorLibro(char *isbn){
-	char sql20[] = "SELECT * FROM pertenece WHERE ISBN = ?";
+	//Este método no funciona pq no hay ninguna tabla en la bd que relacione libro con autor 
+	/* char sql20[] = "SELECT * FROM pertenece WHERE ISBN = ?";
     sqlite3_prepare_v2(db, sql20, strlen(sql20), &stmt, NULL);
     sqlite3_bind_text(stmt, 1, isbn, strlen(isbn), SQLITE_STATIC);
 	result = sqlite3_step(stmt);
 	int idAutor = sqlite3_column_int(stmt, 1);
 	Autor au = obtenerAutor(idAutor);
 	return au;
+	*/
 }
 /*
 	Imprime por consola el listado de los autores
@@ -563,7 +591,30 @@ void insertarEditoriaL(Editorial *ed){
 	Inserta multiples editoriales en la base de datos leyendo los datos desde un fichero
 */
 void insertarEditorialesFichero(char *ruta){
-	//TODO
+	
+	FILE *archivo = fopen(ruta, "r");
+    if (archivo == NULL) {
+        printf("Error al abrir el archivo\n");
+        return;
+    }
+	char linea[100];
+    while (fgets(linea, sizeof(linea), archivo) != NULL) {
+    // nombre y el id línea
+        char *token = strtok(linea, ";");
+        char *nombre = token;
+        token = strtok(NULL, ";");
+        int id = atoi(token);
+	//nueva ed para guardar en bd
+        Editorial *ed = (Editorial *)malloc(sizeof(Editorial));
+        ed->id = id;
+        ed->nombre = nombre; 
+        insertarEditorial(ed);
+
+        free(ed->nombre);
+        free(ed);
+    }
+
+    fclose(archivo);
 }
 /*
 	Elimina una editorial de la BDD
@@ -660,8 +711,18 @@ Editorial obtenerEditorial(int idEd){
 */
 Editorial obtenerEditorialPorLibro(char *isbn){
 	Editorial ed;
-	//TODO
-	return ed;
+	char sql[] = "SELECT ID FROM pertenece WHERE ISBN = ?";
+
+    sqlite3_prepare_v2(db, sql, strlen(sql), &stmt, NULL);
+    sqlite3_bind_text(stmt, 1, isbn, strlen(isbn), SQLITE_STATIC);
+	int idEditorial;
+	if (sqlite3_step(stmt) == SQLITE_ROW) {
+       
+	   idEditorial = sqlite3_column_int(stmt, 0);
+
+    }
+
+	return obtenerEditorial(idEditorial);
 }
 /*
 	Imprime por consola el listado de Editoriales
