@@ -752,26 +752,49 @@ void imprimirListadoEditoriales(){
 */
 void listadoReservas(Reserva **listaRes, int tamanyoLista, Usuario *us){
 	
-	/*char sql10[] = "SELECT * FROM reserva WHERE DNI = ?";
-	sqlite3_prepare_v2(db, sql10, strlen(sql10), &stmt, NULL);
-    sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
-	do {
-		result = sqlite3_step(stmt);
-		Usuario *us;
-		Reserva aux ={obtenerLibro((char*)sqlite3_column_text(stmt, 0)), obtenerUsuario(us,(char*)sqlite3_column_text(stmt, 1)), obtenerFechaIni((char*)sqlite3_column_text(stmt, 2)), obtenerFechaFin((char*)sqlite3_column_text(stmt, 3))};
-		anyadirReserva(listaRes, tamanyoLista, &aux);
-		printf("%s\n", aux.libro.isbn);
-	} while (result == SQLITE_ROW);
-	*/
+        char sql[] = "SELECT * FROM reserva WHERE DNI = ?";
+		
+      if (sqlite3_prepare_v2(db, sql, strlen(sql), &stmt, NULL) == SQLITE_OK) {
+            sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
+
+            // Recorrer los resultados de la consulta
+            while ((result = sqlite3_step(stmt)) == SQLITE_ROW) {
+                Reserva *reserva = (Reserva *)malloc(sizeof(Reserva));
+                reserva->libro = obtenerLibro((char *)sqlite3_column_text(stmt, 0));
+                reserva->usuario = obtenerUsuario((char *)sqlite3_column_text(stmt, 1));
+                reserva->fechaIni = obtenerFechaIni((char *)sqlite3_column_text(stmt, 2));
+                reserva->fechaFin = obtenerFechaFin((char *)sqlite3_column_text(stmt, 3));
+
+                // Añadir la reserva a la lista
+                anyadirReserva(listaRes, tamanyoLista, reserva);
+
+                printf("ISBN: %s, DNI: %s, Fecha Inicio: %d/%d/%d, Fecha Fin: %d/%d/%d\n",
+                       reserva->libro, reserva->usuario,
+                       reserva->fechaIni.dia, reserva->fechaIni.mes, reserva->fechaIni.anyo,
+                       reserva->fechaFin.dia, reserva->fechaFin.mes, reserva->fechaFin.anyo);
+            }
+
+            // Liberar recursos
+            sqlite3_finalize(stmt);
+        }
 }
 
 Fecha obtenerFechaIni(char *res){
-	//TODO
 	Fecha f1;
+	int dia, mes, anio;
+    sscanf(res, "%d/%d/%d", &dia, &mes, &anio);
+    f1.dia = dia;
+    f1.mes = mes;
+    f1.anyo = anio;
 	return f1;
 }
 Fecha obtenerFechaFin(char *res){
 	//TODO
 	Fecha f1;
+	int dia, mes, anio;
+    sscanf(res, "%d/%d/%d", &dia, &mes, &anio);
+    f1.dia = dia;
+    f1.mes = mes;
+    f1.anyo = anio;
 	return f1;
 }
