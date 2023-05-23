@@ -4,6 +4,7 @@
 #include <windows.h> //necesario para el sleep();
 #include "Librerias\BDD\ABDD.h"
 #include "Librerias\BDD\sqlite3.h"
+#include "Librerias\log.h"
 
 #define MAX_OPTN 2
 #define MAX_LINE 50
@@ -34,59 +35,6 @@ int main() //MainMenu añadido al main principal
 {
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     inicializarBDD("BibliotecaDeusto.db", dbM);
-/*Datos prueba*/
-/*    //Usuarios
-    Usuario us1 = {"22767695X", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
-    Usuario us2 = {"22767695V", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
-    Usuario us3 = {"22767695Z", "Josu", "Lopez", "josujon.l.a@opendeusto.es"};
-    
-    insertarUsuario(&us1, "123456");
-    insertarUsuario(&us2, "123456");
-    insertarUsuario(&us3, "123456");
-    
-    eliminarUsuario(us1.dni);
-
-    verificarContrasenya(&us1, "123456");
-    verificarContrasenya(&us1, "654321");
-
-    imprimirListadoUsuarios();
-
-    //Autores
-    Autor au1 ={1, "Pedro", "de la Rosa"};
-    Autor au2 ={2, "Alfredo", "Perez"};
-
-    insertarAutor(&au1);
-    insertarAutor(&au2);
-
-    imprimirListadoAutores();
-    eliminarAutor(au1.id);
-
-    //Editoriales
-
-    Editorial ed1 = {1, "Circulo"};
-
-    insertarEditoriaL(&ed1);
-
-    imprimirListadoEditoriales();
-
-    eliminarEditorial(ed1.id);
-
-    //Libros
-    Libro lib ={"bJGDkbc682nk9", "libro1", 2021, au1, ed1};
-    Libro lib2 ={"bJ3Drbcko2nl7", "libro2", 2018, au2, ed1};
-    Libro lib3 ={"ajkDrbcko2nl7", "libro3", 2019, au1, ed1};
-
-    insertarLibro(&lib);
-    insertarLibro(&lib2);
-    insertarLibro(&lib3);
-
-    eliminarLibro(lib.isbn);
-
-    imprimirListadoLibros();
-
-    cerrarBDD(dbM);
-*/
-/*Fin datos prueba*/
     mainMenuAdmin();
 /*  printf("---------------------\nBIBLIOTECA DEUSTO\n---------------------\n");
     printf("Bienvenido\n");
@@ -113,23 +61,34 @@ int main() //MainMenu añadido al main principal
 //Menus del administrador
 void verificarAdmin()
 {
+    //Log
+    Log *logAd;
+    logAd = crear_log("Ficheros/Logs/LogAdministrador.txt");
+
     printf("Inserte el codigo de verificacion: ");
     char code;
     scanf(" %c", &code);
     if (code=='1') //prueba
     {
         printf("Acceso permitido.");
+        escribir_mensaje(logAd, INFO, "Acceso de administrador valido");
         Sleep(SECONDS_TO_CONTINUE);
         mainMenuAdmin();
     }
     else
     {
         printf("Acceso denegado.");
+        escribir_mensaje(logAd, WARNING, "Acceso de administrador incorrecto");
     }
+    cerrar_log(logAd);
 }
 
 void mainMenuAdmin()
 {
+    //Log
+    Log *logAd;
+    logAd = crear_log("Ficheros/Logs/LogAdministrador.txt");
+
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     printf("---------------------\nMENU ADMINISTRADOR\n---------------------\n");
     printf("Que desea editar?\n");
@@ -143,33 +102,40 @@ void mainMenuAdmin()
     switch (result)
     {
     case 1:
+        escribir_mensaje(logAd, INFO, "Seleccionado Administrar Libros");
         administrarLibros();
         break;
     case 2:
+        escribir_mensaje(logAd, INFO, "Seleccionado Administrar Autores");
         administrarAutores();
         break;
     case 3:
+        escribir_mensaje(logAd, INFO, "Seleccionado Administrar Editoriales");
         administrarEditoriales();
         break;
     case 4:
-    printf("Break 3.1");
+        //escribir_mensaje(logAd, INFO, "Seleccionado Administrar Reservas");   
         //administrarReservas();
         printf("Choose again\n");
         Sleep(SECONDS_TO_CONTINUE);
         mainMenuAdmin();
         break;
     default:
-    printf("Break 3.2");
+        escribir_mensaje(logAd, INFO, "Seleccion Nula");
         printf("Choose again\n");
         Sleep(SECONDS_TO_CONTINUE);
         mainMenuAdmin();
         break;
     }
-    
+    cerrar_log(logAd);
 }
 
 void administrarLibros()
 {
+    //Log
+    Log *logAd;
+    logAd = crear_log("Ficheros/Logs/LogAdministrador.txt");
+
     printf("---------------------\nADMINISTRAR LIBROS\n---------------------\n");
     printf("Que desea hacer?\n");
     printf("1.Anyadir\n2.Eliminar\n3.Listado completo\n");
@@ -182,7 +148,7 @@ void administrarLibros()
     switch (result)
     {
     case 1: //añadir
-
+        escribir_mensaje(logAd, INFO, "Seleccionado Anyadir");
         printf("Nombre del libro: \n");
         char name[MAX_LINE];
         //scanf(" %s", &name);
@@ -225,6 +191,7 @@ void administrarLibros()
 
         break;
     case 2: //Eliminar
+        escribir_mensaje(logAd, INFO, "Seleccionado Eliminar");
         imprimirListadoLibros();
         printf("Codigo isbn de libro a eliminar: \n");
         char isbnDel[10];
@@ -237,17 +204,7 @@ void administrarLibros()
         
         break;
     case 3: ;//Listado completo
-        /*  leer de fichero
-        FILE *f;
-        char string[1000]="";
-        f=fopen("Libro.txt","r");
-
-        while (fgets(string, sizeof(string), f))
-        {
-            printf("%s\n",string);
-        }
-        fclose(f);
-        */
+        escribir_mensaje(logAd, INFO, "Seleccionado Mostrar Listado Completo");
         imprimirListadoLibros();
         
         printf("Operacion realizada, volviendo al menu anterior...");
@@ -256,10 +213,12 @@ void administrarLibros()
 
         break;
     default:
+        escribir_mensaje(logAd, INFO, "Seleccion Nula");
         printf("Choose again\n");
         mainMenuAdmin();
         break;
     }
+    cerrar_log(logAd);
 }
 
 void administrarAutores()
@@ -366,7 +325,7 @@ printf("---------------------\nADMINISTRAR EDITORIALES\n---------------------\n"
         sscanf(cEd, "%i", &id);
         
         Editorial newEditorial={id, name};
-        insertarEditoriaL(&newEditorial);
+        insertarEditorial(&newEditorial);
         
         printf("Operacion realizada, volviendo al menu anterior...");
         Sleep(SECONDS_TO_CONTINUE);

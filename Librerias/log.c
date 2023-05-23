@@ -29,7 +29,7 @@ void escribir_mensaje(Log *log, TipoMensaje tipo, char *mensaje) {
         case WARNING:
             strcpy(tipo_str, "WARNING");
             break;
-        case ERROR:
+        case ER:
             strcpy(tipo_str, "ERROR");
             break;
         default:

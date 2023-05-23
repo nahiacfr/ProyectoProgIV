@@ -1,0 +1,9 @@
+[2023-05-23 18:21:36] [INFO]: Seleccionado Administrar Libros
+[2023-05-23 18:21:36] [INFO]: Seleccion Nula
+[2023-05-23 18:21:40] [INFO]: Seleccionado Administrar Libros
+[2023-05-23 18:21:40] [INFO]: Seleccion Nula
+[2023-05-23 18:21:44] [INFO]: Seleccionado Administrar Autores
+[2023-05-23 18:21:45] [INFO]: Seleccionado Administrar Libros
+[2023-05-23 18:21:45] [INFO]: Seleccion Nula
+[2023-05-23 18:21:53] [INFO]: Seleccion Nula
+[2023-05-23 18:21:56] [INFO]: Seleccion Nula

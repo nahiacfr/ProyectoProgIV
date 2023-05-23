@@ -9,7 +9,7 @@
 typedef enum {
     INFO,
     WARNING,
-    ERROR
+    ER
 } TipoMensaje;
 
 typedef struct {

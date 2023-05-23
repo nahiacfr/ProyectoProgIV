@@ -565,7 +565,7 @@ void imprimirListadoAutores(){
 /*
 	Inserta una nueva editorial en la BDD
 */
-void insertarEditoriaL(Editorial *ed){
+void insertarEditorial(Editorial *ed){
 	//Comprueba si la editorial exite en la BDD
 	if (existeEditorial(ed->id)==0){
 		//Introduce la editorial en la BDD
@@ -760,9 +760,10 @@ void listadoReservas(Reserva **listaRes, int tamanyoLista, Usuario *us){
 
             // Recorrer los resultados de la consulta
             while ((result = sqlite3_step(stmt)) == SQLITE_ROW) {
+				Usuario *us;
                 Reserva *reserva = (Reserva *)malloc(sizeof(Reserva));
                 reserva->libro = obtenerLibro((char *)sqlite3_column_text(stmt, 0));
-                reserva->usuario = obtenerUsuario((char *)sqlite3_column_text(stmt, 1));
+                reserva->usuario = obtenerUsuario(us,(char *)sqlite3_column_text(stmt, 1));
                 reserva->fechaIni = obtenerFechaIni((char *)sqlite3_column_text(stmt, 2));
                 reserva->fechaFin = obtenerFechaFin((char *)sqlite3_column_text(stmt, 3));
 

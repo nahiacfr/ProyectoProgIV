@@ -38,7 +38,7 @@ Autor obtenerAutorPorLibro(char *isbn);
 void imprimirListadoAutores();
 
 //Acciones con Editoriales
-void insertarEditoriaL(Editorial *ed);
+void insertarEditorial(Editorial *ed);
 void insertarEditorialesFichero(char *ruta);
 void eliminarEditorial(int idEd);
 int existeEditorial(int idEd);

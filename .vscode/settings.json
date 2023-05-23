@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "reserva.h": "c"
+        "reserva.h": "c",
+        "limits": "c"
     }
 }
