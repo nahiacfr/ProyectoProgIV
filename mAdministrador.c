@@ -185,7 +185,10 @@ void administrarLibros()
 
         printf("Nombre del libro: \n");
         char name[MAX_LINE];
-        scanf(" %s", &name);
+        //scanf(" %s", &name);
+        char *result;
+        fgets(select, MAX_LINE, stdin);
+        sscanf(select, "%s", &result);
 
         printf("Codigo isbn del libro: \n");
         char isbn[10];
@@ -587,7 +590,7 @@ int menuBuscar()
         break;
     }
 
-    return select;
+    return result;
 }
 
 void buscarTitulo()
