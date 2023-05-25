@@ -80,8 +80,10 @@ int main(int argc, char *argv[]) {
             printf("Message recived\n");
 		    if(recvBuff[0]=='I' && recvBuff[1]=='N' && recvBuff[2]=='S')
             {
+                if(verifyUserFromSocket(recvBuff, sizeof(recvBuff))==1);
+                sendBuff[0] = '1';
                 printf("Sending asnwer...\n");
-                send(comm_socket, (char*)verifyUserFromSocket(recvBuff, sizeof(recvBuff)), sizeof(recvBuff), 0);
+                send(comm_socket, sendBuff, sizeof(recvBuff), 0);
                 printf("Answer sended\n");
             }
 

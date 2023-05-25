@@ -137,7 +137,7 @@ void inicioSesion()
     printf("Esperando respuesta...");
     recv(s, recvBuff, sizeof(recvBuff), 0);
     printf("Respuesta obtenida");
-    if(recvBuff[0]==1)
+    if(recvBuff[0]=='1')
     {
         cout << "Conexion realizada con exito."<<endl;
         Sleep(SECONDS_TO_CONTINUE); //esperamos 2 segundos antes de "cambiar de pantalla"
