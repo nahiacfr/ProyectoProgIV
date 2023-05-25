@@ -9,12 +9,10 @@
 
 extern "C"
 {
-    #include "Librerias\BDD\ABDD.h"
-    #include "Librerias\BDD\sqlite3.h"
     #include "Librerias\log.h"
+    #include "Librerias\config.h"
 }
 
-#include <iostream>
 using namespace std;
 
 #define MAX_OPTN 2
@@ -32,14 +30,15 @@ void buscarTitulo();
 void buscarAutor();
 void reservar(char nombre);
 
-int iResult;
+WSADATA wsaData;
+SOCKET s;
+struct sockaddr_in server;
+char sendBuff[512], recvBuff[512];
+string presend;
 
 int main(int argc, char const *argv[])
 {
-    WSADATA wsaData;
-	SOCKET s;
-	struct sockaddr_in server;
-	char sendBuff[512], recvBuff[512];
+   
 
 	printf("\nInitialising Winsock...\n");
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -130,13 +129,23 @@ void inicioSesion()
     cout << "Contrasenya: "<<endl;
     cin>>password;
 
-    //TO DO: conectarlo con la base de datos, comparar correo y contraseña
-    //En caso de que el correo no existe o la contraseña está mal: repetir el proceso
-
-    //Añadir delay para leer el texto con más calma
-    cout << "Conexion realizada con exito."<<endl;
-    Sleep(SECONDS_TO_CONTINUE); //esperamos 2 segundos antes de "cambiar de pantalla"
-    menuBuscar();
+    //Envia el Socket para verificar el usuario
+    presend = "INS##" + correo + "#" + password + "#";
+    strcpy(sendBuff, presend.c_str());
+	send(s, sendBuff, sizeof(sendBuff), 0);
+    //Espera la respuesta del Servidor
+    recv(s, recvBuff, sizeof(recvBuff), 0);
+    if(recvBuff[0]==1)
+    {
+        cout << "Conexion realizada con exito."<<endl;
+        Sleep(SECONDS_TO_CONTINUE); //esperamos 2 segundos antes de "cambiar de pantalla"
+        menuBuscar();
+    }else
+    {
+        inicioSesion();
+    }
+    
+    
 }
 
 void registraUsuario()
