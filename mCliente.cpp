@@ -1,10 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
+//#include <stdio.h>
+//#include <stdlib.h>
+#include <string>
 #include <windows.h> //necesario para el sleep();
-#include "Librerias\BDD\ABDD.h"
-#include "Librerias\BDD\sqlite3.h"
-#include "Librerias\log.h"
+
+extern "C"
+{
+    #include "Librerias\BDD\ABDD.h"
+    #include "Librerias\BDD\sqlite3.h"
+    #include "Librerias\log.h"
+}
+
+#include <iostream>
+using namespace std;
 
 #define MAX_OPTN 2
 #define MAX_LINE 50
@@ -15,6 +23,7 @@ void inicioSesion();
 void registraUsuario();
 int menuBuscar();
 void buscarTitulo();
+void buscarAutor();
 void reservar(char nombre);
 
 int main(int argc, char const *argv[])
@@ -29,16 +38,12 @@ void mainMenuUser()
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_OPTN];
 
-    printf("---------------------\nBIBLIOTECA DEUSTO\n---------------------\n");
-    printf("Bienvenido a la biblioteca\n");
-    printf("1.Iniciar sesion\n2.Nuevo usuario\n3.Salir\n");
-    /*fgets(str, MAX_OPTN, stdin); //no me va
-    sscanf(str, "%d", &select);*/
+    cout << "---------------------"<< endl<<"BIBLIOTECA DEUSTO"<<endl<<"---------------------"<<endl;
+    cout << "Bienvenido a la biblioteca"<<endl;
+    cout << "1.Iniciar sesion"<< endl<<"2.Nuevo usuario"<<endl<<"3.Salir"<<endl;
     
-    char select[2];
     int result;
-    fgets(select, 2, stdin);
-    sscanf(select, "%d", &result);
+    cin>>result;
     
     switch (result)
     {
@@ -49,96 +54,76 @@ void mainMenuUser()
         registraUsuario();
         break;
     case 3:
-        printf("Has salido de la app\n");
+        cout << "Has salido de la app"<<endl;
         break;
     default:
-        printf("Choose again\n");
+        cout << "Choose again"<<endl;
         break;
     }
 }
 
 void inicioSesion()
 {
-    char str[MAX_LINE];
-    char correo;
-    char password;
+    string correo;
+    string password;
 
-    printf("---------------------\nINICIAR SESION\n---------------------\n");
-    printf("Bienvenido a la biblioteca\n");
-    printf("Correo electronico: \n");
-    /*fgets(str, MAX_OPTN, stdin);
-    sscanf(str, "%d", &correo);*/
-    scanf(" %c", &correo);
+    cout << "---------------------"<< endl<<"INICIAR SESION"<<endl<<"---------------------"<<endl;
+    cout << "Bienvenido a la biblioteca"<<endl;
+    cout << "Correo electronico: "<<endl;
+    cin>>correo;
 
-    printf("Contrasenya: \n");
-    /*fgets(str, MAX_OPTN, stdin);
-    sscanf(str, "%d", &password);*/
-    scanf(" %c", &password);
+    cout << "Contrasenya: "<<endl;
+    cin>>password;
 
     //TO DO: conectarlo con la base de datos, comparar correo y contraseña
     //En caso de que el correo no existe o la contraseña está mal: repetir el proceso
 
     //Añadir delay para leer el texto con más calma
-    printf("Conexion realizada con exito.\n");
+    cout << "Conexion realizada con exito."<<endl;
     Sleep(SECONDS_TO_CONTINUE); //esperamos 2 segundos antes de "cambiar de pantalla"
     menuBuscar();
-
 }
 
 void registraUsuario()
 {
-    char str[MAX_LINE];
-    char nombre;
-    char apellido;
-    char dni;
-    char correo;
-    char password;
+    string nombre;
+    string apellido;
+    string dni;
+    string correo;
+    string password;
 
-    printf("---------------------\nREGISTRO USUARIO\n---------------------\n");
-    printf("Nombre: \n");
-    /*fgets(str, MAX_OPTN, stdin);
-    sscanf(str, "%d", &nombre);*/
-    scanf(" %c", &nombre);
+    cout << "---------------------"<< endl<<"REGISTRO USUARIO"<<endl<<"---------------------"<<endl;
+    cout << "Nombre: "<<endl;
+    cin>>nombre;
 
-    printf("Apellido: \n");
-    /*fgets(str, MAX_OPTN, stdin);
-    sscanf(str, "%d", &apellido);*/
-    scanf(" %c", &apellido);
+    cout << "Apellido: "<<endl;
+    cin>>apellido;
 
-    printf("DNI: \n");
-    /*fgets(str, MAX_OPTN, stdin);
-    sscanf(str, "%d", &dni);*/
-    scanf(" %c", &dni);
+    cout << "DNI: "<<endl;
+    cin>>dni;
 
-    printf("Correo electronico: \n");
-    /*fgets(str, MAX_OPTN, stdin);
-    sscanf(str, "%d", &correo);*/
-    scanf(" %c", &correo);
+    cout << "Correo electronico: "<<endl;
+    cin>>correo;
 
-    printf("Contrasenya: \n");
-    /*fgets(str, MAX_OPTN, stdin);
-    sscanf(str, "%d", &password);*/
-    scanf(" %c", &password);
+    cout << "Contrasenya: "<<endl;
+    cin>>password;
 
     //TO DO: conectarlo con la base de datos y añadir los datos nuevos
     //Añadir delay para leer el texto con más calma
-    printf("Ususario creado correctamente.\n");
+    cout << "Ususario creado correctamente."<<endl;
     Sleep(SECONDS_TO_CONTINUE);
     menuBuscar();
-
 }
 
 int menuBuscar()
 {
     system("cls"); //añadido para que la pantalla no se llene de mucha información
-    char str[MAX_OPTN];
-    printf("---------------------\nMENU BUSCAR\n---------------------\n");
-    printf("1.Buscar libro por titulo\n2.Buscar libro por autor\n3.Volver menu principal\n");
-    char select[2];
+    cout << "---------------------"<<endl<<"MENU BUSCAR"<<endl<<"---------------------"<<endl;
+    cout << "1.Buscar libro por titulo"<<endl<<"2.Buscar libro por autor"<<endl<<"3.Volver menu principal"<<endl;
+    
     int result;
-    fgets(select, 2, stdin);
-    sscanf(select, "%d", &result);
-            printf("Seleccion: %c\n", select);
+    cout << "Seleccion: "<<endl;
+    cin>>result;
     
     switch (result)
     {
@@ -149,7 +134,8 @@ int menuBuscar()
         buscarAutor();
         break;
     case 3:
-        printf("Volviendo al menu principal\n");
+        cout << "Volviendo al menu principal..."<<endl;
+        Sleep(SECONDS_TO_CONTINUE);
         mainMenuUser();
         break;
     }
@@ -159,25 +145,21 @@ int menuBuscar()
 
 void buscarTitulo()
 {
-    char str[MAX_LINE];
-    char titulo;
-    char seleccion;
+    string titulo;
+    int seleccion;
 
-    printf("---------------------\nBUSCAR\n---------------------\n");
-    printf("Titulo: ");
-    /*fgets(str, MAX_OPTN, stdin);
-    sscanf(str, "%d", &titulo);*/
-    scanf(" %c", &titulo);
+    cout << "---------------------"<<endl<<"BUSCAR LIBRO"<<endl<<"---------------------"<<endl;
+    cout << "Titulo: "<<endl;
+    cin>>titulo;
 
     //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
-    printf("Pulse el numero del libro para continuar con la reserva\n");
-    printf("Pulse 1 para volver al menu de busqueda\n");
-    //for con print para cada libro que salga
-    scanf(" %c", &seleccion);
+    cout << "Pulse el numero del libro para continuar con la reserva."<<endl<<"Pulse 0 para volver al menu de busqueda"<<endl;
+    //TODO for con print para cada libro que salga
+    cin>>seleccion;
 
-    if (seleccion=='1')
+    if (seleccion==0)
     {
-        printf("Volviendo al menu busqueda.\n");
+        cout << "Volviendo al menu busqueda."<<endl;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
     }
@@ -185,34 +167,32 @@ void buscarTitulo()
     else
     {
         //obtendremos el id del libro seleccionado y llamamos a reservar()
-        reservar(seleccion); //o libro.nombre || libro->nombre
+        reservar(seleccion); // seleccion.nombre || seleccion->nombre
         
-        printf("Operacion realizada, volviendo al menu anterior...");
+        /*cout << "Operacion realizada, volviendo al menu anterior..."<<endl;
         Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
+        menuBuscar();*/
     }
 }
 
 void buscarAutor()
 {
     char str[MAX_LINE];
-    char autor;
-    char seleccion;
+    string autor;
+    int seleccion;
     
-    printf("---------------------\nBUSCAR\n---------------------\n");
-    printf("Autor: \n");
-    /*fgets(str, MAX_OPTN, stdin);
-    sscanf(str, "%d", &titulo);*/
-    scanf(" %c", &autor);
+    cout<<"---------------------"<<endl<<"BUSCAR AUTOR"<<endl<<"---------------------"<<endl;
+    cout<<"Autor: "<<endl;
+    cin>>autor;
 
     //buscar en la base de datos los autores que coincidan;
-    printf("Pulse el numero del libro para continuar con la reserva\n");
-    printf("Pulse 1 para volver al menu de busqueda\n");
-    scanf(" %c", &seleccion);
+    cout<<"Pulse el numero del libro para continuar con la reserva"<<endl;
+    cout<<"Pulse 0 para volver al menu de busqueda"<<endl;
+    cin>>seleccion;
     
-    if (seleccion=='1')
+    if (seleccion==0)
     {
-        printf("Volviendo al menu busqueda.\n");
+        cout<<"Volviendo al menu busqueda."<<endl;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
     }
@@ -220,34 +200,32 @@ void buscarAutor()
     else
     {
         //obtendremos el id del libro seleccionado y llamamos a reservar()
-        reservar(seleccion); //o libro.nombre || libro->nombre
+        reservar(seleccion); // seleccion.nombre || seleccion->nombre
 
-        printf("Operacion realizada, volviendo al menu anterior...");
+        /*cout<<"Operacion realizada, volviendo al menu anterior..."<<endl;
         Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
+        menuBuscar();*/
     }
 }
 
 void reservar(char nombre)
 {
-    printf("¿Desea reservar el libro %c?\n", nombre);
-    printf("1.Si\n2.No\n");
+    cout<<"¿Desea reservar el libro "<< nombre<<endl;
+    cout<<"1.Si"<<endl<<"2.No"<<endl;
     
-    char select[2];
     int result;
-    fgets(select, 2, stdin);
-    sscanf(select, "%d", &result);
+    cin>>result;
     
     switch (result)
     {
     case 1:
-        printf("Reserva realizada, tiene X dias para devolverlo.\n");
-        printf("Volviendo al menu anterior...");
+        cout<<"Reserva realizada, tiene X dias para devolverlo"<<endl;
+        cout<<"Volviendo al menu anterior..."<<endl;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
         break;
     case 2:
-        printf("Volviendo al menu busqueda");
+        cout<<"Volviendo al menu busqueda"<<endl;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
         break;
