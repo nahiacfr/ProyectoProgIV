@@ -1,92 +1,103 @@
-
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <iostream>
 #include <winsock2.h>
 
-#define PORT 8080 //numero de puerto utilizado para las conex
-#define DEFAULT_BUFLEN 1024
+#define SERVER_IP "127.0.0.1"
+#define SERVER_PORT 8080
 
-bool verifyUserFromSocket(char buffer[], int length);
+int verifyUserFromSocket(char buffer[], int length);
 
-int main() {
-    WSADATA wsaData;
-    SOCKET serverSocket, clientSocket;
-    struct sockaddr_in serverAddress, clientAddress;
-    char buffer[1024];
-    int addrLen, bytesReceived;
-    int iResult;
-    char* message;
+int main(int argc, char *argv[]) {
 
-    // Inicializar Winsock
-    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        printf("\n error de inicialización \n");
-        return 1;
-    }
+	WSADATA wsaData;
+	SOCKET conn_socket;
+	SOCKET comm_socket;
+	struct sockaddr_in server;
+	struct sockaddr_in client;
+	char sendBuff[512], recvBuff[512];
 
-    // Crear el socket
-    if ((serverSocket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-        printf("\n error de creación del socket \n");
-        return 1;
-    }
+	printf("\nInitialising Winsock...\n");
+	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+		printf("Failed. Error Code : %d", WSAGetLastError());
+		return -1;
+	}
 
-    // Configurar la dirección del servidor
-    serverAddress.sin_family = AF_INET;
-    serverAddress.sin_addr.s_addr = INADDR_ANY;
-    serverAddress.sin_port = htons(PORT);
+	printf("Initialised.\n");
 
-    // Vincular el socket a la dirección del servidor
-    if (bind(serverSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) == SOCKET_ERROR) {
-        printf("\n error al vincular el socket \n");
-        closesocket(serverSocket);
-        return 1;
-    }
+	//SOCKET creation
+	if ((conn_socket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
+		printf("Could not create socket : %d", WSAGetLastError());
+		WSACleanup();
+		return -1;
+	}
 
-    // Escuchar nuevas conexiones entrantes
-    if (listen(serverSocket, 1) == SOCKET_ERROR) {
-        printf("\n error al escuchar conexiones \n");
-        closesocket(serverSocket);
-        return 1;
-    }
+	printf("Socket created.\n");
 
-    printf("\n servidor en espera \n");
+	server.sin_addr.s_addr = inet_addr(SERVER_IP);
+	server.sin_family = AF_INET;
+	server.sin_port = htons(SERVER_PORT);
 
-    // Aceptar una conexión entrante
-    addrLen = sizeof(clientAddress);
-    if ((clientSocket = accept(serverSocket, (struct sockaddr*)&clientAddress, &addrLen)) == INVALID_SOCKET) {
-        printf("\n error al aceptar conexion entrante \n");
-        closesocket(serverSocket);
-        return 1;
-    }
+	//BIND (the IP/port with socket)
+	if (bind(conn_socket, (struct sockaddr*) &server,
+			sizeof(server)) == SOCKET_ERROR) {
+		printf("Bind failed with error code: %d", WSAGetLastError());
+		closesocket(conn_socket);
+		WSACleanup();
+		return -1;
+	}
 
-    printf("\n cliente conectado \n");
+	printf("Bind done.\n");
 
-    // Recibir datos del cliente
-    while ((bytesReceived = recv(clientSocket, buffer, DEFAULT_BUFLEN, 0)) > 0) {
-        /*Iniciar Sesion*/
-        if(buffer[0]=='I' && buffer[1]=='N' && buffer[2]=='S')
-        {
-            verifyUserFromSocket(buffer, DEFAULT_BUFLEN);
-            //TODO
-            /*Responder al Cliente*/
-        }
-    }
+	//LISTEN to incoming connections (socket server moves to listening mode)
+	if (listen(conn_socket, 1) == SOCKET_ERROR) {
+		printf("Listen failed with error code: %d", WSAGetLastError());
+		closesocket(conn_socket);
+		WSACleanup();
+		return -1;
+	}
 
-    // Cerrar el socket del cliente
-    closesocket(clientSocket);
+	//ACCEPT incoming connections (server keeps waiting for them)
+	printf("Waiting for incoming connections...\n");
+	int stsize = sizeof(struct sockaddr);
+	comm_socket = accept(conn_socket, (struct sockaddr*) &client, &stsize);
+	// Using comm_socket is able to send/receive data to/from connected client
+	if (comm_socket == INVALID_SOCKET) {
+		printf("accept failed with error code : %d", WSAGetLastError());
+		closesocket(conn_socket);
+		WSACleanup();
+		return -1;
+	}
+	printf("Incomming connection from: %s (%d)\n", inet_ntoa(client.sin_addr),
+			ntohs(client.sin_port));
 
-    // Cerrar el socket del servidor
-    closesocket(serverSocket);
+	// Closing the listening sockets (is not going to be used anymore)
+	closesocket(conn_socket);
 
-    // Finalizar Winsock
-    WSACleanup();
+	//SEND and RECEIVE data
+	printf("Waiting for incoming messages from client... \n");
+	do {
+		int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+		if (bytes > 0) {
+            printf("Message recived\n");
+		    if(recvBuff[0]=='I' && recvBuff[1]=='N' && recvBuff[2]=='S')
+            {
+                printf("Sending asnwer...\n");
+                send(comm_socket, (char*)verifyUserFromSocket(recvBuff, sizeof(recvBuff)), sizeof(recvBuff), 0);
+                printf("Answer sended\n");
+            }
 
-    return 0;
+			if (strcmp(recvBuff, "Bye") == 0)
+				break;
+		}
+	} while (1);
+
+	// CLOSING the sockets and cleaning Winsock...
+	closesocket(comm_socket);
+	WSACleanup();
+
+	return 0;
 }
 
-bool verifyUserFromSocket(char buffer[], int length)
+int verifyUserFromSocket(char buffer[], int length)
 {
     char* correo;
     char* contrasenya;
@@ -110,5 +121,5 @@ bool verifyUserFromSocket(char buffer[], int length)
     }
     /*Comprobar si el usuario es correcto*/
     /*Devolver el resultado*/
-    return false;
+    return 1;
 }

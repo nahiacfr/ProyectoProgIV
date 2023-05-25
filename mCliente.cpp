@@ -20,7 +20,7 @@ using namespace std;
 #define SECONDS_TO_CONTINUE 2000
 
 #define SERVER_IP "127.0.0.1"
-#define SERVER_PORT 6000
+#define SERVER_PORT 8080
 
 void mainMenuUser();
 void inicioSesion();
@@ -80,8 +80,8 @@ int main(int argc, char const *argv[])
     */
 
 	// CLOSING the socket and cleaning Winsock...
-	closesocket(s);
-	WSACleanup();
+	//closesocket(s);
+	//WSACleanup();
     mainMenuUser();
     return 0;
 }
@@ -134,7 +134,9 @@ void inicioSesion()
     strcpy(sendBuff, presend.c_str());
 	send(s, sendBuff, sizeof(sendBuff), 0);
     //Espera la respuesta del Servidor
+    printf("Esperando respuesta...");
     recv(s, recvBuff, sizeof(recvBuff), 0);
+    printf("Respuesta obtenida");
     if(recvBuff[0]==1)
     {
         cout << "Conexion realizada con exito."<<endl;
