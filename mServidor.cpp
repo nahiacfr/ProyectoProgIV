@@ -7,6 +7,9 @@
 #include <winsock2.h>
 
 #define PORT 8080 //numero de puerto utilizado para las conex
+#define DEFAULT_BUFLEN 1024
+
+bool verifyUserFromSocket(char buffer[], int length);
 
 int main() {
     WSADATA wsaData;
@@ -14,6 +17,8 @@ int main() {
     struct sockaddr_in serverAddress, clientAddress;
     char buffer[1024];
     int addrLen, bytesReceived;
+    int iResult;
+    char* message;
 
     // Inicializar Winsock
     if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -59,10 +64,14 @@ int main() {
     printf("\n cliente conectado \n");
 
     // Recibir datos del cliente
-    while ((bytesReceived = recv(clientSocket, buffer, 1040, 0)) > 0) {
-        
-
-        
+    while ((bytesReceived = recv(clientSocket, buffer, DEFAULT_BUFLEN, 0)) > 0) {
+        /*Iniciar Sesion*/
+        if(buffer[0]=='I' && buffer[1]=='N' && buffer[2]=='S')
+        {
+            verifyUserFromSocket(buffer, DEFAULT_BUFLEN);
+            //TODO
+            /*Responder al Cliente*/
+        }
     }
 
     // Cerrar el socket del cliente
@@ -75,4 +84,31 @@ int main() {
     WSACleanup();
 
     return 0;
+}
+
+bool verifyUserFromSocket(char buffer[], int length)
+{
+    char* correo;
+    char* contrasenya;
+    int pos;
+    for (int i = 3; i < length; i++)
+    {
+        if(buffer[i]=='#')
+        {
+            pos = i;
+            break;
+        }
+        correo += buffer[i];
+    }
+    for (int i = pos; i < length; i++)
+    {
+        if(buffer[i]=='#')
+        {
+            break;
+        }
+        contrasenya += buffer[i];
+    }
+    /*Comprobar si el usuario es correcto*/
+    /*Devolver el resultado*/
+    return false;
 }
