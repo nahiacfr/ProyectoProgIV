@@ -1,11 +1,37 @@
 #include <stdio.h>
 #include <winsock2.h>
 #include <iostream>
+#include "sqlite3.h"
+#include "..\EstructurasDatos\Fecha.h"
+#include "..\EstructurasDatos\Usuario.h"
+#include "..\EstructurasDatos\Libro.h"
+#include "..\EstructurasDatos\Reserva.h"
 
 using namespace std;
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 8080
+sqlite3 *db;
+sqlite3_stmt *stmt;
+int result;
+/*
+	Inicializa la Base de Datos
+*/
+void inicializarBDD(char *nombre, sqlite3 *dbIni){
+    db = dbIni;
+	if (sqlite3_open(nombre, &db) == 0){
+		printf("Conexion con la BDD exitosa\n");
+	}else{
+		printf("Error al conectar con la BDD\n");
+	}
+}
+/*
+	Cierra la conexion con la Base de Datos
+*/
+void cerrarBDD(sqlite3 *dbM){
+    sqlite3_close(dbM);
+	sqlite3_close(db);
+}
 
 int verifyUserFromSocket(char buffer[], int length);
 
@@ -152,6 +178,29 @@ int verifyUserFromSocket(char buffer[], int length)
         contrasenya += buffer[i];
     }
     /*Comprobar si el usuario es correcto*/
+    Usuario *us;
+    char sql3[] = "select contraseña from usuario where correo = ?";
+	int count = 0;
+	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
+	sqlite3_bind_text(stmt, 1, us->correo, strlen(us->correo), SQLITE_STATIC);
+
+	do {
+		result = sqlite3_step(stmt) ;
+		if (result == SQLITE_ROW) {
+			//Compara las dos contraseña
+			//Si son coinciden devuelve 1, si son diferentes devuelve 0
+			if(strcmp((char*) sqlite3_column_text(stmt, 0), contrasenya) == 0){
+				sqlite3_finalize(stmt);
+				printf("Contrasena correcta\n");
+				return 1;
+			}else{
+				sqlite3_finalize(stmt);
+				printf("Contrasena incorrecta\n");
+				return 0;
+			}
+		}
+	} while (result == SQLITE_ROW);
+    
     /*Devolver el resultado*/
     return 1;
 }
@@ -208,14 +257,30 @@ int saveUserBD(char buffer[], int length) {
         dni += buffer[i];
     }
     // Registrar los datos en la base de datos
-    // sqlite3 *db;
-    // int result;
-
-
+    
     // Inicializar la base de datos
-    // inicializarBDD("BibliotecaDeusto.bd", db);
-   
-    //TO DO insertar usuario en BD  
+    inicializarBDD("BibliotecaDeusto.bd", db);
+    Usuario *us;
+    //insertar usuario en BD  
+    char sql1[] = "insert into usuario values (?, ?, ?, ?, ?);";
+
+		sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL);
+		sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
+		sqlite3_bind_text(stmt, 2, us->nombre, strlen(us->nombre), SQLITE_STATIC);
+	    sqlite3_bind_text(stmt, 3, us->apellidos, strlen(us->apellidos), SQLITE_STATIC);
+    	sqlite3_bind_text(stmt, 4, us->correo, strlen(us->correo), SQLITE_STATIC);
+    	sqlite3_bind_text(stmt, 5, contrasenya, strlen(contrasenya), SQLITE_STATIC);
+
+		result = sqlite3_step(stmt);
+		if (result != SQLITE_DONE) {
+			printf("Error al registrar el usuario\n");
+		}else{
+			printf("Felicidades %s yta estas registrado\n", us->nombre);
+		}
+
+		sqlite3_finalize(stmt);
+    cerrarBDD(db);
+
 }
 int searchBooks(char buffer[], int length){
 
