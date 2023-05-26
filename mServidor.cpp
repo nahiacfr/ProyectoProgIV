@@ -294,9 +294,34 @@ int saveUserBD(char buffer[], int length) {
     cerrarBDD(db);
 
 }
-int searchBooks(char buffer[], int length){
+vector<std::string> searchBooks(char buffer[], int length){
+    std::vector<std::string> titulos;
 
+    // Obtener el título del libro enviado desde el cliente
+    string titulo = buffer + 3; // Ignorar los primeros 3 caracteres ("BUS")
 
+    // Realizar la búsqueda en la base de datos
+    
+    std::string sql = "SELECT * FROM libro WHERE titulo LIKE '%" + titulo + "%';";
+    sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+
+    // Ejecutar la consulta y recopilar los resultados
+    while (sqlite3_step(stmt) == SQLITE_ROW) {
+        //hacer lisat con los resultados
+        const char* titulo = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
+        titulos.push_back(titulo);
+    }
+
+    sqlite3_finalize(stmt);
+    string response;
+    for (const std::string& titulo : listaTitulos) {
+    response += titulo + "#";
+    }
+
+    // Enviar la respuesta al cliente
+    send(s, response.c_str(), response.size(), 0);
+
+    return titulos;
 }
 
 
