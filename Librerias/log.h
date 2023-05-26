@@ -16,8 +16,8 @@ typedef struct {
     FILE *archivo;
 } Log;
 
-Log* crear_log(char *ruta_archivo);
-void escribir_mensaje(Log *log, TipoMensaje tipo, char *mensaje);
+Log* crear_log(const char *ruta_archivo);
+void escribir_mensaje(Log *log, TipoMensaje tipo, const char *mensaje);
 void cerrar_log(Log *log);
 
 #endif /* LOG_H_ */

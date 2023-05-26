@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-Log* crear_log(char *ruta_archivo) {
+Log* crear_log(const char *ruta_archivo) {
     Log *log = malloc(sizeof(Log));
     log->archivo = fopen(ruta_archivo, "a");
     if (log->archivo == NULL) {
@@ -13,7 +13,7 @@ Log* crear_log(char *ruta_archivo) {
     return log;
 }
 
-void escribir_mensaje(Log *log, TipoMensaje tipo, char *mensaje) {
+void escribir_mensaje(Log *log, TipoMensaje tipo, const char *mensaje) {
     time_t t;
     time(&t);
     struct tm *local = localtime(&t);
