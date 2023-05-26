@@ -333,21 +333,55 @@ std::vector<std::string> titulos;
 
     // Realizar la búsqueda en la base de datos
     
-    //TO DO CAMBIAR LA CONSULTA 
-    std::string sql = "SELECT * FROM libro WHERE titulo LIKE '%" + titulo + "%';";
-    sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
+    // Consultar la base de datos para obtener el ID del autor
+    std::string sql1 = "SELECT id_autor FROM Escritor WHERE nombre_autor LIKE '%" + autor + "%';";
+    sqlite3_prepare_v2(db, sql1.c_str(), -1, &stmt, nullptr);
 
-    // Ejecutar la consulta y recopilar los resultados
+    // Verificar si se encontró el autor
+    if (sqlite3_step(stmt) != SQLITE_ROW) {
+        sqlite3_finalize(stmt);
+        return 0; // No se encontró el autor
+    }
+    // Obtener el ID del autor
+    int idAutor = sqlite3_column_int(stmt, 0);
+
+    // Liberar recursos
+    sqlite3_finalize(stmt);
+
+    // Consultar la base de datos para obtener los ISBN de los libros escritos por el autor
+    std::string sql2 = "SELECT isbn FROM Autor WHERE id_autor = " + std::to_string(idAutor) + ";";
+    sqlite3_prepare_v2(db, sql2.c_str(), -1, &stmt, nullptr);
+
+    // Obtener los ISBN de los libros
+    std::vector<std::string> isbnList;
     while (sqlite3_step(stmt) == SQLITE_ROW) {
-        //hacer lisat con los resultados
-        const char* titulo = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-        titulos.push_back(titulo);
+        std::string isbn(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
+        isbnList.push_back(isbn);
     }
 
+    // Liberar recursos
     sqlite3_finalize(stmt);
-    string response;
-    for (const std::string& titulo : listaTitulos) {
-    response += titulo + "#";
+
+    // Consultar la base de datos para obtener los títulos de los libros
+    std::vector<std::string> tituloList;
+    for (const std::string& isbn : isbnList) {
+        std::string sql3 = "SELECT titulo FROM Libro WHERE isbn = '" + isbn + "';";
+        sqlite3_prepare_v2(db, sql3.c_str(), -1, &stmt, nullptr);
+
+        // Obtener el título del libro
+        if (sqlite3_step(stmt) == SQLITE_ROW) {
+            std::string titulo(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
+            tituloList.push_back(titulo);
+        }
+
+        // Liberar recursos
+        sqlite3_finalize(stmt);
+    }
+
+    // Enviar los títulos al cliente a través del socket
+    std::string response;
+    for (const std::string& titulo : tituloList) {
+        response += titulo + "#";
     }
 
     // Enviar la respuesta al cliente
