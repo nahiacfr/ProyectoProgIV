@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <winsock2.h>
 #include <iostream>
-#include "sqlite3.h"
-#include "..\EstructurasDatos\Fecha.h"
-#include "..\EstructurasDatos\Usuario.h"
-#include "..\EstructurasDatos\Libro.h"
-#include "..\EstructurasDatos\Reserva.h"
+#include <string>
+#include "Librerias\BDD\sqlite3.h"
+#include "Librerias\EstructurasDatos\Fecha.h"
+#include "Librerias\EstructurasDatos\Usuario.h"
+#include "Librerias\EstructurasDatos\Libro.h"
+#include "Librerias\EstructurasDatos\Reserva.h"
 
 using namespace std;
 
@@ -34,6 +35,9 @@ void cerrarBDD(sqlite3 *dbM){
 }
 
 int verifyUserFromSocket(char buffer[], int length);
+int saveUserBD(char buffer[], int length);
+int searchBooks(char buffer[], int length);
+int searchBooksAuthor(char buffer[], int length);
 
 int main(int argc, char *argv[]) {
 
@@ -183,9 +187,9 @@ int verifyUserFromSocket(char buffer[], int length)
     char sql3[] = "select contraseña from usuario where correo = ?";
 	int count = 0;
 	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
-	 sqlite3_bind_text(stmt, 1, us.correo, strlen(us.correo), SQLITE_STATIC);
+	sqlite3_bind_text(stmt, 1, us.correo, strlen(us.correo), SQLITE_STATIC);
 
-	 do {
+	do {
         result = sqlite3_step(stmt);
         if (result == SQLITE_ROW) {
             // Compara las dos contraseñas
@@ -261,24 +265,24 @@ int saveUserBD(char buffer[], int length) {
     
     // Inicializar la base de datos
     sqlite3* db;
-    inicializarBDD("BibliotecaDeusto.bd", db);
+    inicializarBDD("BibliotecaDeusto.db", db);
     
     // Insertar usuario en BD
     Usuario *us;
-    us.nombre = nombre;
-    us.apellidos = apellido;
-    us.dni = dni;
-    us.correo = correo;
+    us->nombre = nombre;
+    us->apellidos = apellido;
+    us->dni = dni;
+    us->correo = correo;
     
     char sql1[] = "insert into usuario values (?, ?, ?, ?, ?);";
     sqlite3_stmt* stmt;
     
     sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL);
-     sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
-		sqlite3_bind_text(stmt, 2, us->nombre, strlen(us->nombre), SQLITE_STATIC);
-	    sqlite3_bind_text(stmt, 3, us->apellidos, strlen(us->apellidos), SQLITE_STATIC);
-    	sqlite3_bind_text(stmt, 4, us->correo, strlen(us->correo), SQLITE_STATIC);
-    	sqlite3_bind_text(stmt, 5, contrasenya, strlen(contrasenya), SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
+	sqlite3_bind_text(stmt, 2, us->nombre, strlen(us->nombre), SQLITE_STATIC);
+	sqlite3_bind_text(stmt, 3, us->apellidos, strlen(us->apellidos), SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 4, us->correo, strlen(us->correo), SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 5, contrasenya, strlen(contrasenya), SQLITE_STATIC);
 
     int result = sqlite3_step(stmt);
     if (result != SQLITE_DONE)
@@ -287,22 +291,22 @@ int saveUserBD(char buffer[], int length) {
     }
     else
     {
-        printf("Felicidades %s ya estás registrado\n", us.nombre.c_str());
+        printf("Felicidades %s ya estás registrado\n", us->nombre.c_str());
     }
 
     sqlite3_finalize(stmt);
     cerrarBDD(db);
 
 }
-vector<std::string> searchBooks(char buffer[], int length){
-    std::vector<std::string> titulos;
+int searchBooks(char buffer[], int length){
+    string titulos;
 
     // Obtener el título del libro enviado desde el cliente
     string titulo = buffer + 3; // Ignorar los primeros 3 caracteres ("BUS")
 
     // Realizar la búsqueda en la base de datos
     
-    std::string sql = "SELECT * FROM libro WHERE titulo LIKE '%" + titulo + "%';";
+    string sql = "SELECT * FROM libro WHERE titulo LIKE '%" + titulo + "%';";
     sqlite3_prepare_v2(db, sql.c_str(), -1, &stmt, nullptr);
 
     // Ejecutar la consulta y recopilar los resultados
@@ -321,15 +325,15 @@ vector<std::string> searchBooks(char buffer[], int length){
     // Enviar la respuesta al cliente
     send(s, response.c_str(), response.size(), 0);
 
-    return titulos;
+    return 1;
 }
 
 
-vector<std::string> searchBooksAuthor(char buffer[], int length){
+int searchBooksAuthor(char buffer[], int length){
 std::vector<std::string> titulos;
 
     // Obtener el autor del libro enviado desde el cliente
-    string titulo = buffer + 3; // Ignorar los primeros 3 caracteres ("BUS")
+    string titulo = buffer + 5; // Ignorar los primeros 3 caracteres ("BUS")
 
     // Realizar la búsqueda en la base de datos
     
@@ -387,6 +391,6 @@ std::vector<std::string> titulos;
     // Enviar la respuesta al cliente
     send(s, response.c_str(), response.size(), 0);
 
-    return titulos;
+    return 1;
 
 }
