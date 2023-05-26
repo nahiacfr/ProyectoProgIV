@@ -174,11 +174,24 @@ void registraUsuario()
     cout << "Contrasenya: "<<endl;
     cin>>password;
 
-    //TO DO: conectarlo con la base de datos y añadir los datos nuevos
-    //Añadir delay para leer el texto con más calma
-    cout << "Ususario creado correctamente."<<endl;
-    Sleep(SECONDS_TO_CONTINUE);
-    menuBuscar();
+    // Construye la solicitud con los datos del cliente
+    string request = "REG##" + nombre + "#" + apellido + "#" + dni + "#" + correo + "#" + password + "#";
+    send(s, request.c_str(), request.size(), 0);
+
+    // Espera la respuesta del servidor
+    char recvBuff[256];
+    memset(recvBuff, 0, sizeof(recvBuff));
+    recv(s, recvBuff, sizeof(recvBuff), 0);
+
+    if (recvBuff[0] == '1') {
+        cout << "Usuario creado correctamente." << endl;
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
+    }
+    else {
+        cout << "Error al crear el usuario. Inténtalo de nuevo." << endl;
+        registraUsuario();
+    }
 }
 
 int menuBuscar()
@@ -218,24 +231,48 @@ void buscarTitulo()
     cout << "Titulo: "<<endl;
     cin>>titulo;
 
-    //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
-    cout << "Pulse el numero del libro para continuar con la reserva."<<endl<<"Pulse 0 para volver al menu de busqueda"<<endl;
-    //TODO for con print para cada libro que salga
-    cin>>seleccion;
+    // Enviar los datos al servidor
+    string request = "BUS##" + titulo + "#";
+    send(s, request.c_str(), request.size(), 0);
+    // Esperar la respuesta del servidor
+    char recvBuff[256];
+    memset(recvBuff, 0, sizeof(recvBuff));
+    recv(s, recvBuff, sizeof(recvBuff), 0);
 
-    if (seleccion==0)
-    {
-        cout << "Volviendo al menu busqueda."<<endl;
+    if (recvBuff[0] == '0') {
+        cout << "No se encontraron libros con ese título." << endl;
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
+        return;
+    }
+
+    // Mostrar los libros encontrados
+    cout << "Libros encontrados:" << endl;
+
+    // Iterar sobre los libros recibidos y mostrarlos con un número de selección
+    int numLibro = 1;
+    char* libro = strtok(recvBuff, "#");
+    while (libro != NULL) {
+        cout << numLibro << ". " << libro << endl;
+        libro = strtok(NULL, "#");
+        numLibro++;
+    }
+
+    cout << "Pulse el número del libro para continuar con la reserva." << endl;
+    cout << "Pulse 0 para volver al menú de búsqueda" << endl;
+
+    cin >> seleccion;
+
+    if (seleccion == 0) {
+        cout << "Volviendo al menú de búsqueda." << endl;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
     }
+    else {
+        // Llamar a reservar con el título seleccionado
+        reservar(seleccion);
 
-    else
-    {
-        //obtendremos el id del libro seleccionado y llamamos a reservar()
-        reservar(seleccion); // seleccion.nombre || seleccion->nombre
-        
-        /*cout << "Operacion realizada, volviendo al menu anterior..."<<endl;
+        /*cout << "Operacion realizada, volviendo al menu anterior..." << endl;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();*/
     }
@@ -265,12 +302,29 @@ void buscarAutor()
 
     else
     {
-        //obtendremos el id del libro seleccionado y llamamos a reservar()
-        reservar(seleccion); // seleccion.nombre || seleccion->nombre
+        // Convertir 'seleccion' a string
+        string strSeleccion = to_string(seleccion);
 
-        /*cout<<"Operacion realizada, volviendo al menu anterior..."<<endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();*/
+        // Enviar los datos al servidor mediante sockets
+        string presend = "AUT##" + autor + "#" + strSeleccion + "#";
+        strcpy(sendBuff, presend.c_str());
+        send(s, sendBuff, sizeof(sendBuff), 0);
+
+        // Esperar la respuesta del Servidor
+        printf("Esperando respuesta...");
+        recv(s, recvBuff, sizeof(recvBuff), 0);
+        printf("Respuesta obtenida");
+
+        if (recvBuff[0] == '1')
+        {
+            cout << "Conexión realizada con éxito." << endl;
+            Sleep(SECONDS_TO_CONTINUE); // esperamos 2 segundos antes de "cambiar de pantalla"
+            menuBuscar();
+        }
+        else
+        {
+            buscarAutor();
+        }
     }
 }
 

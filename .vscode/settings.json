@@ -42,6 +42,8 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "cinttypes": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "libro.h": "c",
+        "fecha.h": "c"
     }
 }

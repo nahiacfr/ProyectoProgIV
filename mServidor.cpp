@@ -1,10 +1,33 @@
 #include <stdio.h>
 #include <winsock2.h>
+#include "sqlite3.h"
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 8080
 
 int verifyUserFromSocket(char buffer[], int length);
+
+sqlite3 *db;
+sqlite3_stmt *stmt;
+int result;
+/*
+	Inicializa la Base de Datos
+*/
+void inicializarBDD(char *nombre, sqlite3 *dbIni){
+    db = dbIni;
+	if (sqlite3_open(nombre, &db) == 0){
+		printf("Conexion con la BDD exitosa\n");
+	}else{
+		printf("Error al conectar con la BDD\n");
+	}
+}
+/*
+	Cierra la conexion con la Base de Datos
+*/
+void cerrarBDD(sqlite3 *dbM){
+    sqlite3_close(dbM);
+	sqlite3_close(db);
+}
 
 int main(int argc, char *argv[]) {
 
@@ -86,6 +109,30 @@ int main(int argc, char *argv[]) {
                 send(comm_socket, sendBuff, sizeof(recvBuff), 0);
                 printf("Answer sended\n");
             }
+			if(recvBuff[0]=='R' && recvBuff[1]=='E' && recvBuff[2]=='G')
+            {
+                if(saveUserBD(recvBuff, sizeof(recvBuff))==1);
+                sendBuff[0] = '1';
+                printf("Sending asnwer...\n");
+                send(comm_socket, sendBuff, sizeof(recvBuff), 0);
+                printf("Answer sended\n");
+            }
+            if(recvBuff[0]=='B' && recvBuff[1]=='U' && recvBuff[2]=='S')
+            {
+                if(searchBooks(recvBuff, sizeof(recvBuff))==1);
+                sendBuff[0] = '1';
+                printf("Sending asnwer...\n");
+                send(comm_socket, sendBuff, sizeof(recvBuff), 0);
+                printf("Answer sended\n");
+            }
+            if(recvBuff[0]=='A' && recvBuff[1]=='U' && recvBuff[2]=='T')
+            {
+                if(searchBooksAuthor(recvBuff, sizeof(recvBuff))==1);
+                sendBuff[0] = '1';
+                printf("Sending asnwer...\n");
+                send(comm_socket, sendBuff, sizeof(recvBuff), 0);
+                printf("Answer sended\n");
+            }
 
 			if (strcmp(recvBuff, "Bye") == 0)
 				break;
@@ -124,4 +171,68 @@ int verifyUserFromSocket(char buffer[], int length)
     /*Comprobar si el usuario es correcto*/
     /*Devolver el resultado*/
     return 1;
+}
+
+int saveUserBD(char buffer[], int length) {
+	char* nombre;
+    char* apellido;
+    char* dni;
+    char* correo;
+    char* contrasenya;
+    int pos = 0;
+
+    // Obtener los datos del buffer
+    for (int i = 3; i < length; i++) {
+        if (buffer[i] == '#') {
+            pos = i;
+            break;
+        }
+        correo += buffer[i];
+    }
+
+    for (int i = pos + 1; i < length; i++) {
+        if (buffer[i] == '#') {
+            pos = i;
+            break;
+        }
+        contrasenya += buffer[i];
+    }
+
+    for (int i = pos + 1; i < length; i++) {
+        if (buffer[i] == '#') {
+            pos = i;
+            break;
+        }
+        nombre += buffer[i];
+    }
+
+    for (int i = pos + 1; i < length; i++) {
+        if (buffer[i] == '#') {
+            pos = i;
+            break;
+        }
+        apellido += buffer[i];
+    }
+
+    for (int i = pos + 1; i < length; i++) {
+        if (buffer[i] == '#') {
+            break;
+        }
+        dni += buffer[i];
+    }
+	// Registrar los datos en la base de datos
+	sqlite3 *db;
+    int result;
+
+    // Inicializar la base de datos
+    inicializarBDD("BibliotecaDeusto.bd", db);
+	
+	//TO DO insertar usuario en BD	
+}
+int searchBooks(char buffer[], int length){
+
+}
+
+int searchBooksAuthor(char buffer[], int length){
+
 }
