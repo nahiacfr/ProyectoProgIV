@@ -5,7 +5,7 @@
 #include <vector>
 #include <cstring>
 
-#include "Librerias\BDD\sqlite3.h
+//#include "Librerias\BDD\sqlite3.h
 #include "Librerias\EstructurasDatos\Fecha.h"
 #include "Librerias\EstructurasDatos\Usuario.h"
 #include "Librerias\EstructurasDatos\Libro.h"
@@ -16,13 +16,15 @@ using namespace std;
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 8080
 
+//BD
+/*
 sqlite3 *db;
 sqlite3_stmt *stmt;
 int result;
 
 /*
 	Inicializa la Base de Datos
-*/
+
 void inicializarBDD(const char* nombre, sqlite3 *dbIni){
     db = dbIni;
 	if (sqlite3_open(nombre, &db) == 0){
@@ -33,12 +35,12 @@ void inicializarBDD(const char* nombre, sqlite3 *dbIni){
 }
 /*
 	Cierra la conexion con la Base de Datos
-*/
+
 void cerrarBDD(sqlite3 *dbM){
     sqlite3_close(dbM);
 	sqlite3_close(db);
 }
-
+*/
 int verifyUserFromSocket(char buffer[], int length);
 int saveUserBD(char buffer[], int length);
 int searchBooks(char buffer[], int length, SOCKET comm_socket);
@@ -189,7 +191,7 @@ int verifyUserFromSocket(char buffer[], int length)
     /*Comprobar si el usuario es correcto*/
     Usuario us;
     us.correo = correo;
-    char sql3[] = "select contraseña from usuario where correo = ?";
+   /*char sql3[] = "select contraseña from usuario where correo = ?";
 	int count = 0;
 	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, us.correo, strlen(us.correo), SQLITE_STATIC);
@@ -210,7 +212,7 @@ int verifyUserFromSocket(char buffer[], int length)
             }
         }
     } while (result == SQLITE_ROW);
-    
+    */
     /*Devolver el resultado*/
     return 1;
 }
@@ -267,7 +269,7 @@ int saveUserBD(char buffer[], int length) {
         dni += buffer[i];
     }
     // Registrar los datos en la base de datos
-    
+    /*
     // Inicializar la base de datos
     sqlite3* db;
     inicializarBDD("BibliotecaDeusto.db", db);
@@ -306,7 +308,7 @@ int saveUserBD(char buffer[], int length) {
 
     sqlite3_finalize(stmt);
     cerrarBDD(db);
-
+    */
 }
 int searchBooks(char buffer[], int length, SOCKET comm_socket){
     string titulos;
@@ -315,6 +317,7 @@ int searchBooks(char buffer[], int length, SOCKET comm_socket){
     // Obtener el título del libro enviado desde el cliente
     string titulo = buffer + 3; // Ignorar los primeros 3 caracteres ("BUS")
 
+    /*
     // Realizar la búsqueda en la base de datos
     
     string sql = "SELECT * FROM libro WHERE titulo LIKE '%" + titulo + "%';";
@@ -332,9 +335,10 @@ int searchBooks(char buffer[], int length, SOCKET comm_socket){
     for (const std::string& titulo : listaTitulos) {
     response += titulo + "#";
     }
-
+    */
     // Enviar la respuesta al cliente
-    send(comm_socket, response.c_str(), response.size(), 0);
+    
+    //send(comm_socket, response.c_str(), response.size(), 0);
 
     return 1;
 }
@@ -346,6 +350,7 @@ std::vector<std::string> titulos;
     // Obtener el autor del libro enviado desde el cliente
     string autor = buffer + 5; // Ignorar los primeros 5 caracteres ("BUS")
 
+    /*
     // Realizar la búsqueda en la base de datos
     
     // Consultar la base de datos para obtener el ID del autor
@@ -398,9 +403,9 @@ std::vector<std::string> titulos;
     for (const std::string& titulo : tituloList) {
         response += titulo + "#";
     }
-
+    */
     // Enviar la respuesta al cliente
-    send(comm_socket, response.c_str(), response.size(), 0);
+    //send(comm_socket, response.c_str(), response.size(), 0);
 
     return 1;
 
