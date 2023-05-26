@@ -150,9 +150,8 @@ void administrarLibros()
 
         printf("Codigo isbn del libro: \n");
         char isbn[10];
-        char *codIsbn;
-        fgets(isbn, 10, stdin);
-        getchar();
+        char codIsbn[10];
+        fgets(isbn, 4, stdin);
         sscanf(isbn, "%s", &codIsbn);
 
         printf("Anyo de publicacion: \n");
@@ -193,9 +192,8 @@ void administrarLibros()
         imprimirListadoLibros();
         printf("Codigo isbn de libro a eliminar: \n");
         char isbnDel[10];
-        char *codIsbnDel;
+        char codIsbnDel[10];
         fgets(isbnDel, 4, stdin);
-        getchar();
         sscanf(isbnDel, "%s", &codIsbnDel);
         eliminarLibro(codIsbnDel);
         
