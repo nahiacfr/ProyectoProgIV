@@ -40,22 +40,22 @@ int main(int argc, char const *argv[])
 {
    
 
-	printf("\nInitialising Winsock...\n");
+	cout << endl<<"Initialising Winsock..."<< endl;
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-		printf("Failed. Error Code : %d", WSAGetLastError());
+		cout << "Failed. Error Code : "<< WSAGetLastError()<< endl;
 		return -1;
 	}
 
-	printf("Initialised.\n");
+	cout << "Initialised."<< endl;
 
 	//SOCKET creation
 	if ((s = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-		printf("Could not create socket : %d", WSAGetLastError());
+		cout << "Could not create socket : "<<WSAGetLastError()<<endl;
 		WSACleanup();
 		return -1;
 	}
 
-	printf("Socket created.\n");
+	cout << "Socket created."<< endl;
 
 	server.sin_addr.s_addr = inet_addr(SERVER_IP);
 	server.sin_family = AF_INET;
@@ -63,14 +63,13 @@ int main(int argc, char const *argv[])
 
 	//CONNECT to remote server
 	if (connect(s, (struct sockaddr*) &server, sizeof(server)) == SOCKET_ERROR) {
-		printf("Connection error: %d", WSAGetLastError());
+		cout << "Connection error: "<< WSAGetLastError()<< endl;
 		closesocket(s);
 		WSACleanup();
 		return -1;
 	}
 
-	printf("Connection stablished with: %s (%d)\n", inet_ntoa(server.sin_addr),
-			ntohs(server.sin_port));
+	cout << "Connection stablished with: "<< inet_ntoa(server.sin_addr)<<"("<<ntohs(server.sin_port)<<")"<< endl;
 
 	// SEND and RECEIVE data
 	/*
@@ -134,9 +133,9 @@ void inicioSesion()
     strcpy(sendBuff, presend.c_str());
 	send(s, sendBuff, sizeof(sendBuff), 0);
     //Espera la respuesta del Servidor
-    printf("Esperando respuesta...");
+    cout << "Esperando respuesta..."<<endl;
     recv(s, recvBuff, sizeof(recvBuff), 0);
-    printf("Respuesta obtenida");
+    cout << "Respuesta obtenida"<<endl;
     if(recvBuff[0]=='1')
     {
         cout << "Conexion realizada con exito."<<endl;
