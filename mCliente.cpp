@@ -28,7 +28,7 @@ void registraUsuario();
 int menuBuscar();
 void buscarTitulo();
 void buscarAutor();
-void reservar(char nombre);
+void reservar(string nombre);
 
 WSADATA wsaData;
 SOCKET s;
@@ -38,22 +38,26 @@ string presend;
 
 int main(int argc, char const *argv[])
 {
+    //Log
+    Log *logCl;
+    logCl = crear_log("Ficheros/Logs/LogCliente.txt");
+
 	cout << endl<<"Initialising Winsock..."<< endl;
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-		cout << "Failed. Error Code : "<< WSAGetLastError()<< endl;
+        escribir_mensaje(logCl, ER, "Fallo al iniciar el Winsock\n Codigo de error: " + WSAGetLastError());
 		return -1;
 	}
 
-	cout << "Initialised."<< endl;
+    escribir_mensaje(logCl, INFO, "Winsock iniciado correctamente");
 
 	//SOCKET creation
 	if ((s = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-		cout << "Could not create socket : "<<WSAGetLastError()<<endl;
+        escribir_mensaje(logCl, ER, "Fallo al Crear el Socket\n Codigo de error: " + WSAGetLastError());
 		WSACleanup();
 		return -1;
 	}
 
-	cout << "Socket created."<< endl;
+    escribir_mensaje(logCl, INFO, "Socket creado correctamente");
 
 	server.sin_addr.s_addr = inet_addr(SERVER_IP);
 	server.sin_family = AF_INET;
@@ -66,19 +70,8 @@ int main(int argc, char const *argv[])
 		WSACleanup();
 		return -1;
 	}
+    escribir_mensaje(logCl, INFO, "Connection stablished with: " + inet_ntoa(server.sin_addr) + "("<<ntohs(server.sin_port) + ")")
 
-	cout << "Connection stablished with: "<< inet_ntoa(server.sin_addr)<<"("<<ntohs(server.sin_port)<<")"<< endl;
-
-	// SEND and RECEIVE data
-	/*
-    printf("Sending message 1... \n");
-	strcpy(sendBuff, "Hello, server.");
-	send(s, sendBuff, sizeof(sendBuff), 0);
-    */
-
-	// CLOSING the socket and cleaning Winsock...
-	//closesocket(s);
-	//WSACleanup();
     mainMenuUser();
     return 0;
 }
@@ -86,6 +79,10 @@ int main(int argc, char const *argv[])
 //Menus del ususario
 void mainMenuUser()
 {
+    //Log
+    Log *logCl;
+    logCl = crear_log("Ficheros/Logs/LogCliente.txt");
+
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_OPTN];
     bool active=true;
@@ -102,14 +99,17 @@ void mainMenuUser()
         switch (result)
         {
         case 1:
+            escribir_mensaje(logCl, INFO, "Seleccionado Iniciar sesion");
             inicioSesion();
             active=false;
             break;
         case 2:
+            escribir_mensaje(logCl, INFO, "Seleccionado Registrar usuario");
             registraUsuario();
             active=false;
             break;
         case 3:
+            escribir_mensaje(logCl, INFO, "Seleccionado Salir");
             cout << "Has salido de la app"<<endl;
             active=false;
             break;
@@ -123,6 +123,10 @@ void mainMenuUser()
 
 void inicioSesion()
 {
+    //Log
+    Log *logCl;
+    logCl = crear_log("Ficheros/Logs/LogCliente.txt");
+
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     string correo;
     string password;
@@ -139,17 +143,19 @@ void inicioSesion()
     presend = "INS##" + correo + "#" + password + "#";
     strcpy(sendBuff, presend.c_str());
 	send(s, sendBuff, sizeof(sendBuff), 0);
+    escribir_mensaje(logCl, INFO, "Enviado Socket para inicio de sesion");
     //Espera la respuesta del Servidor
-    cout << "Esperando respuesta..."<<endl;
     recv(s, recvBuff, sizeof(recvBuff), 0);
-    cout << "Respuesta obtenida"<<endl;
+    escribir_mensaje(logCl, INFO, "Recivido Socket con la respuesta al inicio de sesion");
     if(recvBuff[0]=='1')
     {
-        cout << "Conexion realizada con exito."<<endl;
+        escribir_mensaje(logCl, INFO, "Usuario valido");
         Sleep(SECONDS_TO_CONTINUE); //esperamos 2 segundos antes de "cambiar de pantalla"
         menuBuscar();
     }else
     {
+        escribir_mensaje(logCl, INFO, "Usuario NO valido");
+        cout<<"Usuario NO valido."<<endl;
         inicioSesion();
     }
     
@@ -158,6 +164,10 @@ void inicioSesion()
 
 void registraUsuario()
 {
+    //Log
+    Log *logCl;
+    logCl = crear_log("Ficheros/Logs/LogCliente.txt");
+
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     string nombre;
     string apellido;
@@ -184,20 +194,21 @@ void registraUsuario()
     // Construye la solicitud con los datos del cliente
     string request = "REG##" + nombre + "#" + apellido + "#" + dni + "#" + correo + "#" + password + "#";
     send(s, request.c_str(), request.size(), 0);
-
+    escribir_mensaje(logCl, INFO, "Enviado Socket para registro de usuario");
 
     // Espera la respuesta del servidor
     char recvBuff[256];
     memset(recvBuff, 0, sizeof(recvBuff));
     recv(s, recvBuff, sizeof(recvBuff), 0);
-
+    escribir_mensaje(logCl, INFO, "Recivida respuesta del Socket registro de usuario");
 
     if (recvBuff[0] == '1') {
-        cout << "Usuario creado correctamente." << endl;
+        escribir_mensaje(logCl, INFO, "Usuario creado correctamente");
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
     }
     else {
+        escribir_mensaje(logCl, INFO, "Error al crear el usuario");
         cout << "Error al crear el usuario. Inténtalo de nuevo." << endl;
         registraUsuario();
     }
@@ -206,6 +217,10 @@ void registraUsuario()
 
 int menuBuscar()
 {
+    //Log
+    Log *logCl;
+    logCl = crear_log("Ficheros/Logs/LogCliente.txt");
+
     bool active=true;
 
     while(active)
@@ -221,14 +236,17 @@ int menuBuscar()
         switch (result)
         {
         case 1:
+            escribir_mensaje(logCl, INFO, "Seleccionado Buscar libro por titulo");
             buscarTitulo();
             active=false;
             break;
         case 2:
+            escribir_mensaje(logCl, INFO, "Seleccionado Buscar libro por autor");
             buscarAutor();
             active=false;
             break;
         case 3:
+            escribir_mensaje(logCl, INFO, "Seleccionado Volver menu principal");
             cout << "Volviendo al menu principal..."<<endl;
             Sleep(SECONDS_TO_CONTINUE);
             mainMenuUser();
@@ -246,9 +264,13 @@ int menuBuscar()
 
 void buscarTitulo()
 {
+    //Log
+    Log *logCl;
+    logCl = crear_log("Ficheros/Logs/LogCliente.txt");
+
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     string titulo;
-    int seleccion;
+    string seleccion;
 
     cout << "---------------------"<<endl<<"BUSCAR LIBRO"<<endl<<"---------------------"<<endl;
     cout << "Titulo: "<<endl;
@@ -256,12 +278,15 @@ void buscarTitulo()
     // Enviar los datos al servidor
     string request = "BUS##" + titulo + "#";
     send(s, request.c_str(), request.size(), 0);
+    escribir_mensaje(logCl, INFO, "Enviado Socket buscar libro por titulo");
     // Esperar la respuesta del servidor
     char recvBuff[256];
     memset(recvBuff, 0, sizeof(recvBuff));
     recv(s, recvBuff, sizeof(recvBuff), 0);
+    escribir_mensaje(logCl, INFO, "Recivida respuesta del Socket buscar libro por titulo");
 
     if (recvBuff[0] == '0') {
+        escribir_mensaje(logCl, INFO, "NO hay libros con ese titulo");
         cout << "No se encontraron libros con ese título." << endl;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
@@ -282,11 +307,11 @@ void buscarTitulo()
     }
 
     //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
-    cout << "Pulse el numero del libro para continuar con la reserva."<<endl<<"Pulse 0 para volver al menu de busqueda"<<endl;
+    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl;
     //TODO for con print para cada libro que salga
     cin>>seleccion;
 
-    if (seleccion==0)
+    if (seleccion=="0")
     {
         cout << "Volviendo al menu busqueda."<<endl;
         Sleep(SECONDS_TO_CONTINUE);
@@ -360,13 +385,13 @@ void buscarAutor()
     }
 }
 
-void reservar(char nombre)
+void reservar(string isbn)
 {
     bool active=true;
 
     while(active)
     {
-        cout<<"¿Desea reservar el libro "<< nombre<<endl;
+        cout<<"¿Desea reservar el libro "<< isbn<<endl;
         cout<<"1.Si"<<endl<<"2.No"<<endl;
         
         int result;
@@ -375,6 +400,9 @@ void reservar(char nombre)
         switch (result)
         {
         case 1:
+        //Socket
+            presend = "RES##" + isbn + "#";
+            send(s, presend.c_str(), presend.size(), 0);
             cout<<"Reserva realizada, tiene X dias para devolverlo"<<endl;
             cout<<"Volviendo al menu anterior..."<<endl;
             Sleep(SECONDS_TO_CONTINUE);
