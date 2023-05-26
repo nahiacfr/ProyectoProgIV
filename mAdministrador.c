@@ -242,26 +242,19 @@ void administrarAutores()
         escribir_mensaje(logAd, INFO, "Seleccionado Anyadir");
         printf("Nombre del autor: \n");
         char name[MAX_LINE];
-        char nombre[MAX_LINE];
-        fgets(name, MAX_LINE, stdin);
-        getchar();
-        sscanf(name, "%s", nombre);
+        scanf(" %s", &name);
 
         printf("Apellido del autor: \n");
         char surname[MAX_LINE];
-        char apellido[MAX_LINE];
-        fgets(surname, MAX_LINE, stdin);
-        getchar();
-        sscanf(surname, "%s", apellido);
+        scanf(" %s", &surname);
 
         printf("Codigo del Autor: \n");
         char cAutor[MAX_LINE];
         int id;
-        fgets(cAutor, MAX_LINE, stdin);
-        getchar();
+        scanf(" %s", &cAutor);
         sscanf(cAutor, "%i", &id);
         
-        Autor newAuthor={id, nombre, apellido};
+        Autor newAuthor={id, name, surname};
 
         insertarAutor(&newAuthor);
         
@@ -276,9 +269,9 @@ void administrarAutores()
         printf("Codigo del autor a eliminar: \n");
         char cAutorDel[10];
         int codigo;
-        fgets(cAutorDel, 4, stdin);
-        getchar();
+        scanf(" %s", &cAutorDel);
         sscanf(cAutor, "%i", &codigo);
+        printf("Codigo del autor a eliminar: %i", codigo);
         eliminarAutor(codigo);
         
         printf("Operacion realizada, volviendo al menu anterior...");
