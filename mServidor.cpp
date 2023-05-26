@@ -2,6 +2,8 @@
 #include <winsock2.h>
 #include <iostream>
 #include <string>
+#include <vector>
+#include <cstring>
 #include "Librerias\BDD\sqlite3.h"
 #include "Librerias\EstructurasDatos\Fecha.h"
 #include "Librerias\EstructurasDatos\Usuario.h"
@@ -18,7 +20,7 @@ int result;
 /*
 	Inicializa la Base de Datos
 */
-void inicializarBDD(char *nombre, sqlite3 *dbIni){
+void inicializarBDD(const char* nombre, sqlite3 *dbIni){
     db = dbIni;
 	if (sqlite3_open(nombre, &db) == 0){
 		printf("Conexion con la BDD exitosa\n");
@@ -36,8 +38,8 @@ void cerrarBDD(sqlite3 *dbM){
 
 int verifyUserFromSocket(char buffer[], int length);
 int saveUserBD(char buffer[], int length);
-int searchBooks(char buffer[], int length);
-int searchBooksAuthor(char buffer[], int length);
+int searchBooks(char buffer[], int length, SOCKET comm_socket);
+int searchBooksAuthor(char buffer[], int length, SOCKET comm_socket);
 
 int main(int argc, char *argv[]) {
 
@@ -128,7 +130,7 @@ int main(int argc, char *argv[]) {
             }
             if(recvBuff[0]=='B' && recvBuff[1]=='U' && recvBuff[2]=='S')
             {
-                if(searchBooks(recvBuff, sizeof(recvBuff))==1);
+                if (searchBooks(recvBuff, sizeof(recvBuff), comm_socket) == 1);
                 sendBuff[0] = '1';
                 printf("Sending asnwer...\n");
                 send(comm_socket, sendBuff, sizeof(recvBuff), 0);
@@ -136,7 +138,7 @@ int main(int argc, char *argv[]) {
             }
             if(recvBuff[0]=='A' && recvBuff[1]=='U' && recvBuff[2]=='T')
             {
-                if(searchBooksAuthor(recvBuff, sizeof(recvBuff))==1);
+               if (searchBooksAuthor(recvBuff, sizeof(recvBuff), comm_socket) == 1);
                 sendBuff[0] = '1';
                 printf("Sending asnwer...\n");
                 send(comm_socket, sendBuff, sizeof(recvBuff), 0);
@@ -266,13 +268,18 @@ int saveUserBD(char buffer[], int length) {
     // Inicializar la base de datos
     sqlite3* db;
     inicializarBDD("BibliotecaDeusto.db", db);
-    
+    //datos
+    char nombrel[50];  
+    char apellidol[50];  
+    char dnil[10];  
+    char correol[100];  
+    char contrasenyal[50];  
     // Insertar usuario en BD
-    Usuario *us;
-    us->nombre = nombre;
-    us->apellidos = apellido;
-    us->dni = dni;
-    us->correo = correo;
+    Usuario *us = new Usuario();;
+    us->nombre = nombrel;
+    us->apellidos = apellidol;
+    us->dni = dnil;
+    us->correo = contrasenyal;
     
     char sql1[] = "insert into usuario values (?, ?, ?, ?, ?);";
     sqlite3_stmt* stmt;
@@ -291,15 +298,16 @@ int saveUserBD(char buffer[], int length) {
     }
     else
     {
-        printf("Felicidades %s ya estás registrado\n", us->nombre.c_str());
+        printf("Felicidades %s ya estás registrado\n", us->nombre);
     }
 
     sqlite3_finalize(stmt);
     cerrarBDD(db);
 
 }
-int searchBooks(char buffer[], int length){
+int searchBooks(char buffer[], int length, SOCKET comm_socket){
     string titulos;
+    vector<string> listaTitulos;
 
     // Obtener el título del libro enviado desde el cliente
     string titulo = buffer + 3; // Ignorar los primeros 3 caracteres ("BUS")
@@ -313,7 +321,7 @@ int searchBooks(char buffer[], int length){
     while (sqlite3_step(stmt) == SQLITE_ROW) {
         //hacer lisat con los resultados
         const char* titulo = reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1));
-        titulos.push_back(titulo);
+        listaTitulos.push_back(titulo);
     }
 
     sqlite3_finalize(stmt);
@@ -323,17 +331,17 @@ int searchBooks(char buffer[], int length){
     }
 
     // Enviar la respuesta al cliente
-    send(s, response.c_str(), response.size(), 0);
+    send(comm_socket, response.c_str(), response.size(), 0);
 
     return 1;
 }
 
 
-int searchBooksAuthor(char buffer[], int length){
+int searchBooksAuthor(char buffer[], int length, SOCKET comm_socket){
 std::vector<std::string> titulos;
 
     // Obtener el autor del libro enviado desde el cliente
-    string titulo = buffer + 5; // Ignorar los primeros 3 caracteres ("BUS")
+    string autor = buffer + 5; // Ignorar los primeros 5 caracteres ("BUS")
 
     // Realizar la búsqueda en la base de datos
     
@@ -389,7 +397,7 @@ std::vector<std::string> titulos;
     }
 
     // Enviar la respuesta al cliente
-    send(s, response.c_str(), response.size(), 0);
+    send(comm_socket, response.c_str(), response.size(), 0);
 
     return 1;
 
