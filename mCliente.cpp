@@ -40,11 +40,11 @@ int main(int argc, char const *argv[])
 {
     //Log
     Log *logCl;
-    logCl = crear_log("Ficheros/Logs/LogCliente.txt");
+    logCl = crear_log((const char*)"Ficheros/Logs/LogCliente.txt");
 
 	cout << endl<<"Initialising Winsock..."<< endl;
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        escribir_mensaje(logCl, ER, "Fallo al iniciar el Winsock\n Codigo de error: " + WSAGetLastError());
+        escribir_mensaje(logCl, ER, "Fallo al iniciar el Winsock");
 		return -1;
 	}
 
@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
 
 	//SOCKET creation
 	if ((s = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-        escribir_mensaje(logCl, ER, "Fallo al Crear el Socket\n Codigo de error: " + WSAGetLastError());
+        escribir_mensaje(logCl, ER, "Fallo al Crear el Socket");
 		WSACleanup();
 		return -1;
 	}
@@ -70,7 +70,7 @@ int main(int argc, char const *argv[])
 		WSACleanup();
 		return -1;
 	}
-    escribir_mensaje(logCl, INFO, "Connection stablished with: " + inet_ntoa(server.sin_addr) + "("<<ntohs(server.sin_port) + ")")
+    escribir_mensaje(logCl, INFO, "Conexion establecida");
 
     mainMenuUser();
     return 0;
