@@ -4,7 +4,9 @@
 #include <string>
 #include <vector>
 #include <cstring>
-#include "Librerias\BDD\sqlite3.h"
+
+#include "Librerias\BDD\sqlite3.c"
+#include "Librerias\BDD\ABDD.h"
 #include "Librerias\EstructurasDatos\Fecha.h"
 #include "Librerias\EstructurasDatos\Usuario.h"
 #include "Librerias\EstructurasDatos\Libro.h"
@@ -14,9 +16,11 @@ using namespace std;
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 8080
+
 sqlite3 *db;
 sqlite3_stmt *stmt;
 int result;
+
 /*
 	Inicializa la Base de Datos
 */
