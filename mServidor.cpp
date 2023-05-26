@@ -189,8 +189,8 @@ int verifyUserFromSocket(char buffer[], int length)
         contrasenya += buffer[i];
     }
     /*Comprobar si el usuario es correcto*/
-    Usuario us;
-    us.correo = correo;
+    // Usuario us;
+    // us.correo = correo;
    /*char sql3[] = "select contraseña from usuario where correo = ?";
 	int count = 0;
 	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
@@ -312,7 +312,6 @@ int saveUserBD(char buffer[], int length) {
 }
 int searchBooks(char buffer[], int length, SOCKET comm_socket){
     string titulos;
-    vector<string> listaTitulos;
 
     // Obtener el título del libro enviado desde el cliente
     string titulo = buffer + 3; // Ignorar los primeros 3 caracteres ("BUS")
@@ -337,9 +336,16 @@ int searchBooks(char buffer[], int length, SOCKET comm_socket){
     }
     */
     // Enviar la respuesta al cliente
-    
     //send(comm_socket, response.c_str(), response.size(), 0);
 
+    // Crear manualmente la lista de libros
+    vector<string> listaTitulos = {"IT", "Romeo y Julieta", "Harry Potter"};
+    // Enviar la respuesta al cliente
+    string response;
+    for (const string& titulo : listaTitulos) {
+        response += titulo + "#";
+    }
+    send(comm_socket, response.c_str(), response.size(), 0);
     return 1;
 }
 
@@ -406,6 +412,16 @@ std::vector<std::string> titulos;
     */
     // Enviar la respuesta al cliente
     //send(comm_socket, response.c_str(), response.size(), 0);
+    //Imaginando que el autor introducido es Stephen King
+     // Crear manualmente la lista de libros de Stephen King
+    vector<string> listaTitulos = {"It", "The Shining", "Misery", "Pet Sematary", "The Stand"};
+
+    // Enviar la respuesta al cliente
+    string response;
+    for (const string& titulo : listaTitulos) {
+        response += titulo + "#";
+    }
+    send(comm_socket, response.c_str(), response.size(), 0);
 
     return 1;
 
