@@ -178,28 +178,29 @@ int verifyUserFromSocket(char buffer[], int length)
         contrasenya += buffer[i];
     }
     /*Comprobar si el usuario es correcto*/
-    Usuario *us;
+    Usuario us;
+    us.correo = correo;
     char sql3[] = "select contraseña from usuario where correo = ?";
 	int count = 0;
 	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
-	sqlite3_bind_text(stmt, 1, us->correo, strlen(us->correo), SQLITE_STATIC);
+	 sqlite3_bind_text(stmt, 1, us.correo, strlen(us.correo), SQLITE_STATIC);
 
-	do {
-		result = sqlite3_step(stmt) ;
-		if (result == SQLITE_ROW) {
-			//Compara las dos contraseña
-			//Si son coinciden devuelve 1, si son diferentes devuelve 0
-			if(strcmp((char*) sqlite3_column_text(stmt, 0), contrasenya) == 0){
-				sqlite3_finalize(stmt);
-				printf("Contrasena correcta\n");
-				return 1;
-			}else{
-				sqlite3_finalize(stmt);
-				printf("Contrasena incorrecta\n");
-				return 0;
-			}
-		}
-	} while (result == SQLITE_ROW);
+	 do {
+        result = sqlite3_step(stmt);
+        if (result == SQLITE_ROW) {
+            // Compara las dos contraseñas
+            // Si coinciden, devuelve 1; si son diferentes, devuelve 0
+            if (strcmp((char*)sqlite3_column_text(stmt, 0), contrasenya) == 0) {
+                sqlite3_finalize(stmt);
+                printf("Contraseña correcta\n");
+                return 1;
+            } else {
+                sqlite3_finalize(stmt);
+                printf("Contraseña incorrecta\n");
+                return 0;
+            }
+        }
+    } while (result == SQLITE_ROW);
     
     /*Devolver el resultado*/
     return 1;
@@ -259,26 +260,37 @@ int saveUserBD(char buffer[], int length) {
     // Registrar los datos en la base de datos
     
     // Inicializar la base de datos
+    sqlite3* db;
     inicializarBDD("BibliotecaDeusto.bd", db);
+    
+    // Insertar usuario en BD
     Usuario *us;
-    //insertar usuario en BD  
+    us.nombre = nombre;
+    us.apellidos = apellido;
+    us.dni = dni;
+    us.correo = correo;
+    
     char sql1[] = "insert into usuario values (?, ?, ?, ?, ?);";
-
-		sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL);
-		sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
+    sqlite3_stmt* stmt;
+    
+    sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL);
+     sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
 		sqlite3_bind_text(stmt, 2, us->nombre, strlen(us->nombre), SQLITE_STATIC);
 	    sqlite3_bind_text(stmt, 3, us->apellidos, strlen(us->apellidos), SQLITE_STATIC);
     	sqlite3_bind_text(stmt, 4, us->correo, strlen(us->correo), SQLITE_STATIC);
     	sqlite3_bind_text(stmt, 5, contrasenya, strlen(contrasenya), SQLITE_STATIC);
 
-		result = sqlite3_step(stmt);
-		if (result != SQLITE_DONE) {
-			printf("Error al registrar el usuario\n");
-		}else{
-			printf("Felicidades %s yta estas registrado\n", us->nombre);
-		}
+    int result = sqlite3_step(stmt);
+    if (result != SQLITE_DONE)
+    {
+        printf("Error al registrar el usuario\n");
+    }
+    else
+    {
+        printf("Felicidades %s ya estás registrado\n", us.nombre.c_str());
+    }
 
-		sqlite3_finalize(stmt);
+    sqlite3_finalize(stmt);
     cerrarBDD(db);
 
 }
