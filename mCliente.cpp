@@ -38,8 +38,6 @@ string presend;
 
 int main(int argc, char const *argv[])
 {
-   
-
 	cout << endl<<"Initialising Winsock..."<< endl;
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
 		cout << "Failed. Error Code : "<< WSAGetLastError()<< endl;
@@ -90,33 +88,42 @@ void mainMenuUser()
 {
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_OPTN];
+    bool active=true;
 
-    cout << "---------------------"<< endl<<"BIBLIOTECA DEUSTO"<<endl<<"---------------------"<<endl;
-    cout << "Bienvenido a la biblioteca"<<endl;
-    cout << "1.Iniciar sesion"<< endl<<"2.Nuevo usuario"<<endl<<"3.Salir"<<endl;
-    
-    int result;
-    cin>>result;
-    
-    switch (result)
+    while(active)
     {
-    case 1:
-        inicioSesion();
-        break;
-    case 2:
-        registraUsuario();
-        break;
-    case 3:
-        cout << "Has salido de la app"<<endl;
-        break;
-    default:
-        cout << "Choose again"<<endl;
-        break;
+        cout << "---------------------"<< endl<<"BIBLIOTECA DEUSTO"<<endl<<"---------------------"<<endl;
+        cout << "Bienvenido a la biblioteca"<<endl;
+        cout << "1.Iniciar sesion"<< endl<<"2.Nuevo usuario"<<endl<<"3.Salir"<<endl;
+        
+        int result;
+        cin>>result;
+        
+        switch (result)
+        {
+        case 1:
+            inicioSesion();
+            active=false;
+            break;
+        case 2:
+            registraUsuario();
+            active=false;
+            break;
+        case 3:
+            cout << "Has salido de la app"<<endl;
+            active=false;
+            break;
+        default:
+            cout << "Introduce un valor valido!"<<endl;
+            Sleep(SECONDS_TO_CONTINUE);
+            continue;
+        }
     }
 }
 
 void inicioSesion()
 {
+    system("cls"); //añadido para que la pantalla no se llene de mucha información
     string correo;
     string password;
 
@@ -151,6 +158,7 @@ void inicioSesion()
 
 void registraUsuario()
 {
+    system("cls"); //añadido para que la pantalla no se llene de mucha información
     string nombre;
     string apellido;
     string dni;
@@ -182,34 +190,47 @@ void registraUsuario()
 
 int menuBuscar()
 {
-    system("cls"); //añadido para que la pantalla no se llene de mucha información
-    cout << "---------------------"<<endl<<"MENU BUSCAR"<<endl<<"---------------------"<<endl;
-    cout << "1.Buscar libro por titulo"<<endl<<"2.Buscar libro por autor"<<endl<<"3.Volver menu principal"<<endl;
-    
-    int result;
-    cout << "Seleccion: "<<endl;
-    cin>>result;
-    
-    switch (result)
-    {
-    case 1:
-        buscarTitulo();
-        break;
-    case 2:
-        buscarAutor();
-        break;
-    case 3:
-        cout << "Volviendo al menu principal..."<<endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        mainMenuUser();
-        break;
-    }
+    bool active=true;
 
-    return result;
+    while(active)
+    {
+        system("cls"); //añadido para que la pantalla no se llene de mucha información
+        cout << "---------------------"<<endl<<"MENU BUSCAR"<<endl<<"---------------------"<<endl;
+        cout << "1.Buscar libro por titulo"<<endl<<"2.Buscar libro por autor"<<endl<<"3.Volver menu principal"<<endl;
+        
+        int result;
+        cout << "Seleccion: "<<endl;
+        cin>>result;
+        
+        switch (result)
+        {
+        case 1:
+            buscarTitulo();
+            active=false;
+            break;
+        case 2:
+            buscarAutor();
+            active=false;
+            break;
+        case 3:
+            cout << "Volviendo al menu principal..."<<endl;
+            Sleep(SECONDS_TO_CONTINUE);
+            mainMenuUser();
+            active=false;
+            break;
+        default:
+            cout<<"Introduce un valor valido!"<<endl;
+            Sleep(SECONDS_TO_CONTINUE);
+            continue;
+        }
+
+        return result;
+    }
 }
 
 void buscarTitulo()
 {
+    system("cls"); //añadido para que la pantalla no se llene de mucha información
     string titulo;
     int seleccion;
 
@@ -231,7 +252,7 @@ void buscarTitulo()
 
     else
     {
-        //obtendremos el id del libro seleccionado y llamamos a reservar()
+        //TO DO: obtendremos el id o nombre del libro seleccionado y llamamos a reservar(), ese dato es el que pasamos [hecho con un int por sólo para probar]
         reservar(seleccion); // seleccion.nombre || seleccion->nombre
         
         /*cout << "Operacion realizada, volviendo al menu anterior..."<<endl;
@@ -242,6 +263,7 @@ void buscarTitulo()
 
 void buscarAutor()
 {
+    system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_LINE];
     string autor;
     int seleccion;
@@ -275,24 +297,35 @@ void buscarAutor()
 
 void reservar(char nombre)
 {
-    cout<<"¿Desea reservar el libro "<< nombre<<endl;
-    cout<<"1.Si"<<endl<<"2.No"<<endl;
-    
-    int result;
-    cin>>result;
-    
-    switch (result)
+    bool active=true;
+
+    while(active)
     {
-    case 1:
-        cout<<"Reserva realizada, tiene X dias para devolverlo"<<endl;
-        cout<<"Volviendo al menu anterior..."<<endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
-        break;
-    case 2:
-        cout<<"Volviendo al menu busqueda"<<endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
-        break;
+        cout<<"¿Desea reservar el libro "<< nombre<<endl;
+        cout<<"1.Si"<<endl<<"2.No"<<endl;
+        
+        int result;
+        cin>>result;
+        
+        switch (result)
+        {
+        case 1:
+            cout<<"Reserva realizada, tiene X dias para devolverlo"<<endl;
+            cout<<"Volviendo al menu anterior..."<<endl;
+            Sleep(SECONDS_TO_CONTINUE);
+            menuBuscar();
+            active=false;
+            break;
+        case 2:
+            cout<<"Volviendo al menu busqueda"<<endl;
+            Sleep(SECONDS_TO_CONTINUE);
+            menuBuscar();
+            active=false;
+            break;
+        default:
+            cout<<"Introduce un valor valido!"<<endl;
+            Sleep(SECONDS_TO_CONTINUE);
+            continue;
+        }
     }
 }
