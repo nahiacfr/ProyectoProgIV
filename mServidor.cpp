@@ -76,11 +76,11 @@ int main(int argc, char *argv[]) {
 
 	//SEND and RECEIVE data
 	cout << "Waiting for incoming messages from client... "<<endl;
-	do {
-		int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-		if (bytes > 0) {
+    do {
+        int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+        if (bytes > 0) {
             cout << "Message recived"<<endl;
-		    if(recvBuff[0]=='I' && recvBuff[1]=='N' && recvBuff[2]=='S')
+            if(recvBuff[0]=='I' && recvBuff[1]=='N' && recvBuff[2]=='S')
             {
                 if(verifyUserFromSocket(recvBuff, sizeof(recvBuff))==1);
                 sendBuff[0] = '1';
@@ -88,18 +88,46 @@ int main(int argc, char *argv[]) {
                 send(comm_socket, sendBuff, sizeof(recvBuff), 0);
                 cout << "Answer sended"<<endl;
             }
+            if(recvBuff[0]=='R' && recvBuff[1]=='E' && recvBuff[2]=='G')
+            {
+                if(saveUserBD(recvBuff, sizeof(recvBuff))==1);
+                sendBuff[0] = '1';
+                printf("Sending asnwer...\n");
+                send(comm_socket, sendBuff, sizeof(recvBuff), 0);
+                printf("Answer sended\n");
+            }
+            if(recvBuff[0]=='B' && recvBuff[1]=='U' && recvBuff[2]=='S')
+            {
+                if(searchBooks(recvBuff, sizeof(recvBuff))==1);
+                sendBuff[0] = '1';
+                printf("Sending asnwer...\n");
+                send(comm_socket, sendBuff, sizeof(recvBuff), 0);
+                printf("Answer sended\n");
+            }
+            if(recvBuff[0]=='A' && recvBuff[1]=='U' && recvBuff[2]=='T')
+            {
+                if(searchBooksAuthor(recvBuff, sizeof(recvBuff))==1);
+                sendBuff[0] = '1';
+                printf("Sending asnwer...\n");
+                send(comm_socket, sendBuff, sizeof(recvBuff), 0);
+                printf("Answer sended\n");
+            }
 
-			if (strcmp(recvBuff, "Bye") == 0)
-				break;
-		}
-	} while (1);
 
-	// CLOSING the sockets and cleaning Winsock...
-	closesocket(comm_socket);
-	WSACleanup();
+            if (strcmp(recvBuff, "Bye") == 0)
+                break;
+        }
+    } while (1);
 
-	return 0;
+
+    // CLOSING the sockets and cleaning Winsock...
+    closesocket(comm_socket);
+    WSACleanup();
+
+
+    return 0;
 }
+
 
 int verifyUserFromSocket(char buffer[], int length)
 {
@@ -126,4 +154,76 @@ int verifyUserFromSocket(char buffer[], int length)
     /*Comprobar si el usuario es correcto*/
     /*Devolver el resultado*/
     return 1;
+}
+int saveUserBD(char buffer[], int length) {
+    char* nombre;
+    char* apellido;
+    char* dni;
+    char* correo;
+    char* contrasenya;
+    int pos = 0;
+
+
+    // Obtener los datos del buffer
+    for (int i = 3; i < length; i++) {
+        if (buffer[i] == '#') {
+            pos = i;
+            break;
+        }
+        correo += buffer[i];
+    }
+
+
+    for (int i = pos + 1; i < length; i++) {
+        if (buffer[i] == '#') {
+            pos = i;
+            break;
+        }
+        contrasenya += buffer[i];
+    }
+
+
+    for (int i = pos + 1; i < length; i++) {
+        if (buffer[i] == '#') {
+            pos = i;
+            break;
+        }
+        nombre += buffer[i];
+    }
+
+
+    for (int i = pos + 1; i < length; i++) {
+        if (buffer[i] == '#') {
+            pos = i;
+            break;
+        }
+        apellido += buffer[i];
+    }
+
+
+    for (int i = pos + 1; i < length; i++) {
+        if (buffer[i] == '#') {
+            break;
+        }
+        dni += buffer[i];
+    }
+    // Registrar los datos en la base de datos
+    // sqlite3 *db;
+    // int result;
+
+
+    // Inicializar la base de datos
+    // inicializarBDD("BibliotecaDeusto.bd", db);
+   
+    //TO DO insertar usuario en BD  
+}
+int searchBooks(char buffer[], int length){
+
+
+}
+
+
+int searchBooksAuthor(char buffer[], int length){
+
+
 }
