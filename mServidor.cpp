@@ -5,8 +5,7 @@
 #include <vector>
 #include <cstring>
 
-#include "Librerias\BDD\sqlite3.h"
-#include "Librerias\BDD\ABDD.h"
+#include "Librerias\BDD\sqlite3.h
 #include "Librerias\EstructurasDatos\Fecha.h"
 #include "Librerias\EstructurasDatos\Usuario.h"
 #include "Librerias\EstructurasDatos\Libro.h"
