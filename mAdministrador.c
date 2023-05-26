@@ -74,8 +74,8 @@ void mainMenuAdmin()
     bool active=true;
     int result;
 
-    //do
-    //{
+    do
+    {
         system("cls"); //añadido para que la pantalla no se llene de mucha información
         printf("---------------------\nMENU ADMINISTRADOR\n---------------------\n");
         printf("Que desea editar?\n");
@@ -116,7 +116,7 @@ void mainMenuAdmin()
             //continue;
             break;
         }
-    //} while (result<1||result>3);
+    } while (result<1||result>3);
     
     cerrar_log(logAd);
 }
@@ -134,7 +134,7 @@ void administrarLibros()
     char select[2];
     int result;
     fgets(select, 2, stdin);
-    getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+    getchar();
     sscanf(select, "%d", &result);
     
     switch (result)
@@ -145,21 +145,21 @@ void administrarLibros()
         char name[MAX_LINE];
         char *nombre;
         fgets(name, MAX_LINE, stdin);
-        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+        getchar();
         sscanf(name, "%s", &nombre);
 
         printf("Codigo isbn del libro: \n");
         char isbn[10];
         char *codIsbn;
         fgets(isbn, 10, stdin);
-        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+        getchar();
         sscanf(isbn, "%s", &codIsbn);
 
         printf("Anyo de publicacion: \n");
         char year[4];
         int anyo;
         fgets(year, 4, stdin);
-        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+        getchar();
         sscanf(year, "%i", &anyo);
 
         imprimirListadoAutores();
@@ -167,7 +167,7 @@ void administrarLibros()
         char cAutor[4];
         int idAu;
         fgets(cAutor, 4, stdin);
-        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+        getchar();
         sscanf(cAutor, "%i", &idAu);
         Autor author=obtenerAutor(idAu);
 
@@ -176,7 +176,7 @@ void administrarLibros()
         char cEditorial[4];
         int idEd;
         fgets(cEditorial, 4, stdin);
-        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+        getchar();
         sscanf(cEditorial, "%i", &idEd);
         Editorial editor=obtenerEditorial(idEd);
         
@@ -195,7 +195,7 @@ void administrarLibros()
         char isbnDel[10];
         char *codIsbnDel;
         fgets(isbnDel, 4, stdin);
-        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+        getchar();
         sscanf(isbnDel, "%s", &codIsbnDel);
         eliminarLibro(codIsbnDel);
         
@@ -235,7 +235,7 @@ void administrarAutores()
     char select[2];
     int result;
     fgets(select, 2, stdin);
-    getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+    getchar();
     sscanf(select, "%d", &result);
     
     switch (result)
@@ -244,19 +244,26 @@ void administrarAutores()
         escribir_mensaje(logAd, INFO, "Seleccionado Anyadir");
         printf("Nombre del autor: \n");
         char name[MAX_LINE];
-        scanf(" %s", &name);
+        char nombre[MAX_LINE];
+        fgets(name, MAX_LINE, stdin);
+        getchar();
+        sscanf(name, "%s", nombre);
 
         printf("Apellido del autor: \n");
         char surname[MAX_LINE];
-        scanf(" %s", &surname);
+        char apellido[MAX_LINE];
+        fgets(surname, MAX_LINE, stdin);
+        getchar();
+        sscanf(surname, "%s", apellido);
 
         printf("Codigo del Autor: \n");
         char cAutor[MAX_LINE];
         int id;
-        scanf(" %s", &cAutor);
+        fgets(cAutor, MAX_LINE, stdin);
+        getchar();
         sscanf(cAutor, "%i", &id);
         
-        Autor newAuthor={id, name, surname};
+        Autor newAuthor={id, nombre, apellido};
 
         insertarAutor(&newAuthor);
         
@@ -271,7 +278,8 @@ void administrarAutores()
         printf("Codigo del autor a eliminar: \n");
         char cAutorDel[10];
         int codigo;
-        scanf(" %s", &cAutorDel);
+        fgets(cAutorDel, 4, stdin);
+        getchar();
         sscanf(cAutor, "%i", &codigo);
         eliminarAutor(codigo);
         
@@ -292,6 +300,7 @@ void administrarAutores()
     default:
         escribir_mensaje(logAd, INFO, "Seleccion Nula");
         printf("Introduce un valor valido!\n");
+        Sleep(SECONDS_TO_CONTINUE);
         mainMenuAdmin();
         break;
     }
@@ -311,7 +320,7 @@ void administrarEditoriales()
     char select[2];
     int result;
     fgets(select, 2, stdin);
-    getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+    getchar();
     sscanf(select, "%d", &result);
     
     switch (result)
@@ -320,12 +329,16 @@ void administrarEditoriales()
         escribir_mensaje(logAd, INFO, "Seleccionado Anyadir");
         printf("Nombre de la editorial: \n");
         char name[MAX_LINE];
-        scanf(" %s", &name);
+        char *nombre;
+        fgets(name, MAX_LINE, stdin);
+        getchar();
+        sscanf(name," %s", &nombre);
 
         printf("Codigo de la editorial: \n");
         char cEd[4];
         int id;
-        scanf(" %s", &cEd);
+        fgets(cEd, 2, stdin);
+        getchar();
         sscanf(cEd, "%i", &id);
         
         Editorial newEditorial={id, name};
@@ -342,7 +355,8 @@ void administrarEditoriales()
         printf("Codigo de la editorial a eliminar: \n");
         char cEdDel[10];
         int codigo;
-        scanf(" %s", &cEdDel);
+        fgets(cEdDel, 2, stdin);
+        getchar();
         sscanf(cEdDel, "%i", &codigo);
         eliminarEditorial(codigo);
         
@@ -363,6 +377,7 @@ void administrarEditoriales()
     default:
         escribir_mensaje(logAd, INFO, "Seleccion Nula");
         printf("Introduce un valor valido!\n");
+        Sleep(SECONDS_TO_CONTINUE);
         mainMenuAdmin();
         break;
     }
