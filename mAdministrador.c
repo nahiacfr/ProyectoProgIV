@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h> //necesario para el sleep();
+#include <stdbool.h>
 #include "Librerias\BDD\ABDD.h"
 #include "Librerias\BDD\sqlite3.h"
 #include "Librerias\log.h"
@@ -9,6 +10,7 @@
 #define MAX_OPTN 2
 #define MAX_LINE 50
 #define SECONDS_TO_CONTINUE 2000
+#define SECONDS_TO_READ 5000
 
 //Administrador
 void verificarAdmin();
@@ -36,25 +38,6 @@ int main() //MainMenu añadido al main principal
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     inicializarBDD("BibliotecaDeusto.db", dbM);
     mainMenuAdmin();
-/*  printf("---------------------\nBIBLIOTECA DEUSTO\n---------------------\n");
-    printf("Bienvenido\n");
-    printf("Que eres?\n");
-    printf("1.Usuario\n2.Administrador\n");
-    char select;
-    scanf(" %c", &select);
-    switch (select)
-    {
-    case '1':
-        mainMenuUser();
-        break;
-    case '2':
-        verificarAdmin();
-        break;
-    default:
-        printf("Choose again\n");
-        break;
-    }
-*/    
     return 0;
 }
 
@@ -88,45 +71,53 @@ void mainMenuAdmin()
     //Log
     Log *logAd;
     logAd = crear_log("Ficheros/Logs/LogAdministrador.txt");
-
-    system("cls"); //añadido para que la pantalla no se llene de mucha información
-    printf("---------------------\nMENU ADMINISTRADOR\n---------------------\n");
-    printf("Que desea editar?\n");
-    printf("1.Libros\n2.Autores\n3.Editoriales\n4.Reservas(Fuera de Servicio)\n");
-    
-    char select[2];
+    bool active=true;
     int result;
-    fgets(select, 2, stdin);
-    sscanf(select, "%d", &result);
+
+    //do
+    //{
+        system("cls"); //añadido para que la pantalla no se llene de mucha información
+        printf("---------------------\nMENU ADMINISTRADOR\n---------------------\n");
+        printf("Que desea editar?\n");
+        printf("1.Libros\n2.Autores\n3.Editoriales\n4.Reservas(Fuera de Servicio)\n");
+        
+        char select[2];
+        fgets(select, 2, stdin);
+        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+        sscanf(select, "%d", &result);
     
-    switch (result)
-    {
-    case 1:
-        escribir_mensaje(logAd, INFO, "Seleccionado Administrar Libros");
-        administrarLibros();
-        break;
-    case 2:
-        escribir_mensaje(logAd, INFO, "Seleccionado Administrar Autores");
-        administrarAutores();
-        break;
-    case 3:
-        escribir_mensaje(logAd, INFO, "Seleccionado Administrar Editoriales");
-        administrarEditoriales();
-        break;
-    case 4:
-        //escribir_mensaje(logAd, INFO, "Seleccionado Administrar Reservas");   
-        //administrarReservas();
-        printf("Choose again\n");
-        Sleep(SECONDS_TO_CONTINUE);
-        mainMenuAdmin();
-        break;
-    default:
-        escribir_mensaje(logAd, INFO, "Seleccion Nula");
-        printf("Choose again\n");
-        Sleep(SECONDS_TO_CONTINUE);
-        mainMenuAdmin();
-        break;
-    }
+        switch (result)
+        {
+        case 1:
+            escribir_mensaje(logAd, INFO, "Seleccionado Administrar Libros");
+            administrarLibros();
+            active=false;
+            break;
+        case 2:
+            escribir_mensaje(logAd, INFO, "Seleccionado Administrar Autores");
+            administrarAutores();
+            active=false;
+            break;
+        case 3:
+            escribir_mensaje(logAd, INFO, "Seleccionado Administrar Editoriales");
+            administrarEditoriales();
+            active=false;
+            break;
+        /*case 4:
+            //escribir_mensaje(logAd, INFO, "Seleccionado Administrar Reservas");   
+            //administrarReservas();
+            printf("Introduce un valor valido!\n");
+            Sleep(SECONDS_TO_CONTINUE);
+            break;*/
+        default:
+            escribir_mensaje(logAd, INFO, "Seleccion Nula");
+            printf("Introduce un valor valido!\n");
+            Sleep(SECONDS_TO_CONTINUE);
+            //continue;
+            break;
+        }
+    //} while (result<1||result>3);
+    
     cerrar_log(logAd);
 }
 
@@ -143,6 +134,7 @@ void administrarLibros()
     char select[2];
     int result;
     fgets(select, 2, stdin);
+    getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
     sscanf(select, "%d", &result);
     
     switch (result)
@@ -151,26 +143,31 @@ void administrarLibros()
         escribir_mensaje(logAd, INFO, "Seleccionado Anyadir");
         printf("Nombre del libro: \n");
         char name[MAX_LINE];
-        //scanf(" %s", &name);
-        char *result;
-        fgets(select, MAX_LINE, stdin);
-        sscanf(select, "%s", &result);
+        char *nombre;
+        fgets(name, MAX_LINE, stdin);
+        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+        sscanf(name, "%s", &nombre);
 
         printf("Codigo isbn del libro: \n");
         char isbn[10];
-        scanf(" %s", &isbn);
+        char *codIsbn;
+        fgets(isbn, 10, stdin);
+        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+        sscanf(isbn, "%s", &codIsbn);
 
         printf("Anyo de publicacion: \n");
         char year[4];
         int anyo;
-        scanf(" %s", &year);
+        fgets(year, 4, stdin);
+        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
         sscanf(year, "%i", &anyo);
 
         imprimirListadoAutores();
         printf("Codigo del Autor: \n");
         char cAutor[4];
         int idAu;
-        scanf(" %s", &cAutor);
+        fgets(cAutor, 4, stdin);
+        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
         sscanf(cAutor, "%i", &idAu);
         Autor author=obtenerAutor(idAu);
 
@@ -178,7 +175,8 @@ void administrarLibros()
         printf("Codigo de la Editorial: \n");
         char cEditorial[4];
         int idEd;
-        scanf(" %s", &cEditorial);
+        fgets(cEditorial, 4, stdin);
+        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
         sscanf(cEditorial, "%i", &idEd);
         Editorial editor=obtenerEditorial(idEd);
         
@@ -195,8 +193,11 @@ void administrarLibros()
         imprimirListadoLibros();
         printf("Codigo isbn de libro a eliminar: \n");
         char isbnDel[10];
-        scanf(" %s", &isbnDel);
-        eliminarLibro(isbnDel);
+        char *codIsbnDel;
+        fgets(isbnDel, 4, stdin);
+        getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
+        sscanf(isbnDel, "%s", &codIsbnDel);
+        eliminarLibro(codIsbnDel);
         
         printf("Operacion realizada, volviendo al menu anterior...");
         Sleep(SECONDS_TO_CONTINUE);
@@ -208,13 +209,13 @@ void administrarLibros()
         imprimirListadoLibros();
         
         printf("Operacion realizada, volviendo al menu anterior...");
-        Sleep(SECONDS_TO_CONTINUE);
+        Sleep(SECONDS_TO_READ);
         mainMenuAdmin();
 
         break;
     default:
         escribir_mensaje(logAd, INFO, "Seleccion Nula");
-        printf("Choose again\n");
+        printf("Introduce un valor valido!\n");
         mainMenuAdmin();
         break;
     }
@@ -234,6 +235,7 @@ void administrarAutores()
     char select[2];
     int result;
     fgets(select, 2, stdin);
+    getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
     sscanf(select, "%d", &result);
     
     switch (result)
@@ -280,27 +282,16 @@ void administrarAutores()
         break;
     case 3: ;//Listado completo
         escribir_mensaje(logAd, INFO, "Seleccionado mostrar listado completo");
-       /* //leer de fichero
-        FILE *f;
-        char string[1000]="";
-        f=fopen("Autor.txt","r");
-
-        while (fgets(string, sizeof(string), f))
-        {
-            printf("%s\n",string);
-        }
-        fclose(f);
-        */
         imprimirListadoAutores();
         
         printf("Operacion realizada, volviendo al menu anterior...");
-        Sleep(SECONDS_TO_CONTINUE);
+        Sleep(SECONDS_TO_READ);
         mainMenuAdmin();
         
         break;
     default:
         escribir_mensaje(logAd, INFO, "Seleccion Nula");
-        printf("Choose again\n");
+        printf("Introduce un valor valido!\n");
         mainMenuAdmin();
         break;
     }
@@ -320,6 +311,7 @@ void administrarEditoriales()
     char select[2];
     int result;
     fgets(select, 2, stdin);
+    getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
     sscanf(select, "%d", &result);
     
     switch (result)
@@ -361,27 +353,16 @@ void administrarEditoriales()
         break;
     case 3: ;//Listado completo
         escribir_mensaje(logAd, INFO, "Seleccionado Mostrar listado completo");
-        /*//leer de fichero
-        FILE *f;
-        char string[1000]="";
-        f=fopen("Editorial.txt","r");
-
-        while (fgets(string, sizeof(string), f))
-        {
-            printf("%s\n",string);
-        }
-        fclose(f);
-        */
         imprimirListadoEditoriales();
         
         printf("Operacion realizada, volviendo al menu anterior...");
-        Sleep(SECONDS_TO_CONTINUE);
+        Sleep(SECONDS_TO_READ);
         mainMenuAdmin();
         
         break;
     default:
         escribir_mensaje(logAd, INFO, "Seleccion Nula");
-        printf("Choose again\n");
+        printf("Introduce un valor valido!\n");
         mainMenuAdmin();
         break;
     }
@@ -401,6 +382,7 @@ void administrarReservas()
     char select[2];
     int result;
     fgets(select, 2, stdin);
+    getchar(); // Limpiar el búfer (descartar el carácter de nueva línea)
     sscanf(select, "%d", &result);
     
     switch (result)
@@ -437,7 +419,7 @@ void administrarReservas()
         break;
     default:
         escribir_mensaje(logAd, INFO, "Seleccion Nula");
-        printf("Choose again\n");
+        printf("Introduce un valor valido!\n");
         break;
     }
     cerrar_log(logAd);
