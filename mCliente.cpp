@@ -232,7 +232,7 @@ int menuBuscar()
         int result;
         cout << "Seleccion: "<<endl;
         cin>>result;
-        
+    Sleep(SECONDS_TO_CONTINUE);
         switch (result)
         {
         case 1:
