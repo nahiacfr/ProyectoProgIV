@@ -16,8 +16,6 @@ enum class TipoMensaje {
 
 class Log {
 public:
-    Log(const char* ruta_archivo);
-    ~Log();
     void escribir_mensaje(TipoMensaje tipo, const char* mensaje);
     Log* crear_log(const char *ruta_archivo);
     void cerrar_log(Log *log);
