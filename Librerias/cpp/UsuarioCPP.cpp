@@ -31,6 +31,10 @@ Usuario::Usuario(const char* dni, const char* nombre, const char* apellido, cons
 }
 Usuario::~Usuario()
 {
+	delete[] this->dni;
+	delete[] this->nombre;
+	delete[] this->apellidos;
+	delete[] this->correo;
 }
 
 void Usuario::anyadirUsuario(Usuario **listaUs, int tamanyoLista, Usuario *us)
