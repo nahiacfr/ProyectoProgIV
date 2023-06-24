@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Log* crear_log(const char *ruta_archivo) {
+Log* Log::crear_log(const char *ruta_archivo) {
     Log *log = new Log;
     log->archivo.open(ruta_archivo, ios::app);
     if (!log->archivo.is_open()) {
@@ -18,7 +18,7 @@ Log* crear_log(const char *ruta_archivo) {
     return log;
 }
 
-void escribir_mensaje(Log *log, TipoMensaje tipo, const char *mensaje) {
+void Log::escribir_mensaje(Log *log, TipoMensaje tipo, const char *mensaje) {
     time_t t;
     time(&t);
     struct tm *local = localtime(&t);
@@ -49,7 +49,7 @@ void escribir_mensaje(Log *log, TipoMensaje tipo, const char *mensaje) {
     log->archivo.flush();
 }
 
-void cerrar_log(Log *log) {
+void Log::cerrar_log(Log *log) {
     log->archivo.close();
     delete log;
 }
