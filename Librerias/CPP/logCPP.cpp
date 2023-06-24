@@ -28,13 +28,13 @@ void Log::escribir_mensaje(Log *log, TipoMensaje tipo, const char *mensaje) {
 
     char tipo_str[10];
     switch (tipo) {
-        case INFO:
+        case TipoMensaje::INFO:
             strcpy(tipo_str, "INFO");
             break;
-        case WARNING:
+        case TipoMensaje::WARNING:
             strcpy(tipo_str, "WARNING");
             break;
-        case ER:
+        case TipoMensaje::ER:
             strcpy(tipo_str, "ERROR");
             break;
         default:
