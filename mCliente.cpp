@@ -6,10 +6,10 @@
 #include <winsock2.h>
 #include <string>
 #include <windows.h> //necesario para el sleep();
-
+#include "Librerias\CPP\logCPP.h"
 extern "C"
 {
-    #include "Librerias\log.h"
+    //#include "Librerias\log.h"
     #include "Librerias\config.h"
 }
 
@@ -39,10 +39,14 @@ string presend;
 int main(int argc, char const *argv[])
 {
     //Log
-    //Log *logCl;
-    //logCl = crear_log("Ficheros/Logs/LogCliente.txt");
-
-	cout << endl<<"Initialising Winsock..."<< endl;
+Log *logCl = new Log;
+logCl = logCl->crear_log("Ficheros/Logs/LogCliente.txt");
+if (logCl != nullptr) {
+    logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Este es un mensaje de información");
+} else {
+    cout << endl << "ERROR" << endl;
+}
+cout << endl << "Initialising Winsock..." << endl;
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
         //escribir_mensaje(logCl, ER, "Fallo al iniciar el Winsock");
 		return -1;
