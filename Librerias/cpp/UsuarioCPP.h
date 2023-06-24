@@ -20,7 +20,8 @@ private:
     char *apellidos;
     char *correo;
 public:
-    Usuario(/* args */);
+    Usuario();
+    Usuario(const char* dni, const char* nombre, const char* apellido, const char* correo);
     ~Usuario();
     void anyadirUsuario(Usuario **listaUs, int tamanyoLista, Usuario *us);
 };
