@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include "config.h"
+#include "configCPP.h"
 
 void guardar_configuracion(Configuracion config) {
     std::ofstream archivo("configuracion.txt");
