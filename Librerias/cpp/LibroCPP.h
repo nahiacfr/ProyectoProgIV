@@ -7,10 +7,11 @@ private:
     char *isbn;
     char *titulo;
     int anio;
-    Autor autor;
-    Editorial editorial;
+    Autor *autor;
+    Editorial *editorial;
 public:
-    Libro(/* args */);
+    Libro();
+    Libro(const char *isbn, const char *titulo, int anio, Autor *autor, Editorial *editorial);
     ~Libro();
     void anyadirLibro(Libro **listaLib, int tamanyoLista, Libro *lib);
 };
@@ -22,7 +23,8 @@ private:
     char *nombre;
     char *apellidos;
 public:
-    Autor(/* args */);
+    Autor();
+    Autor(int id, const char* nombre, const char* apellido);
     ~Autor();
     void anyadirAutor(Autor **listaAu, int tamanyoLista, Autor *au);
 };
@@ -33,7 +35,8 @@ private:
     int id;
     char *nombre;
 public:
-    Editorial(/* args */);
+    Editorial();
+    Editorial(int id, const char* nombre);
     ~Editorial();
     void anyadirEditorial(Editorial **listaEd, int tamanyoLista, Editorial *ed);
 };
