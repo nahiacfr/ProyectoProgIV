@@ -333,19 +333,32 @@ void buscarAutor()
 
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_LINE];
-    string autor;
+    string nombreAutor;
+    string apellidoAutor;
     int seleccion;
     
     cout<<"---------------------"<<endl<<"BUSCAR AUTOR"<<endl<<"---------------------"<<endl;
-    cout<<"Autor: "<<endl;
-    cin>>autor;
+    cout<<"Apellido del autor: "<<endl;
+    cin>>nombreAutor;
+    cout<<"Apellido del autor: "<<endl;
+    cin>>apellidoAutor;
+    
+    string request = "AUT##" + nombreAutor + "#" + apellidoAutor + "#";
+    send(s, request.c_str(), request.size(), 0);
+    logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Enviado Socket buscar libro por autor");
+    // Esperar la respuesta del servidor
+    memset(recvBuff, 0, sizeof(recvBuff));
+    recv(s, recvBuff, sizeof(recvBuff), 0);
+    logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Recibida respuesta del Socket buscar libro por autor");
 
-    
-    //buscar en la base de datos los autores que coincidan;
-    cout<<"Pulse el numero del libro para continuar con la reserva"<<endl;
-    cout<<"Pulse 0 para volver al menu de busqueda"<<endl;
+   // Mostrar los libros encontrados
+    cout << "Libros encontrados:" << endl;
+
+    cout << recvBuff << endl;
+    //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
+    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl;
+    //TODO for con print para cada libro que salga
     cin>>seleccion;
-    
     if (seleccion==0)
     {
         cout<<"Volviendo al menu busqueda."<<endl;
@@ -361,7 +374,7 @@ void buscarAutor()
 
         // Enviar los datos al servidor mediante sockets
         logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Enviado Socket buscar autor");
-        string presend = "AUT##" + autor + "#" + strSeleccion + "#";
+        string presend = "AUT##" + nombreAutor + "#" + apellidoAutor + "#";
         strcpy(sendBuff, presend.c_str());
         send(s, sendBuff, sizeof(sendBuff), 0);
 

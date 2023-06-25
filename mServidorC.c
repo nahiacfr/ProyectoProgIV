@@ -142,8 +142,13 @@ int main(int argc, char *argv[]) {
             printf("\n");
             if(recvBuff[0]=='I' && recvBuff[1]=='N' && recvBuff[2]=='S')
             {
-                if(verifyUserFromSocket(recvBuff, sizeof(recvBuff))==1);
-                sendBuff[0] = '1';
+                if(verifyUserFromSocket(recvBuff, sizeof(recvBuff))==1)
+                {
+                    sendBuff[0] = '1';
+                }else
+                {
+                    sendBuff[0] = '0';
+                }
                 printf( "Sending asnwer...");
                 printf("\n");
                 send(comm_socket, sendBuff, sizeof(recvBuff), 0);
@@ -152,29 +157,31 @@ int main(int argc, char *argv[]) {
             }
             if(recvBuff[0]=='R' && recvBuff[1]=='E' && recvBuff[2]=='G')
             {
-                if(saveUserBD(recvBuff, sizeof(recvBuff))==1);
-                sendBuff[0] = '1';
+                if(saveUserBD(recvBuff, sizeof(recvBuff))==1)
+                {
+                    sendBuff[0] = '1';
+                }else
+                {
+                    sendBuff[0] = '0';
+                }
                 printf("Sending asnwer...\n");
                 send(comm_socket, sendBuff, sizeof(recvBuff), 0);
                 printf("Answer sended\n");
             }
             if(recvBuff[0]=='B' && recvBuff[1]=='U' && recvBuff[2]=='S')
             {
-                printf("Check 1");
                 strcpy(sendBuff, searchBooks(recvBuff, sizeof(recvBuff)));
-                printf("Check 2");
                 printf("Sending asnwer...\n");
                 send(comm_socket, sendBuff, sizeof(sendBuff), 0);
                 printf("Answer sended\n");
-            }/*
+            }
             if(recvBuff[0]=='A' && recvBuff[1]=='U' && recvBuff[2]=='T')
             {
-               if (searchBooksAuthor(recvBuff, sizeof(recvBuff), comm_socket) == 1);
-                sendBuff[0] = '1';
+                strcpy(sendBuff, searchBooksAuthor(recvBuff, sizeof(recvBuff)));
                 printf("Sending asnwer...\n");
-                send(comm_socket, sendBuff, sizeof(recvBuff), 0);
+                send(comm_socket, sendBuff, sizeof(sendBuff), 0);
                 printf("Answer sended\n");
-            }*/
+            }
 
 
             if(recvBuff[0]=='B' && recvBuff[1]=='Y' && recvBuff[2]=='E')
@@ -184,11 +191,9 @@ int main(int argc, char *argv[]) {
         }
     } while (1);
 
-
     // CLOSING the sockets and cleaning Winsock...
     closesocket(comm_socket);
     WSACleanup();
-
 
     return 0;
 }
@@ -202,178 +207,20 @@ int saveUserBD(char buffer[], int length) {
     char* correo;
     char* contrasenya;
     int pos = 0;
-    // Obtener los datos del buffer
-    for (int i = 3; i < length; i++) {
-        if (buffer[i] == '#') {
-            pos = i;
-            break;
-        }
-        correo += buffer[i];
-    }
 
+   	strtok(buffer, "##");
+	nombre = strtok(NULL, "#");
+    apellido = strtok(NULL, "#");
+    dni = strtok(NULL, "#");
+    correo = strtok(NULL, "#");
+	contrasenya = strtok(NULL, "#");
 
-    for (int i = pos + 1; i < length; i++) {
-        if (buffer[i] == '#') {
-            pos = i;
-            break;
-        }
-        contrasenya += buffer[i];
-    }
-
-
-    for (int i = pos + 1; i < length; i++) {
-        if (buffer[i] == '#') {
-            pos = i;
-            break;
-        }
-        nombre += buffer[i];
-    }
-
-
-    for (int i = pos + 1; i < length; i++) {
-        if (buffer[i] == '#') {
-            pos = i;
-            break;
-        }
-        apellido += buffer[i];
-    }
-
-
-    for (int i = pos + 1; i < length; i++) {
-        if (buffer[i] == '#') {
-            break;
-        }
-        dni += buffer[i];
-    }
-
+    printf("%s", nombre);
+    printf("%s", apellido);
+    printf("%s", dni);
+    printf("%s", correo);
+    printf("%s", contrasenya);
+    
     Usuario aux = {dni, nombre, apellido, correo};
-    insertarUsuario(&aux, contrasenya);
-
-
-    
-/*
-    // Registrar los datos en la base de datos
-    
-    // Inicializar la base de datos
-    sqlite3* db;
-    inicializarBDD("BibliotecaDeusto.db", db);
-    //datos
-    char nombrel[50];  
-    char apellidol[50];  
-    char dnil[10];  
-    char correol[100];  
-    char contrasenyal[50];  
-    // Insertar usuario en BD
-    Usuario *us;
-    us->nombre = nombrel;
-    us->apellidos = apellidol;
-    us->dni = dnil;
-    us->correo = contrasenyal;
-    
-    char sql1[] = "insert into usuario values (?, ?, ?, ?, ?);";
-    sqlite3_stmt* stmt;
-    
-    sqlite3_prepare_v2(db, sql1, strlen(sql1) + 1, &stmt, NULL);
-    sqlite3_bind_text(stmt, 1, us->dni, strlen(us->dni), SQLITE_STATIC);
-	sqlite3_bind_text(stmt, 2, us->nombre, strlen(us->nombre), SQLITE_STATIC);
-	sqlite3_bind_text(stmt, 3, us->apellidos, strlen(us->apellidos), SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 4, us->correo, strlen(us->correo), SQLITE_STATIC);
-    sqlite3_bind_text(stmt, 5, contrasenya, strlen(contrasenya), SQLITE_STATIC);
-
-    int result = sqlite3_step(stmt);
-    if (result != SQLITE_DONE)
-    {
-        printf("Error al registrar el usuario\n");
-    }
-    else
-    {
-        printf("Felicidades %s ya estás registrado\n", us->nombre);
-    }
-
-    sqlite3_finalize(stmt);
-    cerrarBDD(db);
-*/  
+    return insertarUsuario(&aux, contrasenya); 
 }
-
-
-/*
-int searchBooksAuthor(char buffer[], int length, SOCKET comm_socket){
-std::vector<std::string> titulos;
-
-    // Obtener el autor del libro enviado desde el cliente
-    char autor[length]; // Ignorar los primeros 5 caracteres ("BUS")
-    for (int i = 5; i < length; i++)
-    {
-        autor[i] = buffer[i];
-    }
-    /*
-    // Realizar la búsqueda en la base de datos
-    
-    // Consultar la base de datos para obtener el ID del autor
-    std::string sql1 = "SELECT id_autor FROM Escritor WHERE nombre_autor LIKE '%" + autor + "%';";
-    sqlite3_prepare_v2(db, sql1.c_str(), -1, &stmt, nullptr);
-
-    // Verificar si se encontró el autor
-    if (sqlite3_step(stmt) != SQLITE_ROW) {
-        sqlite3_finalize(stmt);
-        return 0; // No se encontró el autor
-    }
-    // Obtener el ID del autor
-    int idAutor = sqlite3_column_int(stmt, 0);
-
-    // Liberar recursos
-    sqlite3_finalize(stmt);
-
-    // Consultar la base de datos para obtener los ISBN de los libros escritos por el autor
-    std::string sql2 = "SELECT isbn FROM Autor WHERE id_autor = " + std::to_string(idAutor) + ";";
-    sqlite3_prepare_v2(db, sql2.c_str(), -1, &stmt, nullptr);
-
-    // Obtener los ISBN de los libros
-    std::vector<std::string> isbnList;
-    while (sqlite3_step(stmt) == SQLITE_ROW) {
-        std::string isbn(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
-        isbnList.push_back(isbn);
-    }
-
-    // Liberar recursos
-    sqlite3_finalize(stmt);
-
-    // Consultar la base de datos para obtener los títulos de los libros
-    std::vector<std::string> tituloList;
-    for (const std::string& isbn : isbnList) {
-        std::string sql3 = "SELECT titulo FROM Libro WHERE isbn = '" + isbn + "';";
-        sqlite3_prepare_v2(db, sql3.c_str(), -1, &stmt, nullptr);
-
-        // Obtener el título del libro
-        if (sqlite3_step(stmt) == SQLITE_ROW) {
-            std::string titulo(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
-            tituloList.push_back(titulo);
-        }
-
-        // Liberar recursos
-        sqlite3_finalize(stmt);
-    }
-
-    // Enviar los títulos al cliente a través del socket
-    std::string response;
-    for (const std::string& titulo : tituloList) {
-        response += titulo + "#";
-    }
-    /
-    // Enviar la respuesta al cliente
-    //send(comm_socket, response.c_str(), response.size(), 0);
-    //Imaginando que el autor introducido es Stephen King
-    // Crear manualmente la lista de libros de Stephen King
-    vector<string> listaTitulos = {"It", "The Shining", "Misery", "Pet Sematary", "The Stand"};
-
-    // Enviar la respuesta al cliente
-    string response;
-    for (const string& titulo : listaTitulos) {
-        response += titulo + "#";
-    }
-    send(comm_socket, response.c_str(), response.size(), 0);
-
-    return 1;
-
-}
-*/

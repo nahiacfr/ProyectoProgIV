@@ -11,7 +11,7 @@ void inicializarBDD(char *nombre, sqlite3 *db);
 void cerrarBDD(sqlite3 *db);
 
 //Acciones con Usuarios
-void insertarUsuario(Usuario *us, char* contrasenya);
+int insertarUsuario(Usuario *us, char* contrasenya);
 int existeUsuario(char *dni);
 int verificarContrasenya(Usuario *us, char *contrasenya);
 void eliminarUsuario(char *dni);
@@ -55,5 +55,6 @@ Fecha obtenerFechaFin(char *res);
 
 int verifyUserFromSocket(char buffer[], int length);
 char* searchBooks(char buffer[], int length);
+char* searchBooksAuthor(char buffer[], int length);
 
 #endif

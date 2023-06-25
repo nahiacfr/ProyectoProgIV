@@ -34,7 +34,7 @@ void cerrarBDD(sqlite3 *dbM){
 /*
 	Inserta un usuario en la BDD
 */
-void insertarUsuario(Usuario *us, char* contrasenya){
+int insertarUsuario(Usuario *us, char* contrasenya){
 	//COmprueba si el usuario existe en la BDD
 	if (existeUsuario(us->dni)==0){
 		//Introduce el usuario en la BDD
@@ -50,13 +50,16 @@ void insertarUsuario(Usuario *us, char* contrasenya){
 		result = sqlite3_step(stmt);
 		if (result != SQLITE_DONE) {
 			printf("Error al registrar el usuario\n");
+			return 0;
 		}else{
 			printf("Felicidades %s yta estas registrado\n", us->nombre);
+			return 1;
 		}
 
 		sqlite3_finalize(stmt);
 	}else{
 		printf("El susuario ya existe\n");
+		return 0;
 	}
 	
 }
@@ -803,12 +806,18 @@ Fecha obtenerFechaFin(char *res){
 
 int verifyUserFromSocket(char buffer[], int length)
 {
+	char *token;	
+
     char* correo;
     char* contrasenya;
-    int pos;
+
+	strtok(buffer, "##");
+	correo = strtok(NULL, "#");
+	contrasenya = strtok(NULL, "#");
+	
 	//TODO
 	//Los for no sirven 
-    for (int i = 3; i < length; i++)
+    /*for (int i = 3; i < length; i++)
     {
         if(buffer[i]=='#')
         {
@@ -824,24 +833,22 @@ int verifyUserFromSocket(char buffer[], int length)
             break;
         }
         contrasenya += buffer[i];
-    }
+    }*/
 	printf("%s", correo);
 	printf("%s", contrasenya);
     /*Comprobar si el usuario es correcto*/
-    Usuario us;
-    us.correo = correo;
     char sql3[] = "select contraseña from usuario where correo = ?";
 	int count = 0;
 	//TODO
 	//comprobra la sentencia SQL
 	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
-	sqlite3_bind_text(stmt, 1, us.correo, strlen(us.correo), SQLITE_STATIC);
+	sqlite3_bind_text(stmt, 1, correo, strlen(correo), SQLITE_STATIC);
 
 	do {
         result = sqlite3_step(stmt);
 		//TODO
 		//Revisar el if, creo que sobra
-        //if (result == SQLITE_ROW) {
+        if (result == SQLITE_ROW) {
             // Compara las dos contraseñas
             // Si coinciden, devuelve 1; si son diferentes, devuelve 0
             if (strcmp((char*)sqlite3_column_text(stmt, 0), contrasenya) == 0) {
@@ -853,13 +860,13 @@ int verifyUserFromSocket(char buffer[], int length)
                 printf("Contraseña incorrecta\n");
                 return 0;
             }
-        //}
+        }
     } while (result == SQLITE_ROW);
     
     /*Devolver el resultado*/
 	//TODO
 	//Revisar este return
-    return 1;
+    return 0;
 }
 
 char* searchBooks(char buffer[], int length){
@@ -905,7 +912,133 @@ char* searchBooks(char buffer[], int length){
 		return "No se han encontrado libros con ese titulo\n";
 	}else{
 		return response;
-	}
+	}	
+}
 
+char* searchBooksAuthor(char buffer[], int length){
+
+    char *token;
+    // Obtener el título del libro enviado desde el cliente
+    char *nombreAutor; 
+	char *apellidoAutor;
 	
+	token = strtok(buffer, "##");
+	nombreAutor = strtok(NULL, "#");
+	apellidoAutor = strtok(NULL, "#");
+    // Realizar la búsqueda en la base de datos
+    char sql[] = "select l.titulo, l.isbn from libro l inner join autor as a on l.isbn=a.isbn inner join escritor as e on a.id=e.id WHERE e.nombre = ? AND e.apellidos = ?";
+    sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+    sqlite3_bind_text(stmt, 1, nombreAutor, strlen(nombreAutor), SQLITE_STATIC);
+	sqlite3_bind_text(stmt, 2, apellidoAutor, strlen(apellidoAutor), SQLITE_STATIC);
+	
+    char *response = "";
+    // Ejecutar la consulta y recopilar los resultados
+	int j = 0;
+    while(sqlite3_step(stmt) == SQLITE_ROW)
+	{ 
+		j = 1;
+		//hacer lisat con los resultados
+		char *nuevoChurro = malloc(sizeof(sqlite3_column_text(stmt, 0)) + sizeof(sqlite3_column_text(stmt, 1))+5);
+		strcpy(nuevoChurro, sqlite3_column_text(stmt, 0));
+		strcat(nuevoChurro, "----");
+        strcat(nuevoChurro, sqlite3_column_text(stmt, 1));
+        char *nuevaLista = malloc(sizeof(response) + sizeof(nuevoChurro)+5);
+		strcpy(nuevaLista, response);
+		strcat(nuevaLista, "\n");
+        strcat(nuevaLista, nuevoChurro);   
+		strcat(nuevaLista, "\n");    
+		
+		response = nuevaLista;
+		free(nuevoChurro);
+		free(nuevaLista);
+		
+    }
+	strcat(response, "\0");
+	sqlite3_finalize(stmt);
+    
+	if(j == 0)
+	{
+		return "No se han encontrado libros con ese autor\n";
+	}else{
+		return response;
+	}
+	/*/
+	
+	
+	
+	// Obtener el autor del libro enviado desde el cliente
+    char autor[length]; // Ignorar los primeros 5 caracteres ("BUS")
+    for (int i = 5; i < length; i++)
+    {
+        autor[i] = buffer[i];
+    }
+    
+    // Realizar la búsqueda en la base de datos
+    
+    // Consultar la base de datos para obtener el ID del autor
+    std::string sql1 = "SELECT id_autor FROM Escritor WHERE nombre_autor LIKE '%" + autor + "%';";
+    sqlite3_prepare_v2(db, sql1.c_str(), -1, &stmt, nullptr);
+
+    // Verificar si se encontró el autor
+    if (sqlite3_step(stmt) != SQLITE_ROW) {
+        sqlite3_finalize(stmt);
+        return 0; // No se encontró el autor
+    }
+    // Obtener el ID del autor
+    int idAutor = sqlite3_column_int(stmt, 0);
+
+    // Liberar recursos
+    sqlite3_finalize(stmt);
+
+    // Consultar la base de datos para obtener los ISBN de los libros escritos por el autor
+    std::string sql2 = "SELECT isbn FROM Autor WHERE id_autor = " + std::to_string(idAutor) + ";";
+    sqlite3_prepare_v2(db, sql2.c_str(), -1, &stmt, nullptr);
+
+    // Obtener los ISBN de los libros
+    std::vector<std::string> isbnList;
+    while (sqlite3_step(stmt) == SQLITE_ROW) {
+        std::string isbn(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
+        isbnList.push_back(isbn);
+    }
+
+    // Liberar recursos
+    sqlite3_finalize(stmt);
+
+    // Consultar la base de datos para obtener los títulos de los libros
+    std::vector<std::string> tituloList;
+    for (const std::string& isbn : isbnList) {
+        std::string sql3 = "SELECT titulo FROM Libro WHERE isbn = '" + isbn + "';";
+        sqlite3_prepare_v2(db, sql3.c_str(), -1, &stmt, nullptr);
+
+        // Obtener el título del libro
+        if (sqlite3_step(stmt) == SQLITE_ROW) {
+            std::string titulo(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
+            tituloList.push_back(titulo);
+        }
+
+        // Liberar recursos
+        sqlite3_finalize(stmt);
+    }
+
+    // Enviar los títulos al cliente a través del socket
+    std::string response;
+    for (const std::string& titulo : tituloList) {
+        response += titulo + "#";
+    }
+    /
+    // Enviar la respuesta al cliente
+    //send(comm_socket, response.c_str(), response.size(), 0);
+    //Imaginando que el autor introducido es Stephen King
+    // Crear manualmente la lista de libros de Stephen King
+    vector<string> listaTitulos = {"It", "The Shining", "Misery", "Pet Sematary", "The Stand"};
+
+    // Enviar la respuesta al cliente
+    string response;
+    for (const string& titulo : listaTitulos) {
+        response += titulo + "#";
+    }
+    send(comm_socket, response.c_str(), response.size(), 0);
+
+    return 1;
+*/
 }
