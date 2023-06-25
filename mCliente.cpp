@@ -319,7 +319,7 @@ void buscarTitulo()
     }
 
     //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
-    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl;
+    cout << "Introduzca el número del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl;
     //TODO for con print para cada libro que salga
     cin>>seleccion;
 
