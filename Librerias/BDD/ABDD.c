@@ -800,3 +800,112 @@ Fecha obtenerFechaFin(char *res){
     f1.anyo = anio;
 	return f1;
 }
+
+int verifyUserFromSocket(char buffer[], int length)
+{
+    char* correo;
+    char* contrasenya;
+    int pos;
+	//TODO
+	//Los for no sirven 
+    for (int i = 3; i < length; i++)
+    {
+        if(buffer[i]=='#')
+        {
+            pos = i;
+            break;
+        }
+        correo += buffer[i];
+    }
+    for (int i = pos; i < length; i++)
+    {
+        if(buffer[i]=='#')
+        {
+            break;
+        }
+        contrasenya += buffer[i];
+    }
+	printf("%s", correo);
+	printf("%s", contrasenya);
+    /*Comprobar si el usuario es correcto*/
+    Usuario us;
+    us.correo = correo;
+    char sql3[] = "select contraseña from usuario where correo = ?";
+	int count = 0;
+	//TODO
+	//comprobra la sentencia SQL
+	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
+	sqlite3_bind_text(stmt, 1, us.correo, strlen(us.correo), SQLITE_STATIC);
+
+	do {
+        result = sqlite3_step(stmt);
+		//TODO
+		//Revisar el if, creo que sobra
+        //if (result == SQLITE_ROW) {
+            // Compara las dos contraseñas
+            // Si coinciden, devuelve 1; si son diferentes, devuelve 0
+            if (strcmp((char*)sqlite3_column_text(stmt, 0), contrasenya) == 0) {
+                sqlite3_finalize(stmt);
+                printf("Contraseña correcta\n");
+                return 1;
+            } else {
+                sqlite3_finalize(stmt);
+                printf("Contraseña incorrecta\n");
+                return 0;
+            }
+        //}
+    } while (result == SQLITE_ROW);
+    
+    /*Devolver el resultado*/
+	//TODO
+	//Revisar este return
+    return 1;
+}
+
+char* searchBooks(char buffer[], int length){
+	char *token;
+    // Obtener el título del libro enviado desde el cliente
+    char *titulo; // Ignorar los primeros 3 caracteres ("BUS")
+	
+	token = strtok(buffer, "##");
+	token = strtok(NULL, "#");
+	titulo = token;
+    // Realizar la búsqueda en la base de datos
+    char sql[] = "Select titulo, isbn from libro WHERE titulo = ?";
+    sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+    sqlite3_bind_text(stmt, 1, titulo, strlen(titulo), SQLITE_STATIC);
+	
+    char *response = "";
+    // Ejecutar la consulta y recopilar los resultados
+	int j = 0;
+    while(sqlite3_step(stmt) == SQLITE_ROW)
+	{ 
+		j = 1;
+		//hacer lisat con los resultados
+		char *nuevoChurro = malloc(sizeof(sqlite3_column_text(stmt, 0)) + sizeof(sqlite3_column_text(stmt, 1))+5);
+		strcpy(nuevoChurro, sqlite3_column_text(stmt, 0));
+		strcat(nuevoChurro, "----");
+        strcat(nuevoChurro, sqlite3_column_text(stmt, 1));
+        char *nuevaLista = malloc(sizeof(response) + sizeof(nuevoChurro)+5);
+		strcpy(nuevaLista, response);
+		strcat(nuevaLista, "\n");
+        strcat(nuevaLista, nuevoChurro);   
+		strcat(nuevaLista, "\n");    
+		
+		response = nuevaLista;
+		free(nuevoChurro);
+		free(nuevaLista);
+		
+    }
+	strcat(response, "\0");
+	sqlite3_finalize(stmt);
+    
+	if(j == 0)
+	{
+		return "No se han encontrado libros con ese titulo\n";
+	}else{
+		return response;
+	}
+
+	
+}

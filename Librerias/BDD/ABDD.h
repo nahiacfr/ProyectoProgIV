@@ -53,4 +53,7 @@ void listadoReservas(Reserva **listaRes, int tamanyoLista, Usuario *us);
 Fecha obtenerFechaIni(char *res);
 Fecha obtenerFechaFin(char *res);
 
+int verifyUserFromSocket(char buffer[], int length);
+char* searchBooks(char buffer[], int length);
+
 #endif

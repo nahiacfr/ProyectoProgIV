@@ -46,7 +46,8 @@
         "libro.h": "c",
         "fecha.h": "c",
         "cstring": "cpp",
-        "ctime": "cpp"
+        "ctime": "cpp",
+        "abdd.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
