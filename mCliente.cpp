@@ -118,6 +118,7 @@ void mainMenuUser()
             logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Salir");
             cout << "Has salido de la app"<<endl;
             active=false;
+            send(s, "BYE", 3, 0);
             break;
         default:
             logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccion Nula");
@@ -127,6 +128,8 @@ void mainMenuUser()
         }
     }
     logCl->cerrar_log(logCl);
+    closesocket(s);
+	WSACleanup();
 }
 
 void inicioSesion()
@@ -205,7 +208,6 @@ void registraUsuario()
     logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Enviado Socket para registro de usuario");
 
     // Espera la respuesta del servidor
-    char recvBuff[256];
     memset(recvBuff, 0, sizeof(recvBuff));
     recv(s, recvBuff, sizeof(recvBuff), 0);
     logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Recivida respuesta del Socket registro de usuario");
@@ -291,38 +293,18 @@ void buscarTitulo()
     send(s, request.c_str(), request.size(), 0);
     logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Enviado Socket buscar libro por titulo");
     // Esperar la respuesta del servidor
-    char recvBuff[256];
     memset(recvBuff, 0, sizeof(recvBuff));
     recv(s, recvBuff, sizeof(recvBuff), 0);
     logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Recibida respuesta del Socket buscar libro por titulo");
 
-    if (recvBuff[0] == '0') 
-    {
-        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "NO hay libros con ese titulo");
-        cout << "No se encontraron libros con ese título." << endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
-        return;
-    }
-
     // Mostrar los libros encontrados
     cout << "Libros encontrados:" << endl;
 
-
-    // Iterar sobre los libros recibidos y mostrarlos con un número de selección
-    int numLibro = 1;
-    char* libro = strtok(recvBuff, "#");
-    while (libro != NULL) {
-        cout << numLibro << ". " << libro << endl;
-        libro = strtok(NULL, "#");
-        numLibro++;
-    }
-
+    cout << recvBuff << endl;
     //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
-    cout << "Introduzca el número del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl;
+    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl;
     //TODO for con print para cada libro que salga
     cin>>seleccion;
-
     if (seleccion=="0")
     {
         cout << "Volviendo al menu busqueda."<<endl;
