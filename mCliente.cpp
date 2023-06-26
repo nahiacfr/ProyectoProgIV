@@ -241,7 +241,7 @@ int menuBuscar()
     {
         system("cls"); //añadido para que la pantalla no se llene de mucha información
         cout << "---------------------"<<endl<<"MENU BUSCAR"<<endl<<"---------------------"<<endl;
-        cout << "1.Buscar libro por titulo"<<endl<<"2.Buscar libro por autor"<<endl<<"3.Volver menu principal"<<endl<<"4.Salir"<<endl;
+        cout << "1.Buscar libro por titulo"<<endl<<"2.Buscar libro por autor"<<endl<<"3.Listar todos los libros"<<endl<<"4.Volver menu principal"<<endl<<"5.Salir"<<endl;
         
         int result;
         cout << "Seleccion: "<<endl;
@@ -260,13 +260,18 @@ int menuBuscar()
             active=false;
             break;
         case 3:
+            logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado listar libros");
+            buscarAutor();
+            active=false;
+            break;
+        case 4:
             logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Volver menu principal");
             cout << "Volviendo al menu principal..."<<endl;
             Sleep(SECONDS_TO_CONTINUE);
             mainMenuUser();
             active=false;
             break;
-        case 4:
+        case 5:
             logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Salir");
             cout << "Has salido de la app"<<endl;
             active=false;
@@ -381,6 +386,63 @@ void buscarAutor()
     //TODO for con print para cada libro que salga
     cin>>seleccion;
    
+    if (seleccion=="0")
+    {
+        cout << "Volviendo al menu busqueda."<<endl;
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
+    } else if (seleccion == "1"){
+        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Salir");
+            cout << "Has salido de la app"<<endl;
+            send(s, "BYE", 3, 0);
+    }
+
+    else
+    {
+        //TO DO: obtendremos el id o nombre del libro seleccionado y llamamos a reservar(), ese dato es el que pasamos [hecho con un int por sólo para probar]
+        reservar(seleccion); // seleccion.nombre || seleccion->nombre
+        
+        /**/cout << "Operacion realizada, volviendo al menu anterior..."<<endl;
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
+    }
+    
+    logCl->cerrar_log(logCl);
+}
+
+void listarLibros()
+{
+    //Log
+    Log *logCl = new Log;
+    logCl = logCl->crear_log("Ficheros/Logs/LogCliente.txt");
+
+    system("cls"); //añadido para que la pantalla no se llene de mucha información
+    char reservados[30];
+    string seleccion;
+
+    cout << "---------------------"<<endl<<"LISTA DE LIBROS"<<endl<<"---------------------"<<endl;
+    cout << "1.Mostrar todos los libros: "<<endl<< "2.Mostrar solo libros NO reservados: "<<endl;
+    cin.ignore();
+    cin.getline(reservados, 30);
+    // Enviar los datos al servidor
+    string request = "LST##";
+    request.append(reservados);
+    request.append("#");
+    send(s, request.c_str(), request.size(), 0);
+    logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Enviado Socket listar libros");
+    // Esperar la respuesta del servidor
+    memset(recvBuff, 0, sizeof(recvBuff));
+    recv(s, recvBuff, sizeof(recvBuff), 0);
+    logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Recibida respuesta del Socket listar libros");
+
+    // Mostrar los libros encontrados
+    cout << "Libros:" << endl;
+
+    cout << recvBuff << endl;
+    //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
+    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl<<"Introduzca 1 para salir"<<endl;
+    //TODO for con print para cada libro que salga
+    cin>>seleccion;
     if (seleccion=="0")
     {
         cout << "Volviendo al menu busqueda."<<endl;
