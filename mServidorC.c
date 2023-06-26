@@ -12,6 +12,7 @@
 #include "Librerias\EstructurasDatos\Usuario.h"
 #include "Librerias\EstructurasDatos\Libro.h"
 #include "Librerias\EstructurasDatos\Reserva.h"
+#include "Librerias\log.h"
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 8080
@@ -48,7 +49,12 @@ int saveUserBD(char buffer[], int length);
 //int searchBooks(char buffer[], int length, SOCKET comm_socket);
 //int searchBooksAuthor(char buffer[], int length, SOCKET comm_socket);
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) 
+{
+    //Log
+    Log *logSer;
+    logAd = crear_log("Ficheros/Logs/LogServidor.txt");
+
     inicializarBDD("BibliotecaDeusto.db", db);
 
 	WSADATA wsaData;
@@ -63,22 +69,26 @@ int main(int argc, char *argv[]) {
 		printf("Failed. Error Code : ");
         //printf(WSAGetLastError()); 
         printf("\n");
+        escribir_mensaje(logAd, ER, "Fallo al iniciar el Winsock");
 		return -1;
 	}
 
 	printf("Initialised.\n");
+    escribir_mensaje(logAd, INFO, "Winsock iniciado correctamente");
 
 	//SOCKET creation
 	if ((conn_socket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
 		printf("Could not create socket : "); 
         //printf(WSAGetLastError());
         printf("\n");
+        escribir_mensaje(logAd, ER, "Fallo al Crear el Socket");
 		WSACleanup();
 		return -1;
 	}
 
 	printf("Socket created."); 
     printf("\n");
+    escribir_mensaje(logAd, INFO, "Socket creado correctamente");
 
 	server.sin_addr.s_addr = inet_addr(SERVER_IP);
 	server.sin_family = AF_INET;
@@ -90,6 +100,7 @@ int main(int argc, char *argv[]) {
 		printf( "Bind failed with error code: ");
         //printf(WSAGetLastError());
         printf("\n");
+        escribir_mensaje(logAd, ER, "Fallo al portear el Bind");
 		closesocket(conn_socket);
 		WSACleanup();
 		return -1;
@@ -97,12 +108,14 @@ int main(int argc, char *argv[]) {
 
 	printf( "Bind done.");
     printf("\n");
+    escribir_mensaje(logAd, INFO, "Bind porteado correctamente"); //no sé si es el verbo correcto
 
 	//LISTEN to incoming connections (socket server moves to listening mode)
 	if (listen(conn_socket, 1) == SOCKET_ERROR) {
 		printf( "Listen failed with error code: ");
         //printf(WSAGetLastError());
         printf("\n");
+        escribir_mensaje(logAd, ER, "Fallo en el LISTEN de conexiones");
 		closesocket(conn_socket);
 		WSACleanup();
 		return -1;
@@ -111,6 +124,7 @@ int main(int argc, char *argv[]) {
 	//ACCEPT incoming connections (server keeps waiting for them)
 	printf( "Waiting for incoming connections...");
     printf("\n");
+    escribir_mensaje(logAd, INFO, "Esperando conexiones")
 	int stsize = sizeof(struct sockaddr);
 	comm_socket = accept(conn_socket, (struct sockaddr*) &client, &stsize);
 	// Using comm_socket is able to send/receive data to/from connected client
