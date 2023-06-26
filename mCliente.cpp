@@ -34,6 +34,7 @@ SOCKET s;
 struct sockaddr_in server;
 char sendBuff[512], recvBuff[512];
 string presend;
+string usuarioActual;
 
 int main(int argc, char const *argv[])
 {
@@ -160,6 +161,7 @@ void inicioSesion()
     logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Recivido Socket con la respuesta al inicio de sesion");
     if(recvBuff[0]=='1')
     {
+        usuarioActual = correo;
         logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Usuario valido");
         Sleep(SECONDS_TO_CONTINUE); //esperamos 2 segundos antes de "cambiar de pantalla"
         menuBuscar();
@@ -214,6 +216,7 @@ void registraUsuario()
 
     if (recvBuff[0] == '1') {
         logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Usuario creado correctamente");
+        usuarioActual = correo;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
     }
@@ -282,14 +285,17 @@ void buscarTitulo()
     logCl = logCl->crear_log("Ficheros/Logs/LogCliente.txt");
 
     system("cls"); //añadido para que la pantalla no se llene de mucha información
-    string titulo;
+    char titulo[30];
     string seleccion;
 
     cout << "---------------------"<<endl<<"BUSCAR LIBRO"<<endl<<"---------------------"<<endl;
     cout << "Titulo: "<<endl;
-    cin>>titulo;
+    cin.ignore();
+    cin.getline(titulo, 30);
     // Enviar los datos al servidor
-    string request = "BUS##" + titulo + "#";
+    string request = "BUS##";
+    request.append(titulo);
+    request.append("#");
     send(s, request.c_str(), request.size(), 0);
     logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Enviado Socket buscar libro por titulo");
     // Esperar la respuesta del servidor
@@ -333,17 +339,22 @@ void buscarAutor()
 
     system("cls"); //añadido para que la pantalla no se llene de mucha información
     char str[MAX_LINE];
-    string nombreAutor;
-    string apellidoAutor;
-    int seleccion;
+    char nombreAutor[20];
+    char apellidoAutor[20];
+    string seleccion;
     
     cout<<"---------------------"<<endl<<"BUSCAR AUTOR"<<endl<<"---------------------"<<endl;
+    cout<<"Nombre del autor: "<<endl;
+    cin.ignore();
+    cin.getline(nombreAutor, 20);
     cout<<"Apellido del autor: "<<endl;
-    cin>>nombreAutor;
-    cout<<"Apellido del autor: "<<endl;
-    cin>>apellidoAutor;
+    cin.getline(apellidoAutor, 20);
     
-    string request = "AUT##" + nombreAutor + "#" + apellidoAutor + "#";
+    string request = "AUT##";
+    request.append(nombreAutor);
+    request.append("#");
+    request.append(apellidoAutor);
+    request.append("#");
     send(s, request.c_str(), request.size(), 0);
     logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Enviado Socket buscar libro por autor");
     // Esperar la respuesta del servidor
@@ -359,46 +370,22 @@ void buscarAutor()
     cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl;
     //TODO for con print para cada libro que salga
     cin>>seleccion;
-    if (seleccion==0)
+   
+    if (seleccion=="0")
     {
-        cout<<"Volviendo al menu busqueda."<<endl;
+        cout << "Volviendo al menu busqueda."<<endl;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
     }
 
     else
     {
-        // Convertir 'seleccion' a string
-        string strSeleccion = to_string(seleccion);
-
-
-        // Enviar los datos al servidor mediante sockets
-        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Enviado Socket buscar autor");
-        string presend = "AUT##" + nombreAutor + "#" + apellidoAutor + "#";
-        strcpy(sendBuff, presend.c_str());
-        send(s, sendBuff, sizeof(sendBuff), 0);
-
-
-        // Esperar la respuesta del Servidor
-        printf("Esperando respuesta...");
-        recv(s, recvBuff, sizeof(recvBuff), 0);
-        printf("Respuesta obtenida");
-        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Recibida respuesta del Socket buscar autor");
-
-
-        if (recvBuff[0] == '1')
-        {
-            logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Conexión exitosa");
-            cout << "Conexión realizada con éxito." << endl;
-            Sleep(SECONDS_TO_CONTINUE); // esperamos 2 segundos antes de "cambiar de pantalla"
-            menuBuscar();
-        }
-        else
-        {
-            logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Fallo conexión");
-            buscarAutor();
-        }
-
+        //TO DO: obtendremos el id o nombre del libro seleccionado y llamamos a reservar(), ese dato es el que pasamos [hecho con un int por sólo para probar]
+        reservar(seleccion); // seleccion.nombre || seleccion->nombre
+        
+        /**/cout << "Operacion realizada, volviendo al menu anterior..."<<endl;
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
     }
     
     logCl->cerrar_log(logCl);
@@ -419,15 +406,46 @@ void reservar(string isbn)
         cout<<"1.Si"<<endl<<"2.No"<<endl;
         
         int result;
+
+        
         cin>>result;
         
+        string dia;
+        string mes;
+        string anyo;
+
         switch (result)
         {
         case 1:
+            cout << "Introduzca la fecha de inicio de la reserva" << endl;
+            cout << "Dia: " << endl;
+            cin >>dia;
+            cout << "Mes: " << endl;
+            cin >>mes;
+            cout << "Anyo: " << endl;
+            cin >>anyo;
         //Socket
-            presend = "RES##" + isbn + "#";
+            presend = "RES##" + isbn + "#" + usuarioActual + "#" + dia + "#" + mes + "#" + anyo + "#";
             send(s, presend.c_str(), presend.size(), 0);
             logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Reserva realizada");
+
+             // Espera la respuesta del servidor
+            memset(recvBuff, 0, sizeof(recvBuff));
+            recv(s, recvBuff, sizeof(recvBuff), 0);
+            logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Recivida respuesta del Socket realizar reserva");
+
+            if (recvBuff[0] == '1') {
+                logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Reserva realizada correctamente");
+                Sleep(SECONDS_TO_CONTINUE);
+                menuBuscar();
+            }
+            else {
+                logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Error al realizar la reserva");
+                cout << "Error al Realizar la Reserva." << endl;
+                Sleep(SECONDS_TO_CONTINUE);
+                menuBuscar();
+            }
+
             cout<<"Reserva realizada, tiene X dias para devolverlo"<<endl;
             cout<<"Volviendo al menu anterior..."<<endl;
             Sleep(SECONDS_TO_CONTINUE);

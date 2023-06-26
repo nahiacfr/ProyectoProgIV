@@ -814,40 +814,19 @@ int verifyUserFromSocket(char buffer[], int length)
 	strtok(buffer, "##");
 	correo = strtok(NULL, "#");
 	contrasenya = strtok(NULL, "#");
-	
-	//TODO
-	//Los for no sirven 
-    /*for (int i = 3; i < length; i++)
-    {
-        if(buffer[i]=='#')
-        {
-            pos = i;
-            break;
-        }
-        correo += buffer[i];
-    }
-    for (int i = pos; i < length; i++)
-    {
-        if(buffer[i]=='#')
-        {
-            break;
-        }
-        contrasenya += buffer[i];
-    }*/
+
 	printf("%s", correo);
 	printf("%s", contrasenya);
     /*Comprobar si el usuario es correcto*/
     char sql3[] = "select contraseña from usuario where correo = ?";
 	int count = 0;
-	//TODO
-	//comprobra la sentencia SQL
+
 	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
 	sqlite3_bind_text(stmt, 1, correo, strlen(correo), SQLITE_STATIC);
 
 	do {
         result = sqlite3_step(stmt);
-		//TODO
-		//Revisar el if, creo que sobra
+
         if (result == SQLITE_ROW) {
             // Compara las dos contraseñas
             // Si coinciden, devuelve 1; si son diferentes, devuelve 0
@@ -864,19 +843,17 @@ int verifyUserFromSocket(char buffer[], int length)
     } while (result == SQLITE_ROW);
     
     /*Devolver el resultado*/
-	//TODO
-	//Revisar este return
     return 0;
 }
 
 char* searchBooks(char buffer[], int length){
 	char *token;
     // Obtener el título del libro enviado desde el cliente
-    char *titulo; // Ignorar los primeros 3 caracteres ("BUS")
+    char *titulo;
 	
 	token = strtok(buffer, "##");
-	token = strtok(NULL, "#");
-	titulo = token;
+	titulo = strtok(NULL, "#");
+	printf("%s", titulo);
     // Realizar la búsqueda en la base de datos
     char sql[] = "Select titulo, isbn from libro WHERE titulo = ?";
     sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
@@ -962,83 +939,60 @@ char* searchBooksAuthor(char buffer[], int length){
 	}else{
 		return response;
 	}
-	/*/
-	
-	
-	
-	// Obtener el autor del libro enviado desde el cliente
-    char autor[length]; // Ignorar los primeros 5 caracteres ("BUS")
-    for (int i = 5; i < length; i++)
-    {
-        autor[i] = buffer[i];
-    }
-    
-    // Realizar la búsqueda en la base de datos
-    
-    // Consultar la base de datos para obtener el ID del autor
-    std::string sql1 = "SELECT id_autor FROM Escritor WHERE nombre_autor LIKE '%" + autor + "%';";
-    sqlite3_prepare_v2(db, sql1.c_str(), -1, &stmt, nullptr);
+}
 
-    // Verificar si se encontró el autor
-    if (sqlite3_step(stmt) != SQLITE_ROW) {
+int reservarLibro(char buffer[], int length)
+{
+	char *token;
+    // Obtener el título del libro enviado desde el cliente
+    char *isbn, *dni, *correo, *dia, *mes, *anyo; 
+	printf("Check 1");
+	token = strtok(buffer, "##");
+	isbn = strtok(NULL, "#");
+	correo = strtok(NULL, "#");
+	dia = strtok(NULL, "#");
+	mes = strtok(NULL, "#");
+	anyo = strtok(NULL, "#");
+	printf("Check 2");
+
+	Fecha *fechaIni = crearFecha(strtol(dia, NULL, 10),strtol(mes, NULL, 10),strtol(anyo, NULL, 10));
+	printf("%i", fechaIni->dia);
+	printf("Check 3");
+	Fecha *fechaFin = calcularFecha(fechaIni, 15);
+	printf("Check 4");
+	
+	char sql[] = "Select dni from usuario where correo = '";
+    sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+    sqlite3_bind_text(stmt, 1, correo, strlen(correo), SQLITE_STATIC);
+	printf("Check 5.1");
+
+	if (sqlite3_step(stmt) == SQLITE_ROW)
+	{
+		dni = (char*)sqlite3_column_text(stmt, 0);
+	}
+	printf("Check 5.2");
+	sqlite3_finalize(stmt);
+	printf("Check 6");
+	char sql2[] = "Insert into reserva values (?,?,?,?)";
+    sqlite3_prepare_v2(db, sql2, strlen(sql2) + 1, &stmt, NULL);
+	printf("Check 6.1");
+    sqlite3_bind_text(stmt, 1, isbn, strlen(isbn), SQLITE_STATIC);
+	printf("Check 6.2");
+	sqlite3_bind_text(stmt, 2, dni, strlen(dni), SQLITE_STATIC);
+	printf("Check 6.3");
+	sqlite3_bind_text(stmt, 3, getFecha(fechaIni), strlen(getFecha(fechaIni)), SQLITE_STATIC);
+	printf("Check 6.4");
+	sqlite3_bind_text(stmt, 4, getFecha(fechaFin), strlen(getFecha(fechaFin)), SQLITE_STATIC);
+	printf("Check 6.5");
+	if (sqlite3_step(stmt) == SQLITE_DONE)
+	{
+		sqlite3_finalize(stmt);
+        printf("Reservar exitosa\n");
+        return 1;
+    } else {
         sqlite3_finalize(stmt);
-        return 0; // No se encontró el autor
-    }
-    // Obtener el ID del autor
-    int idAutor = sqlite3_column_int(stmt, 0);
+        printf("Reserva Fallida\n");
 
-    // Liberar recursos
-    sqlite3_finalize(stmt);
-
-    // Consultar la base de datos para obtener los ISBN de los libros escritos por el autor
-    std::string sql2 = "SELECT isbn FROM Autor WHERE id_autor = " + std::to_string(idAutor) + ";";
-    sqlite3_prepare_v2(db, sql2.c_str(), -1, &stmt, nullptr);
-
-    // Obtener los ISBN de los libros
-    std::vector<std::string> isbnList;
-    while (sqlite3_step(stmt) == SQLITE_ROW) {
-        std::string isbn(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
-        isbnList.push_back(isbn);
-    }
-
-    // Liberar recursos
-    sqlite3_finalize(stmt);
-
-    // Consultar la base de datos para obtener los títulos de los libros
-    std::vector<std::string> tituloList;
-    for (const std::string& isbn : isbnList) {
-        std::string sql3 = "SELECT titulo FROM Libro WHERE isbn = '" + isbn + "';";
-        sqlite3_prepare_v2(db, sql3.c_str(), -1, &stmt, nullptr);
-
-        // Obtener el título del libro
-        if (sqlite3_step(stmt) == SQLITE_ROW) {
-            std::string titulo(reinterpret_cast<const char*>(sqlite3_column_text(stmt, 0)));
-            tituloList.push_back(titulo);
-        }
-
-        // Liberar recursos
-        sqlite3_finalize(stmt);
-    }
-
-    // Enviar los títulos al cliente a través del socket
-    std::string response;
-    for (const std::string& titulo : tituloList) {
-        response += titulo + "#";
-    }
-    /
-    // Enviar la respuesta al cliente
-    //send(comm_socket, response.c_str(), response.size(), 0);
-    //Imaginando que el autor introducido es Stephen King
-    // Crear manualmente la lista de libros de Stephen King
-    vector<string> listaTitulos = {"It", "The Shining", "Misery", "Pet Sematary", "The Stand"};
-
-    // Enviar la respuesta al cliente
-    string response;
-    for (const string& titulo : listaTitulos) {
-        response += titulo + "#";
-    }
-    send(comm_socket, response.c_str(), response.size(), 0);
-
-    return 1;
-*/
+        return 0;
+	}
 }

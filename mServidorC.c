@@ -182,7 +182,20 @@ int main(int argc, char *argv[]) {
                 send(comm_socket, sendBuff, sizeof(sendBuff), 0);
                 printf("Answer sended\n");
             }
-
+            if(recvBuff[0]=='R' && recvBuff[1]=='E' && recvBuff[2]=='S')
+            {
+                if(reservarLibro(recvBuff, sizeof(recvBuff))==1)
+                {
+                    sendBuff[0] = '1';
+                }else
+                {
+                    sendBuff[0] = '0';
+                }
+                printf("%i", reservarLibro(recvBuff, sizeof(recvBuff)));
+                printf("Sending asnwer...\n");
+                send(comm_socket, sendBuff, sizeof(recvBuff), 0);
+                printf("Answer sended\n");
+            }
 
             if(recvBuff[0]=='B' && recvBuff[1]=='Y' && recvBuff[2]=='E')
             {
