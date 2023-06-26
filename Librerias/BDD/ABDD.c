@@ -855,7 +855,7 @@ char* searchBooks(char buffer[], int length){
 	titulo = strtok(NULL, "#");
 	printf("%s", titulo);
     // Realizar la búsqueda en la base de datos
-    char sql[] = "Select titulo, isbn from libro WHERE titulo = ?";
+    char sql[] = "Select l.titulo,l.isbn,r.dni From libro l Left Join reserva As r On r.isbn=l.isbn Where l.titulo = ?";
     sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
     sqlite3_bind_text(stmt, 1, titulo, strlen(titulo), SQLITE_STATIC);
 	
@@ -867,9 +867,14 @@ char* searchBooks(char buffer[], int length){
 		j = 1;
 		//hacer lisat con los resultados
 		char *nuevoChurro = malloc(sizeof(sqlite3_column_text(stmt, 0)) + sizeof(sqlite3_column_text(stmt, 1))+5);
-		strcpy(nuevoChurro, sqlite3_column_text(stmt, 0));
-		strcat(nuevoChurro, "----");
+		strcpy(nuevoChurro, "Titulo: ");
+		strcat(nuevoChurro, sqlite3_column_text(stmt, 0));
+		strcat(nuevoChurro, "\nISBN: ");
         strcat(nuevoChurro, sqlite3_column_text(stmt, 1));
+		if(sqlite3_column_text(stmt, 1)!= NULL)
+		{
+			strcat(nuevoChurro, " *RESERVADO");
+		}
         char *nuevaLista = malloc(sizeof(response) + sizeof(nuevoChurro)+5);
 		strcpy(nuevaLista, response);
 		strcat(nuevaLista, "\n");
@@ -945,7 +950,8 @@ int reservarLibro(char buffer[], int length)
 {
 	char *token;
     // Obtener el título del libro enviado desde el cliente
-    char *isbn, *dni, *correo, *dia, *mes, *anyo; 
+    char *isbn, *correo, *dia, *mes, *anyo; 
+	char *dni = malloc(sizeof(char)*20);
 	printf("Check 1");
 	token = strtok(buffer, "##");
 	isbn = strtok(NULL, "#");
@@ -953,22 +959,25 @@ int reservarLibro(char buffer[], int length)
 	dia = strtok(NULL, "#");
 	mes = strtok(NULL, "#");
 	anyo = strtok(NULL, "#");
-	printf("Check 2");
+	printf("Check 2\n");
+	printf("ISBN: %s\n", isbn);
+	printf("Correo: %s\n", correo);
+	printf("DIa: %s\n", dia);
+	printf("Mes: %s\n", mes);
 
 	Fecha *fechaIni = crearFecha(strtol(dia, NULL, 10),strtol(mes, NULL, 10),strtol(anyo, NULL, 10));
-	printf("%i", fechaIni->dia);
 	printf("Check 3");
 	Fecha *fechaFin = calcularFecha(fechaIni, 15);
 	printf("Check 4");
 	
-	char sql[] = "Select dni from usuario where correo = '";
+	char sql[] = "Select dni from usuario where correo = ?";
     sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
     sqlite3_bind_text(stmt, 1, correo, strlen(correo), SQLITE_STATIC);
 	printf("Check 5.1");
-
 	if (sqlite3_step(stmt) == SQLITE_ROW)
 	{
-		dni = (char*)sqlite3_column_text(stmt, 0);
+		strcpy(dni, (char*)sqlite3_column_text(stmt, 0));
+		printf("\nDNI: %s\n", dni);
 	}
 	printf("Check 5.2");
 	sqlite3_finalize(stmt);
@@ -978,7 +987,9 @@ int reservarLibro(char buffer[], int length)
 	printf("Check 6.1");
     sqlite3_bind_text(stmt, 1, isbn, strlen(isbn), SQLITE_STATIC);
 	printf("Check 6.2");
+	printf("\nDNI: %s\n", dni);
 	sqlite3_bind_text(stmt, 2, dni, strlen(dni), SQLITE_STATIC);
+	printf("\nDNI: %s\n", dni);
 	printf("Check 6.3");
 	sqlite3_bind_text(stmt, 3, getFecha(fechaIni), strlen(getFecha(fechaIni)), SQLITE_STATIC);
 	printf("Check 6.4");

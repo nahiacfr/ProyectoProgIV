@@ -47,45 +47,29 @@ if (fecha1.anyo < fecha2.anyo) {
     Formato: dd/mm/aaaa
 */
 char* getFecha(Fecha *fecha)
-{   printf("Check F1");
+{   
     char* resultado;
-    printf("%i", fecha->dia);
-    printf("Check F2");
     char dia[3];
-    
     printf("Check F2.1");
     itoa(fecha->dia, dia, 10);
     printf("Check F2.2");
     char mes[3];
-    printf("Check F2.3");
     itoa(fecha->mes, mes, 10);
-    printf("Check F2.4");
     char anyo[5];
-    printf("Check F2.5");
     itoa(fecha->anyo, anyo, 10);
-    printf("Check F2.6");
     char *fechaAux = malloc(sizeof(int) * 3 + sizeof("/") * 2 + 1);
-    printf("Check F3");
 	strcpy(fechaAux, dia);
-    printf("Check F4");
   	strcat(fechaAux, "/");
-    printf("Check F5");
   	strcat(fechaAux, mes);
-    printf("Check F6");
   	strcat(fechaAux, "/");
-    printf("Check F7");
     strcat(fechaAux, anyo);
-    printf("Check F8");
-  	strcat(fechaAux, "/");
-    printf("Check F9");
     resultado = fechaAux;
-    printf("Check F10");
     free(fechaAux);
-    printf("Check F11");
     return resultado;
 }
 Fecha* calcularFecha(Fecha *fechaIni, int dias)
 {       
+    printf("Fecha\n");
     if(dias >= 15)
     {
         dias = 15;
@@ -94,7 +78,7 @@ Fecha* calcularFecha(Fecha *fechaIni, int dias)
     Fecha* fechaFin = malloc(sizeof(Fecha));
 
     int diasRest;
-    switch (fechaFin->mes)
+    switch (fechaIni->mes)
     {
     case 1:
     case 3:
@@ -103,39 +87,75 @@ Fecha* calcularFecha(Fecha *fechaIni, int dias)
     case 8:
     case 10:
     case 12:
-        if(fechaFin->dia + dias > 31)
+    printf("Check 31");
+        if(fechaIni->dia + dias > 31)
         {  
-            diasRest = dias - (31 - fechaFin->dia);
+            printf("Check +31");
+            diasRest = dias - (31 - fechaIni->dia);
             fechaFin->dia = diasRest;
-            fechaFin->mes++;
+            if (fechaIni->mes + 1 > 12)
+            {
+                printf("Check Mes > 12");
+                fechaFin->mes = 1;
+                fechaFin->anyo = fechaIni->anyo + 1;
+            }else
+            {
+                printf("Check Mes + 1");
+                fechaFin->mes = fechaIni->mes + 1;
+                fechaFin->anyo = fechaIni->anyo;
+            }
+            
         }else
         {
-            fechaFin->dia += dias; 
+            printf("Check -31");
+            fechaFin->dia = fechaIni->dia + dias;
+            fechaFin->mes = fechaIni->mes;
+            fechaFin->anyo = fechaIni->anyo;
         }
         break;
     case 4:
     case 6:
     case 9:
     case 11:
-        if(fechaFin->dia + dias > 30)
+        if(fechaIni->dia + dias > 30)
         {  
-            diasRest = dias - (30 - fechaFin->dia);
+            diasRest = dias - (30 - fechaIni->dia);
             fechaFin->dia = diasRest;
-            fechaFin->mes++;
+            if (fechaIni->mes + 1 > 12)
+            {
+                fechaFin->mes = 1;
+                fechaFin->anyo = fechaIni->anyo + 1;
+            }else
+            {
+                fechaFin->mes = fechaIni->mes + 1;
+                fechaFin->anyo = fechaIni->anyo;
+            }
         }else
         {
-            fechaFin->dia += dias; 
+            fechaFin->dia = fechaIni->dia + dias; 
+            fechaFin->mes = fechaIni->mes;
+            fechaFin->anyo = fechaIni->anyo;
         }
         break;
     case 2:
-        if(fechaFin->dia + dias > 28)
+        if(fechaIni->dia + dias > 28)
         {  
-            diasRest = dias - (28 - fechaFin->dia);
+            diasRest = dias - (28 - fechaIni->dia);
             fechaFin->dia = diasRest;
-            fechaFin->mes++;
+            if (fechaIni->mes + 1 > 12)
+            {
+                fechaFin->mes = 1;
+                fechaFin->anyo = fechaIni->anyo + 1;
+            }else
+            {
+                fechaFin->mes = fechaIni->mes + 1;
+                fechaFin->anyo = fechaIni->anyo;
+            }
         }else
         {
-            fechaFin->dia += dias; 
+            fechaFin->dia = fechaIni->dia + dias;
+            fechaFin->mes = fechaIni->mes;
+            fechaFin->anyo = fechaIni->anyo;
         }
         break;
     default:
