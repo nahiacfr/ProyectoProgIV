@@ -241,7 +241,7 @@ int menuBuscar()
     {
         system("cls"); //añadido para que la pantalla no se llene de mucha información
         cout << "---------------------"<<endl<<"MENU BUSCAR"<<endl<<"---------------------"<<endl;
-        cout << "1.Buscar libro por titulo"<<endl<<"2.Buscar libro por autor"<<endl<<"3.Volver menu principal"<<endl;
+        cout << "1.Buscar libro por titulo"<<endl<<"2.Buscar libro por autor"<<endl<<"3.Volver menu principal"<<endl<<"4.Salir"<<endl;
         
         int result;
         cout << "Seleccion: "<<endl;
@@ -265,6 +265,12 @@ int menuBuscar()
             Sleep(SECONDS_TO_CONTINUE);
             mainMenuUser();
             active=false;
+            break;
+        case 4:
+            logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Salir");
+            cout << "Has salido de la app"<<endl;
+            active=false;
+            send(s, "BYE", 3, 0);
             break;
         default:
             cout<<"Introduce un valor valido!"<<endl;
@@ -308,7 +314,7 @@ void buscarTitulo()
 
     cout << recvBuff << endl;
     //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
-    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl;
+    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl<<"Introduzca 1 para salir"<<endl;
     //TODO for con print para cada libro que salga
     cin>>seleccion;
     if (seleccion=="0")
@@ -316,6 +322,10 @@ void buscarTitulo()
         cout << "Volviendo al menu busqueda."<<endl;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
+    } else if (seleccion == "1"){
+        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Salir");
+            cout << "Has salido de la app"<<endl;
+            send(s, "BYE", 3, 0);
     }
 
     else
@@ -367,7 +377,7 @@ void buscarAutor()
 
     cout << recvBuff << endl;
     //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
-    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl;
+    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl<<"Introduzca 1 para salir"<<endl;
     //TODO for con print para cada libro que salga
     cin>>seleccion;
    
@@ -376,6 +386,10 @@ void buscarAutor()
         cout << "Volviendo al menu busqueda."<<endl;
         Sleep(SECONDS_TO_CONTINUE);
         menuBuscar();
+    } else if (seleccion == "1"){
+        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Salir");
+            cout << "Has salido de la app"<<endl;
+            send(s, "BYE", 3, 0);
     }
 
     else
