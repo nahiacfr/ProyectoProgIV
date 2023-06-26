@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 
 	printf( "Bind done.");
     printf("\n");
-    escribir_mensaje(logSer, INFO, "Bind porteado correctamente"); //no sé si es el verbo correcto
+    escribir_mensaje(logSer, INFO, "Bind porteado correctamente"); //no sé si es el verbo correcto **
 
 	//LISTEN to incoming connections (socket server moves to listening mode)
 	if (listen(conn_socket, 1) == SOCKET_ERROR) {
@@ -132,6 +132,7 @@ int main(int argc, char *argv[])
 		printf( "accept failed with error code : ");
         //printf(WSAGetLastError());
         printf("\n");
+        escribir_mensaje(logSer, ER, "Fallo en la conexion");
 		closesocket(conn_socket);
 		WSACleanup();
 		return -1;
@@ -142,6 +143,7 @@ int main(int argc, char *argv[])
     //printf(ntohs(client.sin_port));
     printf(")");
     printf("\n");
+    escribir_mensaje(logSer, INFO, "Conexión recibida");
 
 	// Closing the listening sockets (is not going to be used anymore)
 	closesocket(conn_socket);
@@ -154,8 +156,10 @@ int main(int argc, char *argv[])
         if (bytes > 0) {
             printf( "Message recived");
             printf("\n");
+            //escribir_mensaje(logSer, INFO, "Mensaje de cliente recibido");
             if(recvBuff[0]=='I' && recvBuff[1]=='N' && recvBuff[2]=='S')
             {
+                escribir_mensaje(logSer, INFO, "Mensaje de inicio de sesión recibido");
                 if(verifyUserFromSocket(recvBuff, sizeof(recvBuff))==1)
                 {
                     sendBuff[0] = '1';
@@ -168,9 +172,11 @@ int main(int argc, char *argv[])
                 send(comm_socket, sendBuff, sizeof(recvBuff), 0);
                 printf( "Answer sended");
                 printf("\n");
+                escribir_mensaje(logSer, INFO, "Respuesta enviada sobre inicio de sesión");
             }
             if(recvBuff[0]=='R' && recvBuff[1]=='E' && recvBuff[2]=='G')
             {
+                escribir_mensaje(logSer, INFO, "Mensaje de registro de usuario recibido");
                 if(saveUserBD(recvBuff, sizeof(recvBuff))==1)
                 {
                     sendBuff[0] = '1';
@@ -181,23 +187,29 @@ int main(int argc, char *argv[])
                 printf("Sending asnwer...\n");
                 send(comm_socket, sendBuff, sizeof(recvBuff), 0);
                 printf("Answer sended\n");
+                escribir_mensaje(logSer, INFO, "Respuesta enviada sobre registro de usuario");
             }
             if(recvBuff[0]=='B' && recvBuff[1]=='U' && recvBuff[2]=='S')
             {
+                escribir_mensaje(logSer, INFO, "Mensaje de datos de busqueda de libro por titulo recibidos");
                 strcpy(sendBuff, searchBooks(recvBuff, sizeof(recvBuff)));
                 printf("Sending asnwer...\n");
                 send(comm_socket, sendBuff, sizeof(sendBuff), 0);
                 printf("Answer sended\n");
+                escribir_mensaje(logSer, INFO, "Respuesta sobre datos de busqueda de libro por titulo enviada");
             }
             if(recvBuff[0]=='A' && recvBuff[1]=='U' && recvBuff[2]=='T')
             {
+                escribir_mensaje(logSer, INFO, "Mensaje de datos de busqueda de libro por autor recibidos");
                 strcpy(sendBuff, searchBooksAuthor(recvBuff, sizeof(recvBuff)));
                 printf("Sending asnwer...\n");
                 send(comm_socket, sendBuff, sizeof(sendBuff), 0);
                 printf("Answer sended\n");
+                escribir_mensaje(logSer, INFO, "Respuesta sobre datos de busqueda de libro por autor enviada");
             }
             if(recvBuff[0]=='R' && recvBuff[1]=='E' && recvBuff[2]=='S')
             {
+                escribir_mensaje(logSer, INFO, "Mensaje de datos sobre reserva recibidos");
                 if(reservarLibro(recvBuff, sizeof(recvBuff))==1)
                 {
                     sendBuff[0] = '1';
@@ -208,13 +220,16 @@ int main(int argc, char *argv[])
                 printf("Sending asnwer...\n");
                 send(comm_socket, sendBuff, sizeof(recvBuff), 0);
                 printf("Answer sended\n");
+                escribir_mensaje(logSer, INFO, "Respuesta sobre reserva enviada");
             }
             if(recvBuff[0]=='L' && recvBuff[1]=='S' && recvBuff[2]=='T')
             {
+                escribir_mensaje(logSer, INFO, "Mensaje listado de libros recibido");
                 strcpy(sendBuff, listBooks(recvBuff, sizeof(recvBuff)));
                 printf("Sending asnwer...\n");
                 send(comm_socket, sendBuff, sizeof(sendBuff), 0);
                 printf("Answer sended\n");
+                escribir_mensaje(logSer, INFO, "Respuesta sobre listado de libros enviada");
             }
             if(recvBuff[0]=='B' && recvBuff[1]=='Y' && recvBuff[2]=='E')
             {
@@ -224,6 +239,7 @@ int main(int argc, char *argv[])
     } while (1);
 
     // CLOSING the sockets and cleaning Winsock...
+    escribir_mensaje(logSer, INFO, "Cerrando sockets y limpliando Winsock");
     closesocket(comm_socket);
     WSACleanup();
 
