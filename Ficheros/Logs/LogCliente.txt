@@ -1,2 +1,0 @@
-[2023-06-26 19:12:50] [INFO]: Winsock iniciado correctamente
-[2023-06-26 19:12:50] [INFO]: Socket creado correctamente

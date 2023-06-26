@@ -490,7 +490,6 @@ void preReserva()
     cout << "1. Reservar libro"<<endl<<"2. Volver al menu busqueda"<<endl<<"3. Salir"<<endl;
     //TODO for con print para cada libro que salga
     cin>>seleccion;
-    cout << "Check1" << endl;
     if (seleccion == "1")
     {
         logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Reservar libro");
