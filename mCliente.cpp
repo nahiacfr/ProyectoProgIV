@@ -28,6 +28,7 @@ int menuBuscar();
 void buscarTitulo();
 void buscarAutor();
 void reservar(string nombre);
+void listarLibros();
 
 WSADATA wsaData;
 SOCKET s;
@@ -261,7 +262,7 @@ int menuBuscar()
             break;
         case 3:
             logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado listar libros");
-            buscarAutor();
+            listarLibros();
             active=false;
             break;
         case 4:

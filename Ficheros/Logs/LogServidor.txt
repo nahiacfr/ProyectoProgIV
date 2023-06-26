@@ -1,0 +1,8 @@
+[2023-06-26 13:23:06] [INFO]: Winsock iniciado correctamente
+[2023-06-26 13:23:06] [INFO]: Socket creado correctamente
+[2023-06-26 13:23:06] [INFO]: Bind porteado correctamente
+[2023-06-26 13:23:06] [INFO]: Esperando conexiones
+[2023-06-26 13:25:00] [INFO]: Winsock iniciado correctamente
+[2023-06-26 13:25:00] [INFO]: Socket creado correctamente
+[2023-06-26 13:25:00] [INFO]: Bind porteado correctamente
+[2023-06-26 13:25:00] [INFO]: Esperando conexiones

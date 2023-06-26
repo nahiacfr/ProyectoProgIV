@@ -57,6 +57,6 @@ int verifyUserFromSocket(char buffer[], int length);
 char* searchBooks(char buffer[], int length);
 char* searchBooksAuthor(char buffer[], int length);
 int reservarLibro(char buffer[], int length);
-char* listBooks(char buffer[], int length)
+char* listBooks(char buffer[], int length);
 
 #endif

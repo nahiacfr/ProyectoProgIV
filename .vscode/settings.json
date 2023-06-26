@@ -47,7 +47,8 @@
         "fecha.h": "c",
         "cstring": "cpp",
         "ctime": "cpp",
-        "abdd.h": "c"
+        "abdd.h": "c",
+        "log.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

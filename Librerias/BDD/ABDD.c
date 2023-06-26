@@ -1018,8 +1018,19 @@ char* listBooks(char buffer[], int length)
 	token = strtok(buffer, "##");
 	reservados = strtok(NULL, "#");
     // Realizar la búsqueda en la base de datos
-    char sql[] = "Select l.titulo,l.isbn,r.dni From libro l Left Join reserva As r On r.isbn=l.isbn";
-    sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	if (strcmp (reservados, "1")==0)
+	{
+		char sql[] = "Select l.titulo,l.isbn,r.dni From libro l Left Join reserva As r On r.isbn=l.isbn";
+		sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	}else if (strcmp (reservados, "2")==0)
+	{
+		char sql[] = "Select l.titulo,l.isbn,r.dni From libro l Left Join reserva As r On r.isbn=l.isbn where r.dni is not null";
+		sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	}else
+	{
+		char sql[] = "Select l.titulo,l.isbn,r.dni From libro l Left Join reserva As r On r.isbn=l.isbn";
+		sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	}
 
     char *response = "";
     // Ejecutar la consulta y recopilar los resultados
