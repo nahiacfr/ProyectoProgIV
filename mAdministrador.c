@@ -32,7 +32,6 @@ void reservar(char nombre);
 //Base de Datos
 sqlite3 *dbM;
 
-//con fgets y sscanf no me salía bien
 int main() //MainMenu añadido al main principal
 {
     system("cls"); //añadido para que la pantalla no se llene de mucha información
@@ -103,12 +102,6 @@ void mainMenuAdmin()
             administrarEditoriales();
             active=false;
             break;
-        /*case 4:
-            //escribir_mensaje(logAd, INFO, "Seleccionado Administrar Reservas");   
-            //administrarReservas();
-            printf("Introduce un valor valido!\n");
-            Sleep(SECONDS_TO_CONTINUE);
-            break;*/
         default:
             escribir_mensaje(logAd, INFO, "Seleccion Nula");
             printf("Introduce un valor valido!\n");
@@ -410,18 +403,6 @@ void administrarReservas()
         break;
     case 4: ;//Listado completo
         escribir_mensaje(logAd, INFO, "Seleccionado Mostrar listado completo");
-        //leer de fichero
-    /*  FILE *f;
-        char string[1000]="";
-        f=fopen("Libros.txt","r"); //crear archivo de reservas?
-
-        while (fgets(string, sizeof(string), f))
-        {
-            printf("%s\n",string);
-        }
-        fclose(f);
-        //printf("Espere por favor \n");
-    */
         break;
     default:
         escribir_mensaje(logAd, INFO, "Seleccion Nula");

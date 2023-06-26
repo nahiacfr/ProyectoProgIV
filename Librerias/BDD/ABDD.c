@@ -146,16 +146,6 @@ void eliminarUsuario(char *dni){
 	Devuelve un usuario con los datos del usuario obtenidos de la BDD
 */
 Usuario obtenerUsuario(Usuario *usAux, char* dniUs){
-	/*char sql3[] = "select * from usuario where DNI = ?";
-	sqlite3_prepare_v2(db, sql3, strlen(sql3), &stmt, NULL) ;
-	sqlite3_bind_text(stmt, 1, dniUs, strlen(dniUs), SQLITE_STATIC);
-	
-	result = sqlite3_step(stmt);
-	usAux->dni = (char*) sqlite3_column_text(stmt, 0);
-	usAux->nombre = (char*) sqlite3_column_text(stmt, 1);
-	usAux->apellidos = (char*) sqlite3_column_text(stmt, 2);
-	usAux->correo = (char*) sqlite3_column_text(stmt, 3);
-*/
 	//Obtiene los datos del usuario 
 	char sql5[] = "select * from usuario where DNI = ?";
 	sqlite3_prepare_v2(db, sql5, strlen(sql5), &stmt, NULL);
@@ -244,7 +234,6 @@ void insertarLibro(Libro *lib){ //Faltan los autores y las editoriales
 	}
 }
 /*
-	**TODO**
 	Inserta multiples libros en la base de datos leyendo los datos desde un fichero
 */
 void insertarLibrosFichero(char *ruta){
@@ -404,7 +393,6 @@ void insertarAutor(Autor *au){
 	}
 }
 /*
-	**TODO**
 	Inserta multiples autores en la base de datos leyendo los datos desde un fichero
 */
 void insertarAutoresFichero(char *ruta){
@@ -527,7 +515,6 @@ Autor obtenerAutor(int idAu){
 	return auAux;
 }
 /*
-	**TODO**
 	Devuelve un autor a partir del ISBN de uno de sus libros
 */
 Autor obtenerAutorPorLibro(char *isbn){
@@ -590,7 +577,6 @@ void insertarEditorial(Editorial *ed){
 	}
 }
 /*
-	**TODO**
 	Inserta multiples editoriales en la base de datos leyendo los datos desde un fichero
 */
 void insertarEditorialesFichero(char *ruta){
@@ -709,7 +695,6 @@ Editorial obtenerEditorial(int idEd){
 	return edAux;
 }
 /*
-	**TODO**
 	Devuelve una editorial a traves del ISBN de uno de sus libros
 */
 Editorial obtenerEditorialPorLibro(char *isbn){
@@ -750,7 +735,6 @@ void imprimirListadoEditoriales(){
 }
 
 /*
-	**TODO**
 	Devuelve un listado de las reservas de un usuario concreto
 */
 void listadoReservas(Reserva **listaRes, int tamanyoLista, Usuario *us){
@@ -793,7 +777,6 @@ Fecha obtenerFechaIni(char *res){
 	return f1;
 }
 Fecha obtenerFechaFin(char *res){
-	//TODO
 	Fecha f1;
 	int dia, mes, anio;
     sscanf(res, "%d/%d/%d", &dia, &mes, &anio);

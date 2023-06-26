@@ -18,36 +18,8 @@
 #define SERVER_PORT 8080
 
 //BD
-
 sqlite3 *db;
-
-/*
-sqlite3_stmt *stmt;
-int result;
-
-
-	//Inicializa la Base de Datos
-
-void inicializarBDD(const char* nombre, sqlite3 *dbIni){
-    db = dbIni;
-	if (sqlite3_open(nombre, &db) == 0){
-		printf("Conexion con la BDD exitosa\n");
-	}else{
-		printf("Error al conectar con la BDD\n");
-	}
-}
-
-	//Cierra la conexion con la Base de Datos
-
-void cerrarBDD(sqlite3 *dbM){
-    sqlite3_close(dbM);
-	sqlite3_close(db);
-}
-*/
-//int verifyUserFromSocket(char buffer[], int length);
 int saveUserBD(char buffer[], int length);
-//int searchBooks(char buffer[], int length, SOCKET comm_socket);
-//int searchBooksAuthor(char buffer[], int length, SOCKET comm_socket);
 
 int main(int argc, char *argv[]) 
 {
@@ -67,7 +39,6 @@ int main(int argc, char *argv[])
 	printf("\nInitialising Winsock...\n");
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
 		printf("Failed. Error Code : ");
-        //printf(WSAGetLastError()); 
         printf("\n");
         escribir_mensaje(logSer, ER, "Fallo al iniciar el Winsock");
 		return -1;
@@ -79,7 +50,6 @@ int main(int argc, char *argv[])
 	//SOCKET creation
 	if ((conn_socket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
 		printf("Could not create socket : "); 
-        //printf(WSAGetLastError());
         printf("\n");
         escribir_mensaje(logSer, ER, "Fallo al Crear el Socket");
 		WSACleanup();
@@ -98,7 +68,6 @@ int main(int argc, char *argv[])
 	if (bind(conn_socket, (struct sockaddr*) &server,
 			sizeof(server)) == SOCKET_ERROR) {
 		printf( "Bind failed with error code: ");
-        //printf(WSAGetLastError());
         printf("\n");
         escribir_mensaje(logSer, ER, "Fallo al portear el Bind");
 		closesocket(conn_socket);
@@ -108,12 +77,11 @@ int main(int argc, char *argv[])
 
 	printf( "Bind done.");
     printf("\n");
-    escribir_mensaje(logSer, INFO, "Bind porteado correctamente"); //no sé si es el verbo correcto **
+    escribir_mensaje(logSer, INFO, "Bind porteado correctamente");
 
 	//LISTEN to incoming connections (socket server moves to listening mode)
 	if (listen(conn_socket, 1) == SOCKET_ERROR) {
 		printf( "Listen failed with error code: ");
-        //printf(WSAGetLastError());
         printf("\n");
         escribir_mensaje(logSer, ER, "Fallo en el LISTEN de conexiones");
 		closesocket(conn_socket);
@@ -130,7 +98,6 @@ int main(int argc, char *argv[])
 	// Using comm_socket is able to send/receive data to/from connected client
 	if (comm_socket == INVALID_SOCKET) {
 		printf( "accept failed with error code : ");
-        //printf(WSAGetLastError());
         printf("\n");
         escribir_mensaje(logSer, ER, "Fallo en la conexion");
 		closesocket(conn_socket);
@@ -138,9 +105,7 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 	printf( "Incomming connection from: ");
-    //printf(inet_ntoa(client.sin_addr));
     printf("(");
-    //printf(ntohs(client.sin_port));
     printf(")");
     printf("\n");
     escribir_mensaje(logSer, INFO, "Conexión recibida");
@@ -156,7 +121,7 @@ int main(int argc, char *argv[])
         if (bytes > 0) {
             printf( "Message recived");
             printf("\n");
-            //escribir_mensaje(logSer, INFO, "Mensaje de cliente recibido");
+            escribir_mensaje(logSer, INFO, "Mensaje de cliente recibido");
             if(recvBuff[0]=='I' && recvBuff[1]=='N' && recvBuff[2]=='S')
             {
                 escribir_mensaje(logSer, INFO, "Mensaje de inicio de sesión recibido");
@@ -245,8 +210,6 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-
-
 
 int saveUserBD(char buffer[], int length) {
     char* nombre;

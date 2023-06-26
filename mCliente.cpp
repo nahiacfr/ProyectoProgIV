@@ -8,7 +8,6 @@
 #include "Librerias\CPP\logCPP.h"
 extern "C"
 {
-    //#include "Librerias\log.h"
     #include "Librerias\config.h"
 }
 
@@ -43,11 +42,6 @@ int main(int argc, char const *argv[])
     //Log
     Log *logCl = new Log;
     logCl = logCl->crear_log("Ficheros/Logs/LogCliente.txt");
-    /*if (logCl != nullptr) {
-        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Este es un mensaje de información");
-    } else {
-        cout << endl << "ERROR" << endl;
-    }*/
 
     cout << endl << "Initialising Winsock..." << endl;
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -488,7 +482,6 @@ void preReserva()
     string isbn;
     cout << "------------------------------------------"<<endl;
     cout << "1. Reservar libro"<<endl<<"2. Volver al menu busqueda"<<endl<<"3. Salir"<<endl;
-    //TODO for con print para cada libro que salga
     cin>>seleccion;
     if (seleccion == "1")
     {
