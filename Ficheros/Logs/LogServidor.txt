@@ -6,3 +6,581 @@
 [2023-06-26 13:25:00] [INFO]: Socket creado correctamente
 [2023-06-26 13:25:00] [INFO]: Bind porteado correctamente
 [2023-06-26 13:25:00] [INFO]: Esperando conexiones
+[2023-06-26 14:20:37] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:20:37] [INFO]: Socket creado correctamente
+[2023-06-26 14:20:37] [INFO]: Bind porteado correctamente
+[2023-06-26 14:20:37] [INFO]: Esperando conexiones
+[2023-06-26 14:22:19] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:22:19] [INFO]: Socket creado correctamente
+[2023-06-26 14:22:19] [INFO]: Bind porteado correctamente
+[2023-06-26 14:22:19] [INFO]: Esperando conexiones
+[2023-06-26 14:23:17] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:23:17] [INFO]: Socket creado correctamente
+[2023-06-26 14:23:17] [INFO]: Bind porteado correctamente
+[2023-06-26 14:23:17] [INFO]: Esperando conexiones
+[2023-06-26 14:24:12] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:24:12] [INFO]: Socket creado correctamente
+[2023-06-26 14:24:12] [INFO]: Bind porteado correctamente
+[2023-06-26 14:24:12] [INFO]: Esperando conexiones
+[2023-06-26 14:25:27] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:25:27] [INFO]: Socket creado correctamente
+[2023-06-26 14:25:27] [INFO]: Bind porteado correctamente
+[2023-06-26 14:25:27] [INFO]: Esperando conexiones
+[2023-06-26 14:26:57] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:26:57] [INFO]: Socket creado correctamente
+[2023-06-26 14:26:57] [INFO]: Bind porteado correctamente
+[2023-06-26 14:26:57] [INFO]: Esperando conexiones
+[2023-06-26 14:32:04] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:32:04] [INFO]: Socket creado correctamente
+[2023-06-26 14:32:04] [INFO]: Bind porteado correctamente
+[2023-06-26 14:32:04] [INFO]: Esperando conexiones
+[2023-06-26 14:32:06] [INFO]: Conexión recibida
+[2023-06-26 14:32:07] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:32:07] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:32:14] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:32:14] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 14:32:36] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:34:47] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:34:47] [INFO]: Socket creado correctamente
+[2023-06-26 14:34:47] [INFO]: Bind porteado correctamente
+[2023-06-26 14:34:47] [INFO]: Esperando conexiones
+[2023-06-26 14:34:49] [INFO]: Conexión recibida
+[2023-06-26 14:34:51] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:34:51] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:34:57] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:34:57] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 14:35:42] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:35:42] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 14:35:53] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:35:53] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 14:36:10] [INFO]: Cerrando sockets y limpliando Winsock
+[2023-06-26 14:36:20] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:36:20] [INFO]: Socket creado correctamente
+[2023-06-26 14:36:20] [INFO]: Bind porteado correctamente
+[2023-06-26 14:36:20] [INFO]: Esperando conexiones
+[2023-06-26 14:36:21] [INFO]: Conexión recibida
+[2023-06-26 14:36:24] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:36:24] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:36:31] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 14:36:31] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 14:36:45] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:36:45] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 14:36:56] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:39:25] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:39:25] [INFO]: Socket creado correctamente
+[2023-06-26 14:39:25] [INFO]: Bind porteado correctamente
+[2023-06-26 14:39:25] [INFO]: Esperando conexiones
+[2023-06-26 14:39:27] [INFO]: Conexión recibida
+[2023-06-26 14:39:28] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:39:28] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:39:37] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:41:02] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:41:02] [INFO]: Socket creado correctamente
+[2023-06-26 14:41:02] [INFO]: Bind porteado correctamente
+[2023-06-26 14:41:02] [INFO]: Esperando conexiones
+[2023-06-26 14:41:04] [INFO]: Conexión recibida
+[2023-06-26 14:41:05] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:41:05] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:41:12] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:42:33] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:42:33] [INFO]: Socket creado correctamente
+[2023-06-26 14:42:33] [INFO]: Bind porteado correctamente
+[2023-06-26 14:42:33] [INFO]: Esperando conexiones
+[2023-06-26 14:42:35] [INFO]: Conexión recibida
+[2023-06-26 14:42:39] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:42:39] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:42:45] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:43:32] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:43:32] [INFO]: Socket creado correctamente
+[2023-06-26 14:43:32] [INFO]: Bind porteado correctamente
+[2023-06-26 14:43:32] [INFO]: Esperando conexiones
+[2023-06-26 14:43:33] [INFO]: Conexión recibida
+[2023-06-26 14:43:35] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:43:35] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:43:40] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:45:20] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:45:20] [INFO]: Socket creado correctamente
+[2023-06-26 14:45:20] [INFO]: Bind porteado correctamente
+[2023-06-26 14:45:20] [INFO]: Esperando conexiones
+[2023-06-26 14:45:22] [INFO]: Conexión recibida
+[2023-06-26 14:45:23] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:45:23] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:45:29] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:45:55] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:45:55] [INFO]: Socket creado correctamente
+[2023-06-26 14:45:55] [INFO]: Bind porteado correctamente
+[2023-06-26 14:45:55] [INFO]: Esperando conexiones
+[2023-06-26 14:46:00] [INFO]: Conexión recibida
+[2023-06-26 14:46:03] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:46:03] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:46:10] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:49:15] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:49:15] [INFO]: Socket creado correctamente
+[2023-06-26 14:49:15] [INFO]: Bind porteado correctamente
+[2023-06-26 14:49:15] [INFO]: Esperando conexiones
+[2023-06-26 14:49:18] [INFO]: Conexión recibida
+[2023-06-26 14:49:19] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:49:19] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:49:26] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:50:59] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:50:59] [INFO]: Socket creado correctamente
+[2023-06-26 14:50:59] [INFO]: Bind porteado correctamente
+[2023-06-26 14:50:59] [INFO]: Esperando conexiones
+[2023-06-26 14:51:02] [INFO]: Conexión recibida
+[2023-06-26 14:51:03] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:51:03] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:51:09] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:51:18] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:51:18] [INFO]: Socket creado correctamente
+[2023-06-26 14:51:18] [INFO]: Bind porteado correctamente
+[2023-06-26 14:51:18] [INFO]: Esperando conexiones
+[2023-06-26 14:51:20] [INFO]: Conexión recibida
+[2023-06-26 14:51:22] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:51:22] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:51:29] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 14:51:29] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 14:51:45] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:53:02] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:53:02] [INFO]: Socket creado correctamente
+[2023-06-26 14:53:02] [INFO]: Bind porteado correctamente
+[2023-06-26 14:53:02] [INFO]: Esperando conexiones
+[2023-06-26 14:53:05] [INFO]: Conexión recibida
+[2023-06-26 14:53:08] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:53:08] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:53:15] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:54:30] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:54:30] [INFO]: Socket creado correctamente
+[2023-06-26 14:54:30] [INFO]: Bind porteado correctamente
+[2023-06-26 14:54:30] [INFO]: Esperando conexiones
+[2023-06-26 14:54:33] [INFO]: Conexión recibida
+[2023-06-26 14:54:43] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:54:43] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:54:50] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:55:36] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:55:36] [INFO]: Socket creado correctamente
+[2023-06-26 14:55:36] [INFO]: Bind porteado correctamente
+[2023-06-26 14:55:36] [INFO]: Esperando conexiones
+[2023-06-26 14:55:40] [INFO]: Conexión recibida
+[2023-06-26 14:55:41] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:55:41] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:55:57] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:59:28] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:59:28] [INFO]: Socket creado correctamente
+[2023-06-26 14:59:28] [INFO]: Bind porteado correctamente
+[2023-06-26 14:59:28] [INFO]: Esperando conexiones
+[2023-06-26 14:59:30] [INFO]: Conexión recibida
+[2023-06-26 14:59:31] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 14:59:31] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 14:59:39] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 14:59:39] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 15:00:02] [INFO]: Cerrando sockets y limpliando Winsock
+[2023-06-26 15:00:10] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:00:10] [INFO]: Socket creado correctamente
+[2023-06-26 15:00:10] [INFO]: Bind porteado correctamente
+[2023-06-26 15:00:10] [INFO]: Esperando conexiones
+[2023-06-26 15:00:12] [INFO]: Conexión recibida
+[2023-06-26 15:00:15] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:00:15] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:00:21] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:01:21] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:01:21] [INFO]: Socket creado correctamente
+[2023-06-26 15:01:21] [INFO]: Bind porteado correctamente
+[2023-06-26 15:01:21] [INFO]: Esperando conexiones
+[2023-06-26 15:01:27] [INFO]: Conexión recibida
+[2023-06-26 15:01:30] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:01:30] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:01:38] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 15:01:38] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 15:01:59] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 15:01:59] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 15:02:22] [INFO]: Mensaje de datos sobre reserva recibidos
+[2023-06-26 15:02:22] [INFO]: Respuesta sobre reserva enviada
+[2023-06-26 15:02:31] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:02:31] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 15:02:44] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:02:44] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 15:03:01] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:03:01] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 15:03:11] [INFO]: Cerrando sockets y limpliando Winsock
+[2023-06-26 15:03:59] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:03:59] [INFO]: Socket creado correctamente
+[2023-06-26 15:03:59] [INFO]: Bind porteado correctamente
+[2023-06-26 15:03:59] [INFO]: Esperando conexiones
+[2023-06-26 15:04:01] [INFO]: Conexión recibida
+[2023-06-26 15:04:04] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:04:04] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:04:14] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:04:46] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:04:46] [INFO]: Socket creado correctamente
+[2023-06-26 15:04:46] [INFO]: Bind porteado correctamente
+[2023-06-26 15:04:46] [INFO]: Esperando conexiones
+[2023-06-26 15:04:49] [INFO]: Conexión recibida
+[2023-06-26 15:04:54] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:04:54] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:05:06] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:06:29] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:06:29] [INFO]: Socket creado correctamente
+[2023-06-26 15:06:29] [INFO]: Bind porteado correctamente
+[2023-06-26 15:06:29] [INFO]: Esperando conexiones
+[2023-06-26 15:06:32] [INFO]: Conexión recibida
+[2023-06-26 15:06:35] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:06:35] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:06:44] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:07:31] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:07:31] [INFO]: Socket creado correctamente
+[2023-06-26 15:07:31] [INFO]: Bind porteado correctamente
+[2023-06-26 15:07:31] [INFO]: Esperando conexiones
+[2023-06-26 15:07:33] [INFO]: Conexión recibida
+[2023-06-26 15:07:35] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:07:35] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:07:41] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:13:12] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:13:12] [INFO]: Socket creado correctamente
+[2023-06-26 15:13:12] [INFO]: Bind porteado correctamente
+[2023-06-26 15:13:12] [INFO]: Esperando conexiones
+[2023-06-26 15:13:15] [INFO]: Conexión recibida
+[2023-06-26 15:13:17] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:13:17] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:13:25] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:14:50] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:14:50] [INFO]: Socket creado correctamente
+[2023-06-26 15:14:50] [INFO]: Bind porteado correctamente
+[2023-06-26 15:14:50] [INFO]: Esperando conexiones
+[2023-06-26 15:14:53] [INFO]: Conexión recibida
+[2023-06-26 15:14:55] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:14:55] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:15:03] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 15:15:03] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 15:15:13] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:16:10] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:16:10] [INFO]: Socket creado correctamente
+[2023-06-26 15:16:10] [INFO]: Bind porteado correctamente
+[2023-06-26 15:16:10] [INFO]: Esperando conexiones
+[2023-06-26 15:16:12] [INFO]: Conexión recibida
+[2023-06-26 15:16:13] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:16:13] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:16:19] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:17:04] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:17:04] [INFO]: Socket creado correctamente
+[2023-06-26 15:17:04] [INFO]: Bind porteado correctamente
+[2023-06-26 15:17:04] [INFO]: Esperando conexiones
+[2023-06-26 15:17:06] [INFO]: Conexión recibida
+[2023-06-26 15:17:07] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:17:07] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:17:14] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:17:57] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:17:57] [INFO]: Socket creado correctamente
+[2023-06-26 15:17:57] [INFO]: Bind porteado correctamente
+[2023-06-26 15:17:57] [INFO]: Esperando conexiones
+[2023-06-26 15:18:00] [INFO]: Conexión recibida
+[2023-06-26 15:18:01] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:18:01] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:18:07] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:19:31] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:19:31] [INFO]: Socket creado correctamente
+[2023-06-26 15:19:31] [INFO]: Bind porteado correctamente
+[2023-06-26 15:19:31] [INFO]: Esperando conexiones
+[2023-06-26 15:19:33] [INFO]: Conexión recibida
+[2023-06-26 15:19:35] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:19:35] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:19:40] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:21:27] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:21:27] [INFO]: Socket creado correctamente
+[2023-06-26 15:21:27] [INFO]: Bind porteado correctamente
+[2023-06-26 15:21:27] [INFO]: Esperando conexiones
+[2023-06-26 15:21:28] [INFO]: Conexión recibida
+[2023-06-26 15:21:30] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:21:30] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:21:36] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:22:34] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:22:34] [INFO]: Socket creado correctamente
+[2023-06-26 15:22:34] [INFO]: Bind porteado correctamente
+[2023-06-26 15:22:34] [INFO]: Esperando conexiones
+[2023-06-26 15:22:36] [INFO]: Conexión recibida
+[2023-06-26 15:22:38] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:22:38] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:22:45] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:26:18] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:26:18] [INFO]: Socket creado correctamente
+[2023-06-26 15:26:18] [INFO]: Bind porteado correctamente
+[2023-06-26 15:26:18] [INFO]: Esperando conexiones
+[2023-06-26 15:26:21] [INFO]: Conexión recibida
+[2023-06-26 15:26:24] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:26:24] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:26:33] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:26:33] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 15:26:44] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:31:30] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:31:30] [INFO]: Socket creado correctamente
+[2023-06-26 15:31:30] [INFO]: Bind porteado correctamente
+[2023-06-26 15:31:30] [INFO]: Esperando conexiones
+[2023-06-26 15:31:32] [INFO]: Conexión recibida
+[2023-06-26 15:31:34] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:31:34] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:31:41] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:33:18] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:33:18] [INFO]: Socket creado correctamente
+[2023-06-26 15:33:18] [INFO]: Bind porteado correctamente
+[2023-06-26 15:33:18] [INFO]: Esperando conexiones
+[2023-06-26 15:33:20] [INFO]: Conexión recibida
+[2023-06-26 15:33:21] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:33:21] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:33:27] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:35:03] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:35:03] [INFO]: Socket creado correctamente
+[2023-06-26 15:35:03] [INFO]: Bind porteado correctamente
+[2023-06-26 15:35:03] [INFO]: Esperando conexiones
+[2023-06-26 15:35:08] [INFO]: Conexión recibida
+[2023-06-26 15:35:11] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:35:11] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:35:17] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:37:56] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:37:56] [INFO]: Socket creado correctamente
+[2023-06-26 15:37:56] [INFO]: Bind porteado correctamente
+[2023-06-26 15:37:56] [INFO]: Esperando conexiones
+[2023-06-26 15:37:58] [INFO]: Conexión recibida
+[2023-06-26 15:37:59] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:37:59] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:38:06] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:38:12] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:38:12] [INFO]: Socket creado correctamente
+[2023-06-26 15:38:12] [INFO]: Bind porteado correctamente
+[2023-06-26 15:38:12] [INFO]: Esperando conexiones
+[2023-06-26 15:38:15] [INFO]: Conexión recibida
+[2023-06-26 15:38:16] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 15:38:16] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 15:38:23] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 15:38:23] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 15:38:39] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 15:38:39] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 15:38:50] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 15:38:50] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 15:39:04] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 15:39:04] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 15:39:22] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 16:49:41] [INFO]: Winsock iniciado correctamente
+[2023-06-26 16:49:41] [INFO]: Socket creado correctamente
+[2023-06-26 16:49:41] [INFO]: Bind porteado correctamente
+[2023-06-26 16:49:41] [INFO]: Esperando conexiones
+[2023-06-26 16:49:44] [INFO]: Conexión recibida
+[2023-06-26 16:49:46] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 16:49:46] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 16:49:55] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 16:49:55] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 16:50:05] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:04:37] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:04:37] [INFO]: Socket creado correctamente
+[2023-06-26 17:04:37] [INFO]: Bind porteado correctamente
+[2023-06-26 17:04:37] [INFO]: Esperando conexiones
+[2023-06-26 17:04:39] [INFO]: Conexión recibida
+[2023-06-26 17:04:40] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:04:40] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:04:45] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:06:29] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:06:29] [INFO]: Socket creado correctamente
+[2023-06-26 17:06:29] [INFO]: Bind porteado correctamente
+[2023-06-26 17:06:29] [INFO]: Esperando conexiones
+[2023-06-26 17:06:33] [INFO]: Conexión recibida
+[2023-06-26 17:06:37] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:06:37] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:06:46] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:11:25] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:11:25] [INFO]: Socket creado correctamente
+[2023-06-26 17:11:25] [INFO]: Bind porteado correctamente
+[2023-06-26 17:11:25] [INFO]: Esperando conexiones
+[2023-06-26 17:11:27] [INFO]: Conexión recibida
+[2023-06-26 17:11:29] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:11:29] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:11:35] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:11:35] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 17:13:34] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:13:34] [INFO]: Socket creado correctamente
+[2023-06-26 17:13:34] [INFO]: Bind porteado correctamente
+[2023-06-26 17:13:34] [INFO]: Esperando conexiones
+[2023-06-26 17:13:37] [INFO]: Conexión recibida
+[2023-06-26 17:13:39] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:13:39] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:13:44] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:14:51] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:14:51] [INFO]: Socket creado correctamente
+[2023-06-26 17:14:51] [INFO]: Bind porteado correctamente
+[2023-06-26 17:14:51] [INFO]: Esperando conexiones
+[2023-06-26 17:14:53] [INFO]: Conexión recibida
+[2023-06-26 17:14:54] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:14:54] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:15:01] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:15:43] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:15:43] [INFO]: Socket creado correctamente
+[2023-06-26 17:15:43] [INFO]: Bind porteado correctamente
+[2023-06-26 17:15:43] [INFO]: Esperando conexiones
+[2023-06-26 17:15:44] [INFO]: Conexión recibida
+[2023-06-26 17:15:48] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:15:48] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:15:54] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:16:43] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:16:43] [INFO]: Socket creado correctamente
+[2023-06-26 17:16:43] [INFO]: Bind porteado correctamente
+[2023-06-26 17:16:43] [INFO]: Esperando conexiones
+[2023-06-26 17:16:45] [INFO]: Conexión recibida
+[2023-06-26 17:16:46] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:16:46] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:16:52] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:18:14] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:18:14] [INFO]: Socket creado correctamente
+[2023-06-26 17:18:14] [INFO]: Bind porteado correctamente
+[2023-06-26 17:18:14] [INFO]: Esperando conexiones
+[2023-06-26 17:18:22] [INFO]: Conexión recibida
+[2023-06-26 17:18:25] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:18:25] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:18:30] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:21:29] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:21:29] [INFO]: Socket creado correctamente
+[2023-06-26 17:21:29] [INFO]: Bind porteado correctamente
+[2023-06-26 17:21:29] [INFO]: Esperando conexiones
+[2023-06-26 17:21:32] [INFO]: Conexión recibida
+[2023-06-26 17:21:33] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:21:33] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:21:39] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:29:04] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:29:04] [INFO]: Socket creado correctamente
+[2023-06-26 17:29:04] [INFO]: Bind porteado correctamente
+[2023-06-26 17:29:04] [INFO]: Esperando conexiones
+[2023-06-26 17:29:07] [INFO]: Conexión recibida
+[2023-06-26 17:29:08] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:29:08] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:29:14] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:32:15] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:32:15] [INFO]: Socket creado correctamente
+[2023-06-26 17:32:15] [INFO]: Bind porteado correctamente
+[2023-06-26 17:32:15] [INFO]: Esperando conexiones
+[2023-06-26 17:32:18] [INFO]: Conexión recibida
+[2023-06-26 17:32:19] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:32:19] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:32:25] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:32:25] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 17:32:40] [INFO]: Cerrando sockets y limpliando Winsock
+[2023-06-26 17:33:25] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:33:25] [INFO]: Socket creado correctamente
+[2023-06-26 17:33:25] [INFO]: Bind porteado correctamente
+[2023-06-26 17:33:25] [INFO]: Esperando conexiones
+[2023-06-26 17:33:32] [INFO]: Conexión recibida
+[2023-06-26 17:33:34] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:33:34] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:33:41] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:36:37] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:36:37] [INFO]: Socket creado correctamente
+[2023-06-26 17:36:37] [INFO]: Bind porteado correctamente
+[2023-06-26 17:36:37] [INFO]: Esperando conexiones
+[2023-06-26 17:36:40] [INFO]: Conexión recibida
+[2023-06-26 17:36:42] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:36:42] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:36:48] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:36:48] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 17:37:11] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:37:11] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 17:37:22] [INFO]: Cerrando sockets y limpliando Winsock
+[2023-06-26 17:38:52] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:38:52] [INFO]: Socket creado correctamente
+[2023-06-26 17:38:52] [INFO]: Bind porteado correctamente
+[2023-06-26 17:38:52] [INFO]: Esperando conexiones
+[2023-06-26 17:38:55] [INFO]: Conexión recibida
+[2023-06-26 17:39:04] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:39:04] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:43:57] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:43:57] [INFO]: Socket creado correctamente
+[2023-06-26 17:43:57] [INFO]: Bind porteado correctamente
+[2023-06-26 17:43:57] [INFO]: Esperando conexiones
+[2023-06-26 17:44:01] [INFO]: Conexión recibida
+[2023-06-26 17:44:35] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:44:35] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:44:58] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:44:58] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 17:46:02] [INFO]: Mensaje de datos sobre reserva recibidos
+[2023-06-26 17:46:02] [INFO]: Respuesta sobre reserva enviada
+[2023-06-26 17:46:28] [INFO]: Mensaje de datos de busqueda de libro por autor recibidos
+[2023-06-26 17:46:28] [INFO]: Respuesta sobre datos de busqueda de libro por autor enviada
+[2023-06-26 17:46:49] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 17:46:49] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 17:46:52] [INFO]: Cerrando sockets y limpliando Winsock
+[2023-06-26 17:47:49] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:47:49] [INFO]: Socket creado correctamente
+[2023-06-26 17:47:49] [INFO]: Bind porteado correctamente
+[2023-06-26 17:47:49] [INFO]: Esperando conexiones
+[2023-06-26 17:47:53] [INFO]: Conexión recibida
+[2023-06-26 17:48:27] [INFO]: Mensaje de registro de usuario recibido
+[2023-06-26 17:48:27] [INFO]: Respuesta enviada sobre registro de usuario
+[2023-06-26 17:48:41] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:48:41] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 17:48:48] [INFO]: Cerrando sockets y limpliando Winsock
+[2023-06-26 17:49:00] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:49:00] [INFO]: Socket creado correctamente
+[2023-06-26 17:49:00] [INFO]: Bind porteado correctamente
+[2023-06-26 17:49:00] [INFO]: Esperando conexiones
+[2023-06-26 17:49:02] [INFO]: Conexión recibida
+[2023-06-26 17:49:12] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 17:49:12] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 17:49:35] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:49:35] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 17:50:13] [INFO]: Mensaje de datos sobre reserva recibidos
+[2023-06-26 17:50:13] [INFO]: Respuesta sobre reserva enviada
+[2023-06-26 17:50:22] [INFO]: Mensaje listado de libros recibido
+[2023-06-26 17:50:22] [INFO]: Respuesta sobre listado de libros enviada
+[2023-06-26 18:05:49] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:05:49] [INFO]: Socket creado correctamente
+[2023-06-26 18:05:49] [INFO]: Bind porteado correctamente
+[2023-06-26 18:05:49] [INFO]: Esperando conexiones
+[2023-06-26 18:05:51] [INFO]: Conexión recibida
+[2023-06-26 18:06:17] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 18:06:17] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 18:09:40] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 18:09:40] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 18:10:26] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 18:10:26] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 18:11:41] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 18:11:41] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 18:25:09] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:25:09] [INFO]: Socket creado correctamente
+[2023-06-26 18:25:09] [INFO]: Bind porteado correctamente
+[2023-06-26 18:25:09] [INFO]: Esperando conexiones
+[2023-06-26 18:27:01] [INFO]: Conexión recibida
+[2023-06-26 18:27:04] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 18:27:04] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 18:27:15] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 18:27:15] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 18:28:26] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:28:26] [INFO]: Socket creado correctamente
+[2023-06-26 18:28:26] [INFO]: Bind porteado correctamente
+[2023-06-26 18:28:26] [INFO]: Esperando conexiones
+[2023-06-26 18:28:30] [INFO]: Conexión recibida
+[2023-06-26 18:28:34] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 18:28:34] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 18:28:42] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 18:28:42] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 18:30:48] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:30:48] [INFO]: Socket creado correctamente
+[2023-06-26 18:30:48] [INFO]: Bind porteado correctamente
+[2023-06-26 18:30:48] [INFO]: Esperando conexiones
+[2023-06-26 18:30:52] [INFO]: Conexión recibida
+[2023-06-26 18:30:54] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 18:30:54] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 18:31:00] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 18:31:00] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 18:31:16] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:31:16] [INFO]: Socket creado correctamente
+[2023-06-26 18:31:16] [INFO]: Bind porteado correctamente
+[2023-06-26 18:31:16] [INFO]: Esperando conexiones
+[2023-06-26 18:31:19] [INFO]: Conexión recibida
+[2023-06-26 18:31:21] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 18:31:21] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 18:31:27] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 18:31:27] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 18:32:19] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:32:19] [INFO]: Socket creado correctamente
+[2023-06-26 18:32:19] [INFO]: Bind porteado correctamente
+[2023-06-26 18:32:19] [INFO]: Esperando conexiones
+[2023-06-26 18:32:25] [INFO]: Conexión recibida
+[2023-06-26 18:32:34] [INFO]: Mensaje de inicio de sesión recibido
+[2023-06-26 18:32:34] [INFO]: Respuesta enviada sobre inicio de sesión
+[2023-06-26 18:32:41] [INFO]: Mensaje de datos de busqueda de libro por titulo recibidos
+[2023-06-26 18:32:41] [INFO]: Respuesta sobre datos de busqueda de libro por titulo enviada
+[2023-06-26 18:32:56] [INFO]: Cerrando sockets y limpliando Winsock

@@ -2579,3 +2579,913 @@
 [2023-06-26 13:25:13] [INFO]: Seleccionado listar libros
 [2023-06-26 13:25:17] [INFO]: Enviado Socket listar libros
 [2023-06-26 13:25:20] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:20:28] [INFO]: Seleccionado listar libros
+[2023-06-26 14:20:30] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:20:30] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:20:34] [INFO]: Reserva iniciada
+[2023-06-26 14:20:39] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:20:39] [INFO]: Socket creado correctamente
+[2023-06-26 14:20:39] [INFO]: Conexion establecida
+[2023-06-26 14:20:39] [INFO]: Menu biblioteca
+[2023-06-26 14:20:40] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:20:41] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:20:41] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:20:41] [INFO]: Usuario valido
+[2023-06-26 14:20:48] [INFO]: Seleccionado listar libros
+[2023-06-26 14:20:49] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:20:49] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:21:33] [INFO]: Seleccionado listar libros
+[2023-06-26 14:21:35] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:21:35] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:22:04] [INFO]: Reserva iniciada
+[2023-06-26 14:22:22] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:22:22] [INFO]: Socket creado correctamente
+[2023-06-26 14:22:22] [INFO]: Conexion establecida
+[2023-06-26 14:22:22] [INFO]: Menu biblioteca
+[2023-06-26 14:22:23] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:22:24] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:22:24] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:22:24] [INFO]: Usuario valido
+[2023-06-26 14:22:31] [INFO]: Seleccionado listar libros
+[2023-06-26 14:22:32] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:22:32] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:22:47] [INFO]: Seleccionado listar libros
+[2023-06-26 14:22:48] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:22:48] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:22:54] [INFO]: Seleccionado Salir
+[2023-06-26 14:23:19] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:23:19] [INFO]: Socket creado correctamente
+[2023-06-26 14:23:19] [INFO]: Conexion establecida
+[2023-06-26 14:23:19] [INFO]: Menu biblioteca
+[2023-06-26 14:23:20] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:23:22] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:23:22] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:23:22] [INFO]: Usuario valido
+[2023-06-26 14:23:27] [INFO]: Seleccionado listar libros
+[2023-06-26 14:23:29] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:23:29] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:23:39] [INFO]: Seleccionado listar libros
+[2023-06-26 14:23:40] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:23:40] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:24:00] [INFO]: Seleccionado Salir
+[2023-06-26 14:24:14] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:24:14] [INFO]: Socket creado correctamente
+[2023-06-26 14:24:14] [INFO]: Conexion establecida
+[2023-06-26 14:24:14] [INFO]: Menu biblioteca
+[2023-06-26 14:24:16] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:24:17] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:24:17] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:24:17] [INFO]: Usuario valido
+[2023-06-26 14:24:23] [INFO]: Seleccionado listar libros
+[2023-06-26 14:24:26] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:24:26] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:24:59] [INFO]: Seleccionado listar libros
+[2023-06-26 14:25:00] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:25:02] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:25:10] [INFO]: Seleccionado listar libros
+[2023-06-26 14:25:11] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:25:11] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:25:14] [INFO]: Seleccionado Salir
+[2023-06-26 14:25:29] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:25:29] [INFO]: Socket creado correctamente
+[2023-06-26 14:25:29] [INFO]: Conexion establecida
+[2023-06-26 14:25:29] [INFO]: Menu biblioteca
+[2023-06-26 14:25:29] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:25:31] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:25:31] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:25:31] [INFO]: Usuario valido
+[2023-06-26 14:25:43] [INFO]: Seleccionado listar libros
+[2023-06-26 14:25:44] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:25:46] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:26:53] [INFO]: Seleccionado Salir
+[2023-06-26 14:27:00] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:27:00] [INFO]: Socket creado correctamente
+[2023-06-26 14:27:00] [INFO]: Conexion establecida
+[2023-06-26 14:27:00] [INFO]: Menu biblioteca
+[2023-06-26 14:27:01] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:27:02] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:27:02] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:27:02] [INFO]: Usuario valido
+[2023-06-26 14:27:08] [INFO]: Seleccionado listar libros
+[2023-06-26 14:27:10] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:27:10] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:27:20] [INFO]: Seleccionado listar libros
+[2023-06-26 14:27:22] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:27:22] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:28:26] [INFO]: Seleccionado listar libros
+[2023-06-26 14:28:27] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:28:27] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:31:54] [INFO]: Seleccionado Salir
+[2023-06-26 14:32:06] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:32:06] [INFO]: Socket creado correctamente
+[2023-06-26 14:32:06] [INFO]: Conexion establecida
+[2023-06-26 14:32:06] [INFO]: Menu biblioteca
+[2023-06-26 14:32:06] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:32:07] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:32:07] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:32:07] [INFO]: Usuario valido
+[2023-06-26 14:32:13] [INFO]: Seleccionado listar libros
+[2023-06-26 14:32:14] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:32:14] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:32:35] [INFO]: Seleccionado listar libros
+[2023-06-26 14:32:36] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:32:38] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:34:36] [INFO]: Seleccionado Salir
+[2023-06-26 14:34:49] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:34:49] [INFO]: Socket creado correctamente
+[2023-06-26 14:34:49] [INFO]: Conexion establecida
+[2023-06-26 14:34:49] [INFO]: Menu biblioteca
+[2023-06-26 14:34:49] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:34:51] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:34:51] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:34:51] [INFO]: Usuario valido
+[2023-06-26 14:34:57] [INFO]: Seleccionado listar libros
+[2023-06-26 14:34:57] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:34:57] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:35:41] [INFO]: Seleccionado listar libros
+[2023-06-26 14:35:42] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:35:42] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:35:52] [INFO]: Seleccionado listar libros
+[2023-06-26 14:35:53] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:35:53] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:36:10] [INFO]: Seleccionado Salir
+[2023-06-26 14:36:21] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:36:21] [INFO]: Socket creado correctamente
+[2023-06-26 14:36:21] [INFO]: Conexion establecida
+[2023-06-26 14:36:21] [INFO]: Menu biblioteca
+[2023-06-26 14:36:22] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:36:24] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:36:24] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:36:24] [INFO]: Usuario valido
+[2023-06-26 14:36:29] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 14:36:31] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 14:36:31] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 14:36:42] [INFO]: Seleccionado listar libros
+[2023-06-26 14:36:45] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:36:45] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:36:55] [INFO]: Seleccionado listar libros
+[2023-06-26 14:36:56] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:36:58] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:39:18] [INFO]: Seleccionado Salir
+[2023-06-26 14:39:27] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:39:27] [INFO]: Socket creado correctamente
+[2023-06-26 14:39:27] [INFO]: Conexion establecida
+[2023-06-26 14:39:27] [INFO]: Menu biblioteca
+[2023-06-26 14:39:27] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:39:28] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:39:28] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:39:28] [INFO]: Usuario valido
+[2023-06-26 14:39:34] [INFO]: Seleccionado listar libros
+[2023-06-26 14:39:37] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:39:39] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:40:51] [INFO]: Seleccionado Salir
+[2023-06-26 14:41:04] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:41:04] [INFO]: Socket creado correctamente
+[2023-06-26 14:41:04] [INFO]: Conexion establecida
+[2023-06-26 14:41:04] [INFO]: Menu biblioteca
+[2023-06-26 14:41:05] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:41:05] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:41:05] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:41:05] [INFO]: Usuario valido
+[2023-06-26 14:41:11] [INFO]: Seleccionado listar libros
+[2023-06-26 14:41:12] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:41:14] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:42:17] [INFO]: Seleccionado Salir
+[2023-06-26 14:42:35] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:42:35] [INFO]: Socket creado correctamente
+[2023-06-26 14:42:35] [INFO]: Conexion establecida
+[2023-06-26 14:42:35] [INFO]: Menu biblioteca
+[2023-06-26 14:42:36] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:42:39] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:42:39] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:42:39] [INFO]: Usuario valido
+[2023-06-26 14:42:44] [INFO]: Seleccionado listar libros
+[2023-06-26 14:42:45] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:42:47] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:43:22] [INFO]: Seleccionado Salir
+[2023-06-26 14:43:33] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:43:33] [INFO]: Socket creado correctamente
+[2023-06-26 14:43:33] [INFO]: Conexion establecida
+[2023-06-26 14:43:33] [INFO]: Menu biblioteca
+[2023-06-26 14:43:34] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:43:35] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:43:35] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:43:35] [INFO]: Usuario valido
+[2023-06-26 14:43:40] [INFO]: Seleccionado listar libros
+[2023-06-26 14:43:40] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:43:43] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:45:17] [INFO]: Seleccionado Salir
+[2023-06-26 14:45:22] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:45:22] [INFO]: Socket creado correctamente
+[2023-06-26 14:45:22] [INFO]: Conexion establecida
+[2023-06-26 14:45:22] [INFO]: Menu biblioteca
+[2023-06-26 14:45:22] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:45:23] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:45:23] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:45:23] [INFO]: Usuario valido
+[2023-06-26 14:45:28] [INFO]: Seleccionado listar libros
+[2023-06-26 14:45:29] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:45:31] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:45:47] [INFO]: Seleccionado Salir
+[2023-06-26 14:46:00] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:46:00] [INFO]: Socket creado correctamente
+[2023-06-26 14:46:00] [INFO]: Conexion establecida
+[2023-06-26 14:46:00] [INFO]: Menu biblioteca
+[2023-06-26 14:46:01] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:46:03] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:46:03] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:46:03] [INFO]: Usuario valido
+[2023-06-26 14:46:09] [INFO]: Seleccionado listar libros
+[2023-06-26 14:46:10] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:46:12] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:49:08] [INFO]: Seleccionado Salir
+[2023-06-26 14:49:18] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:49:18] [INFO]: Socket creado correctamente
+[2023-06-26 14:49:18] [INFO]: Conexion establecida
+[2023-06-26 14:49:18] [INFO]: Menu biblioteca
+[2023-06-26 14:49:18] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:49:19] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:49:19] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:49:19] [INFO]: Usuario valido
+[2023-06-26 14:49:24] [INFO]: Seleccionado listar libros
+[2023-06-26 14:49:26] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:49:28] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:49:31] [INFO]: Seleccionado Salir
+[2023-06-26 14:51:02] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:51:02] [INFO]: Socket creado correctamente
+[2023-06-26 14:51:02] [INFO]: Conexion establecida
+[2023-06-26 14:51:02] [INFO]: Menu biblioteca
+[2023-06-26 14:51:02] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:51:03] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:51:03] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:51:03] [INFO]: Usuario valido
+[2023-06-26 14:51:08] [INFO]: Seleccionado listar libros
+[2023-06-26 14:51:09] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:51:11] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:51:15] [INFO]: Seleccionado Salir
+[2023-06-26 14:51:20] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:51:20] [INFO]: Socket creado correctamente
+[2023-06-26 14:51:20] [INFO]: Conexion establecida
+[2023-06-26 14:51:20] [INFO]: Menu biblioteca
+[2023-06-26 14:51:21] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:51:22] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:51:22] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:51:22] [INFO]: Usuario valido
+[2023-06-26 14:51:27] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 14:51:29] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 14:51:29] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 14:51:44] [INFO]: Seleccionado listar libros
+[2023-06-26 14:51:45] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:51:48] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:52:57] [INFO]: Seleccionado Salir
+[2023-06-26 14:53:05] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:53:05] [INFO]: Socket creado correctamente
+[2023-06-26 14:53:05] [INFO]: Conexion establecida
+[2023-06-26 14:53:05] [INFO]: Menu biblioteca
+[2023-06-26 14:53:07] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:53:08] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:53:08] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:53:08] [INFO]: Usuario valido
+[2023-06-26 14:53:14] [INFO]: Seleccionado listar libros
+[2023-06-26 14:53:15] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:53:17] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:54:26] [INFO]: Seleccionado Salir
+[2023-06-26 14:54:33] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:54:33] [INFO]: Socket creado correctamente
+[2023-06-26 14:54:33] [INFO]: Conexion establecida
+[2023-06-26 14:54:33] [INFO]: Menu biblioteca
+[2023-06-26 14:54:41] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:54:43] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:54:43] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:54:43] [INFO]: Usuario valido
+[2023-06-26 14:54:49] [INFO]: Seleccionado listar libros
+[2023-06-26 14:54:50] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:54:52] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:55:31] [INFO]: Seleccionado Salir
+[2023-06-26 14:55:40] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:55:40] [INFO]: Socket creado correctamente
+[2023-06-26 14:55:40] [INFO]: Conexion establecida
+[2023-06-26 14:55:40] [INFO]: Menu biblioteca
+[2023-06-26 14:55:41] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:55:41] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:55:41] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:55:41] [INFO]: Usuario valido
+[2023-06-26 14:55:56] [INFO]: Seleccionado listar libros
+[2023-06-26 14:55:57] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:55:59] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 14:59:24] [INFO]: Seleccionado Salir
+[2023-06-26 14:59:30] [INFO]: Winsock iniciado correctamente
+[2023-06-26 14:59:30] [INFO]: Socket creado correctamente
+[2023-06-26 14:59:30] [INFO]: Conexion establecida
+[2023-06-26 14:59:30] [INFO]: Menu biblioteca
+[2023-06-26 14:59:30] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 14:59:31] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 14:59:31] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 14:59:31] [INFO]: Usuario valido
+[2023-06-26 14:59:36] [INFO]: Seleccionado listar libros
+[2023-06-26 14:59:39] [INFO]: Enviado Socket listar libros
+[2023-06-26 14:59:39] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:00:02] [INFO]: Seleccionado Salir
+[2023-06-26 15:00:12] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:00:12] [INFO]: Socket creado correctamente
+[2023-06-26 15:00:12] [INFO]: Conexion establecida
+[2023-06-26 15:00:12] [INFO]: Menu biblioteca
+[2023-06-26 15:00:14] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:00:15] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:00:15] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:00:15] [INFO]: Usuario valido
+[2023-06-26 15:00:19] [INFO]: Seleccionado listar libros
+[2023-06-26 15:00:21] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:00:22] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:01:25] [INFO]: Seleccionado Salir
+[2023-06-26 15:01:27] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:01:27] [INFO]: Socket creado correctamente
+[2023-06-26 15:01:27] [INFO]: Conexion establecida
+[2023-06-26 15:01:27] [INFO]: Menu biblioteca
+[2023-06-26 15:01:29] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:01:30] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:01:30] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:01:30] [INFO]: Usuario valido
+[2023-06-26 15:01:35] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 15:01:38] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 15:01:38] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 15:01:52] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 15:01:59] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 15:01:59] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 15:02:13] [INFO]: Reserva iniciada
+[2023-06-26 15:02:22] [INFO]: Reserva realizada
+[2023-06-26 15:02:22] [INFO]: Recivida respuesta del Socket realizar reserva
+[2023-06-26 15:02:22] [INFO]: Reserva realizada correctamente
+[2023-06-26 15:02:29] [INFO]: Seleccionado listar libros
+[2023-06-26 15:02:31] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:02:31] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:02:43] [INFO]: Seleccionado listar libros
+[2023-06-26 15:02:44] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:02:44] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:03:01] [INFO]: Seleccionado listar libros
+[2023-06-26 15:03:01] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:03:01] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:03:11] [INFO]: Seleccionado Salir
+[2023-06-26 15:03:20] [INFO]: Seleccionado Salir
+[2023-06-26 15:04:01] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:04:01] [INFO]: Socket creado correctamente
+[2023-06-26 15:04:01] [INFO]: Conexion establecida
+[2023-06-26 15:04:01] [INFO]: Menu biblioteca
+[2023-06-26 15:04:02] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:04:04] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:04:04] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:04:04] [INFO]: Usuario valido
+[2023-06-26 15:04:13] [INFO]: Seleccionado listar libros
+[2023-06-26 15:04:14] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:04:16] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:04:29] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 15:04:30] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 15:04:30] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 15:04:40] [INFO]: Seleccionado Salir
+[2023-06-26 15:04:49] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:04:49] [INFO]: Socket creado correctamente
+[2023-06-26 15:04:49] [INFO]: Conexion establecida
+[2023-06-26 15:04:49] [INFO]: Menu biblioteca
+[2023-06-26 15:04:52] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:04:54] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:04:54] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:04:54] [INFO]: Usuario valido
+[2023-06-26 15:05:05] [INFO]: Seleccionado listar libros
+[2023-06-26 15:05:06] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:05:08] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:06:24] [INFO]: Seleccionado Salir
+[2023-06-26 15:06:32] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:06:32] [INFO]: Socket creado correctamente
+[2023-06-26 15:06:32] [INFO]: Conexion establecida
+[2023-06-26 15:06:32] [INFO]: Menu biblioteca
+[2023-06-26 15:06:33] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:06:35] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:06:35] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:06:35] [INFO]: Usuario valido
+[2023-06-26 15:06:41] [INFO]: Seleccionado listar libros
+[2023-06-26 15:06:44] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:06:46] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:07:26] [INFO]: Seleccionado Salir
+[2023-06-26 15:07:33] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:07:33] [INFO]: Socket creado correctamente
+[2023-06-26 15:07:33] [INFO]: Conexion establecida
+[2023-06-26 15:07:33] [INFO]: Menu biblioteca
+[2023-06-26 15:07:34] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:07:35] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:07:35] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:07:35] [INFO]: Usuario valido
+[2023-06-26 15:07:40] [INFO]: Seleccionado listar libros
+[2023-06-26 15:07:41] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:13:15] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:13:15] [INFO]: Socket creado correctamente
+[2023-06-26 15:13:15] [INFO]: Conexion establecida
+[2023-06-26 15:13:15] [INFO]: Menu biblioteca
+[2023-06-26 15:13:16] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:13:17] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:13:17] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:13:17] [INFO]: Usuario valido
+[2023-06-26 15:13:24] [INFO]: Seleccionado listar libros
+[2023-06-26 15:13:25] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:13:27] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:13:29] [INFO]: Seleccionado Salir
+[2023-06-26 15:14:53] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:14:53] [INFO]: Socket creado correctamente
+[2023-06-26 15:14:53] [INFO]: Conexion establecida
+[2023-06-26 15:14:53] [INFO]: Menu biblioteca
+[2023-06-26 15:14:55] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:14:55] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:14:55] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:14:55] [INFO]: Usuario valido
+[2023-06-26 15:15:01] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 15:15:03] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 15:15:03] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 15:15:12] [INFO]: Seleccionado listar libros
+[2023-06-26 15:15:13] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:15:15] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:15:19] [INFO]: Seleccionado Salir
+[2023-06-26 15:16:12] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:16:12] [INFO]: Socket creado correctamente
+[2023-06-26 15:16:12] [INFO]: Conexion establecida
+[2023-06-26 15:16:12] [INFO]: Menu biblioteca
+[2023-06-26 15:16:13] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:16:13] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:16:13] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:16:13] [INFO]: Usuario valido
+[2023-06-26 15:16:18] [INFO]: Seleccionado listar libros
+[2023-06-26 15:16:19] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:16:21] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:16:58] [INFO]: Seleccionado Salir
+[2023-06-26 15:17:06] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:17:06] [INFO]: Socket creado correctamente
+[2023-06-26 15:17:06] [INFO]: Conexion establecida
+[2023-06-26 15:17:06] [INFO]: Menu biblioteca
+[2023-06-26 15:17:07] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:17:07] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:17:07] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:17:07] [INFO]: Usuario valido
+[2023-06-26 15:17:13] [INFO]: Seleccionado listar libros
+[2023-06-26 15:17:14] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:17:16] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:17:53] [INFO]: Seleccionado Salir
+[2023-06-26 15:18:00] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:18:00] [INFO]: Socket creado correctamente
+[2023-06-26 15:18:00] [INFO]: Conexion establecida
+[2023-06-26 15:18:00] [INFO]: Menu biblioteca
+[2023-06-26 15:18:01] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:18:01] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:18:01] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:18:01] [INFO]: Usuario valido
+[2023-06-26 15:18:07] [INFO]: Seleccionado listar libros
+[2023-06-26 15:18:07] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:18:09] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:19:27] [INFO]: Seleccionado Salir
+[2023-06-26 15:19:33] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:19:33] [INFO]: Socket creado correctamente
+[2023-06-26 15:19:33] [INFO]: Conexion establecida
+[2023-06-26 15:19:33] [INFO]: Menu biblioteca
+[2023-06-26 15:19:34] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:19:35] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:19:35] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:19:35] [INFO]: Usuario valido
+[2023-06-26 15:19:40] [INFO]: Seleccionado listar libros
+[2023-06-26 15:19:40] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:19:43] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:21:23] [INFO]: Seleccionado Salir
+[2023-06-26 15:21:28] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:21:28] [INFO]: Socket creado correctamente
+[2023-06-26 15:21:28] [INFO]: Conexion establecida
+[2023-06-26 15:21:28] [INFO]: Menu biblioteca
+[2023-06-26 15:21:29] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:21:30] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:21:30] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:21:30] [INFO]: Usuario valido
+[2023-06-26 15:21:35] [INFO]: Seleccionado listar libros
+[2023-06-26 15:21:36] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:21:38] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:22:30] [INFO]: Seleccionado Salir
+[2023-06-26 15:22:36] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:22:36] [INFO]: Socket creado correctamente
+[2023-06-26 15:22:36] [INFO]: Conexion establecida
+[2023-06-26 15:22:36] [INFO]: Menu biblioteca
+[2023-06-26 15:22:37] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:22:38] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:22:38] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:22:38] [INFO]: Usuario valido
+[2023-06-26 15:22:44] [INFO]: Seleccionado listar libros
+[2023-06-26 15:22:45] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:22:47] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:26:14] [INFO]: Seleccionado Salir
+[2023-06-26 15:26:21] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:26:21] [INFO]: Socket creado correctamente
+[2023-06-26 15:26:21] [INFO]: Conexion establecida
+[2023-06-26 15:26:21] [INFO]: Menu biblioteca
+[2023-06-26 15:26:23] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:26:24] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:26:24] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:26:24] [INFO]: Usuario valido
+[2023-06-26 15:26:32] [INFO]: Seleccionado listar libros
+[2023-06-26 15:26:33] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:26:33] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:26:44] [INFO]: Seleccionado listar libros
+[2023-06-26 15:26:44] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:26:47] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:29:39] [INFO]: Seleccionado Salir
+[2023-06-26 15:31:32] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:31:32] [INFO]: Socket creado correctamente
+[2023-06-26 15:31:32] [INFO]: Conexion establecida
+[2023-06-26 15:31:32] [INFO]: Menu biblioteca
+[2023-06-26 15:31:33] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:31:34] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:31:34] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:31:34] [INFO]: Usuario valido
+[2023-06-26 15:31:40] [INFO]: Seleccionado listar libros
+[2023-06-26 15:31:41] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:31:44] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:33:14] [INFO]: Seleccionado Salir
+[2023-06-26 15:33:20] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:33:20] [INFO]: Socket creado correctamente
+[2023-06-26 15:33:20] [INFO]: Conexion establecida
+[2023-06-26 15:33:20] [INFO]: Menu biblioteca
+[2023-06-26 15:33:20] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:33:21] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:33:21] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:33:21] [INFO]: Usuario valido
+[2023-06-26 15:33:27] [INFO]: Seleccionado listar libros
+[2023-06-26 15:33:27] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:33:29] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:34:55] [INFO]: Seleccionado Salir
+[2023-06-26 15:35:08] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:35:08] [INFO]: Socket creado correctamente
+[2023-06-26 15:35:08] [INFO]: Conexion establecida
+[2023-06-26 15:35:08] [INFO]: Menu biblioteca
+[2023-06-26 15:35:10] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:35:11] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:35:11] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:35:11] [INFO]: Usuario valido
+[2023-06-26 15:35:17] [INFO]: Seleccionado listar libros
+[2023-06-26 15:35:17] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:35:19] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:37:25] [INFO]: Seleccionado Salir
+[2023-06-26 15:37:58] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:37:58] [INFO]: Socket creado correctamente
+[2023-06-26 15:37:58] [INFO]: Conexion establecida
+[2023-06-26 15:37:58] [INFO]: Menu biblioteca
+[2023-06-26 15:37:58] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:37:59] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:37:59] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:37:59] [INFO]: Usuario valido
+[2023-06-26 15:38:05] [INFO]: Seleccionado listar libros
+[2023-06-26 15:38:06] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:38:08] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:38:09] [INFO]: Seleccionado Salir
+[2023-06-26 15:38:15] [INFO]: Winsock iniciado correctamente
+[2023-06-26 15:38:15] [INFO]: Socket creado correctamente
+[2023-06-26 15:38:15] [INFO]: Conexion establecida
+[2023-06-26 15:38:15] [INFO]: Menu biblioteca
+[2023-06-26 15:38:15] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 15:38:16] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 15:38:16] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 15:38:16] [INFO]: Usuario valido
+[2023-06-26 15:38:21] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 15:38:23] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 15:38:23] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 15:38:33] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 15:38:39] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 15:38:39] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 15:38:48] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 15:38:50] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 15:38:50] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 15:39:03] [INFO]: Seleccionado listar libros
+[2023-06-26 15:39:04] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:39:04] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 15:39:21] [INFO]: Seleccionado listar libros
+[2023-06-26 15:39:22] [INFO]: Enviado Socket listar libros
+[2023-06-26 15:39:24] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 16:49:42] [INFO]: Seleccionado Salir
+[2023-06-26 16:49:44] [INFO]: Winsock iniciado correctamente
+[2023-06-26 16:49:44] [INFO]: Socket creado correctamente
+[2023-06-26 16:49:44] [INFO]: Conexion establecida
+[2023-06-26 16:49:44] [INFO]: Menu biblioteca
+[2023-06-26 16:49:45] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 16:49:46] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 16:49:46] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 16:49:46] [INFO]: Usuario valido
+[2023-06-26 16:49:54] [INFO]: Seleccionado listar libros
+[2023-06-26 16:49:55] [INFO]: Enviado Socket listar libros
+[2023-06-26 16:49:55] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 16:50:04] [INFO]: Seleccionado listar libros
+[2023-06-26 16:50:05] [INFO]: Enviado Socket listar libros
+[2023-06-26 16:50:07] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 16:56:59] [INFO]: Seleccionado Salir
+[2023-06-26 17:04:39] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:04:39] [INFO]: Socket creado correctamente
+[2023-06-26 17:04:39] [INFO]: Conexion establecida
+[2023-06-26 17:04:39] [INFO]: Menu biblioteca
+[2023-06-26 17:04:39] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:04:40] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:04:40] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:04:40] [INFO]: Usuario valido
+[2023-06-26 17:04:45] [INFO]: Seleccionado listar libros
+[2023-06-26 17:04:45] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:04:47] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:06:25] [INFO]: Seleccionado Salir
+[2023-06-26 17:06:33] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:06:33] [INFO]: Socket creado correctamente
+[2023-06-26 17:06:33] [INFO]: Conexion establecida
+[2023-06-26 17:06:33] [INFO]: Menu biblioteca
+[2023-06-26 17:06:35] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:06:37] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:06:37] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:06:37] [INFO]: Usuario valido
+[2023-06-26 17:06:45] [INFO]: Seleccionado listar libros
+[2023-06-26 17:06:46] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:06:47] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:11:27] [INFO]: Seleccionado Salir
+[2023-06-26 17:11:27] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:11:27] [INFO]: Socket creado correctamente
+[2023-06-26 17:11:27] [INFO]: Conexion establecida
+[2023-06-26 17:11:28] [INFO]: Menu biblioteca
+[2023-06-26 17:11:28] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:11:29] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:11:29] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:11:29] [INFO]: Usuario valido
+[2023-06-26 17:11:35] [INFO]: Seleccionado listar libros
+[2023-06-26 17:11:35] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:11:35] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:13:30] [INFO]: Seleccionado Salir
+[2023-06-26 17:13:37] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:13:37] [INFO]: Socket creado correctamente
+[2023-06-26 17:13:37] [INFO]: Conexion establecida
+[2023-06-26 17:13:37] [INFO]: Menu biblioteca
+[2023-06-26 17:13:38] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:13:39] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:13:39] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:13:39] [INFO]: Usuario valido
+[2023-06-26 17:13:43] [INFO]: Seleccionado listar libros
+[2023-06-26 17:13:44] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:13:46] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:14:47] [INFO]: Seleccionado Salir
+[2023-06-26 17:14:53] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:14:53] [INFO]: Socket creado correctamente
+[2023-06-26 17:14:53] [INFO]: Conexion establecida
+[2023-06-26 17:14:53] [INFO]: Menu biblioteca
+[2023-06-26 17:14:54] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:14:54] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:14:54] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:14:54] [INFO]: Usuario valido
+[2023-06-26 17:15:00] [INFO]: Seleccionado listar libros
+[2023-06-26 17:15:01] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:15:03] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:15:33] [INFO]: Seleccionado Salir
+[2023-06-26 17:15:44] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:15:44] [INFO]: Socket creado correctamente
+[2023-06-26 17:15:44] [INFO]: Conexion establecida
+[2023-06-26 17:15:44] [INFO]: Menu biblioteca
+[2023-06-26 17:15:45] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:15:48] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:15:48] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:15:48] [INFO]: Usuario valido
+[2023-06-26 17:15:53] [INFO]: Seleccionado listar libros
+[2023-06-26 17:15:54] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:15:56] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:16:39] [INFO]: Seleccionado Salir
+[2023-06-26 17:16:45] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:16:45] [INFO]: Socket creado correctamente
+[2023-06-26 17:16:45] [INFO]: Conexion establecida
+[2023-06-26 17:16:45] [INFO]: Menu biblioteca
+[2023-06-26 17:16:45] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:16:46] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:16:46] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:16:46] [INFO]: Usuario valido
+[2023-06-26 17:16:51] [INFO]: Seleccionado listar libros
+[2023-06-26 17:16:52] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:16:54] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:18:17] [INFO]: Reserva iniciada
+[2023-06-26 17:18:17] [INFO]: Valor incorrecto
+[2023-06-26 17:18:19] [INFO]: Reserva iniciada
+[2023-06-26 17:18:19] [INFO]: Valor incorrecto
+[2023-06-26 17:18:22] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:18:22] [INFO]: Socket creado correctamente
+[2023-06-26 17:18:22] [INFO]: Conexion establecida
+[2023-06-26 17:18:22] [INFO]: Menu biblioteca
+[2023-06-26 17:18:24] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:18:25] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:18:25] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:18:25] [INFO]: Usuario valido
+[2023-06-26 17:18:29] [INFO]: Seleccionado listar libros
+[2023-06-26 17:18:30] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:18:32] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:21:31] [INFO]: Seleccionado Salir
+[2023-06-26 17:21:32] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:21:32] [INFO]: Socket creado correctamente
+[2023-06-26 17:21:32] [INFO]: Conexion establecida
+[2023-06-26 17:21:32] [INFO]: Menu biblioteca
+[2023-06-26 17:21:33] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:21:33] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:21:33] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:21:33] [INFO]: Usuario valido
+[2023-06-26 17:21:38] [INFO]: Seleccionado listar libros
+[2023-06-26 17:21:39] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:21:41] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:29:06] [INFO]: Seleccionado Salir
+[2023-06-26 17:29:07] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:29:07] [INFO]: Socket creado correctamente
+[2023-06-26 17:29:07] [INFO]: Conexion establecida
+[2023-06-26 17:29:07] [INFO]: Menu biblioteca
+[2023-06-26 17:29:07] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:29:08] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:29:08] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:29:08] [INFO]: Usuario valido
+[2023-06-26 17:29:13] [INFO]: Seleccionado listar libros
+[2023-06-26 17:29:14] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:29:16] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:32:17] [INFO]: Seleccionado Salir
+[2023-06-26 17:32:18] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:32:18] [INFO]: Socket creado correctamente
+[2023-06-26 17:32:18] [INFO]: Conexion establecida
+[2023-06-26 17:32:18] [INFO]: Menu biblioteca
+[2023-06-26 17:32:19] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:32:19] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:32:19] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:32:19] [INFO]: Usuario valido
+[2023-06-26 17:32:24] [INFO]: Seleccionado listar libros
+[2023-06-26 17:32:25] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:32:25] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:32:40] [INFO]: Seleccionado Salir
+[2023-06-26 17:33:32] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:33:32] [INFO]: Socket creado correctamente
+[2023-06-26 17:33:32] [INFO]: Conexion establecida
+[2023-06-26 17:33:32] [INFO]: Menu biblioteca
+[2023-06-26 17:33:33] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:33:34] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:33:34] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:33:34] [INFO]: Usuario valido
+[2023-06-26 17:33:40] [INFO]: Seleccionado listar libros
+[2023-06-26 17:33:41] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:33:43] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:36:39] [INFO]: Seleccionado Salir
+[2023-06-26 17:36:40] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:36:40] [INFO]: Socket creado correctamente
+[2023-06-26 17:36:40] [INFO]: Conexion establecida
+[2023-06-26 17:36:40] [INFO]: Menu biblioteca
+[2023-06-26 17:36:42] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:36:42] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:36:42] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:36:42] [INFO]: Usuario valido
+[2023-06-26 17:36:47] [INFO]: Seleccionado listar libros
+[2023-06-26 17:36:48] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:36:48] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:37:10] [INFO]: Seleccionado listar libros
+[2023-06-26 17:37:11] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:37:11] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:37:22] [INFO]: Seleccionado Salir
+[2023-06-26 17:38:48] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:38:48] [INFO]: Socket creado correctamente
+[2023-06-26 17:38:55] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:38:55] [INFO]: Socket creado correctamente
+[2023-06-26 17:38:55] [INFO]: Conexion establecida
+[2023-06-26 17:38:55] [INFO]: Menu biblioteca
+[2023-06-26 17:38:58] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:39:04] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:39:04] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:39:04] [INFO]: Usuario valido
+[2023-06-26 17:44:01] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:44:01] [INFO]: Socket creado correctamente
+[2023-06-26 17:44:01] [INFO]: Conexion establecida
+[2023-06-26 17:44:01] [INFO]: Menu biblioteca
+[2023-06-26 17:44:24] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:44:35] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:44:35] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:44:35] [INFO]: Usuario valido
+[2023-06-26 17:44:52] [INFO]: Seleccionado listar libros
+[2023-06-26 17:44:58] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:44:58] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:45:20] [INFO]: Reserva iniciada
+[2023-06-26 17:46:02] [INFO]: Reserva realizada
+[2023-06-26 17:46:02] [INFO]: Recivida respuesta del Socket realizar reserva
+[2023-06-26 17:46:02] [INFO]: Reserva realizada correctamente
+[2023-06-26 17:46:19] [INFO]: Seleccionado Buscar libro por autor
+[2023-06-26 17:46:28] [INFO]: Enviado Socket buscar libro por autor
+[2023-06-26 17:46:28] [INFO]: Recibida respuesta del Socket buscar libro por autor
+[2023-06-26 17:46:44] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 17:46:49] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 17:46:49] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 17:46:52] [INFO]: Seleccionado Salir
+[2023-06-26 17:46:58] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 17:46:58] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 17:46:58] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 17:47:13] [INFO]: Seleccionado Salir
+[2023-06-26 17:47:20] [INFO]: Seleccionado Salir
+[2023-06-26 17:47:53] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:47:53] [INFO]: Socket creado correctamente
+[2023-06-26 17:47:53] [INFO]: Conexion establecida
+[2023-06-26 17:47:53] [INFO]: Menu biblioteca
+[2023-06-26 17:47:58] [INFO]: Seleccionado Registrar usuario
+[2023-06-26 17:48:27] [INFO]: Enviado Socket para registro de usuario
+[2023-06-26 17:48:27] [INFO]: Recivida respuesta del Socket registro de usuario
+[2023-06-26 17:48:27] [INFO]: Usuario creado correctamente
+[2023-06-26 17:48:38] [INFO]: Seleccionado listar libros
+[2023-06-26 17:48:41] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:48:41] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:48:48] [INFO]: Seleccionado Salir
+[2023-06-26 17:49:02] [INFO]: Winsock iniciado correctamente
+[2023-06-26 17:49:02] [INFO]: Socket creado correctamente
+[2023-06-26 17:49:02] [INFO]: Conexion establecida
+[2023-06-26 17:49:02] [INFO]: Menu biblioteca
+[2023-06-26 17:49:05] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 17:49:12] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 17:49:12] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 17:49:12] [INFO]: Usuario valido
+[2023-06-26 17:49:32] [INFO]: Seleccionado listar libros
+[2023-06-26 17:49:35] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:49:35] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:49:54] [INFO]: Reserva iniciada
+[2023-06-26 17:50:13] [INFO]: Reserva realizada
+[2023-06-26 17:50:13] [INFO]: Recivida respuesta del Socket realizar reserva
+[2023-06-26 17:50:13] [INFO]: Reserva realizada correctamente
+[2023-06-26 17:50:21] [INFO]: Seleccionado listar libros
+[2023-06-26 17:50:22] [INFO]: Enviado Socket listar libros
+[2023-06-26 17:50:22] [INFO]: Recibida respuesta del Socket listar libros
+[2023-06-26 17:50:25] [INFO]: Reserva iniciada
+[2023-06-26 17:50:33] [INFO]: Reserva cancelada
+[2023-06-26 18:05:51] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:05:51] [INFO]: Socket creado correctamente
+[2023-06-26 18:05:51] [INFO]: Conexion establecida
+[2023-06-26 18:05:51] [INFO]: Menu biblioteca
+[2023-06-26 18:06:08] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 18:06:17] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 18:06:17] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 18:06:17] [INFO]: Usuario valido
+[2023-06-26 18:08:31] [INFO]: Seleccionado Volver menu principal
+[2023-06-26 18:08:33] [INFO]: Menu biblioteca
+[2023-06-26 18:09:38] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 18:09:40] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 18:09:40] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 18:09:40] [INFO]: Usuario valido
+[2023-06-26 18:10:00] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 18:10:26] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 18:10:26] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 18:11:38] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 18:11:41] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 18:11:41] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 18:11:53] [INFO]: Reserva iniciada
+[2023-06-26 18:25:03] [INFO]: Valor incorrecto
+[2023-06-26 18:27:01] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:27:01] [INFO]: Socket creado correctamente
+[2023-06-26 18:27:01] [INFO]: Conexion establecida
+[2023-06-26 18:27:01] [INFO]: Menu biblioteca
+[2023-06-26 18:27:03] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 18:27:04] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 18:27:04] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 18:27:04] [INFO]: Usuario valido
+[2023-06-26 18:27:11] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 18:27:15] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 18:27:15] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 18:28:30] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:28:30] [INFO]: Socket creado correctamente
+[2023-06-26 18:28:30] [INFO]: Conexion establecida
+[2023-06-26 18:28:30] [INFO]: Menu biblioteca
+[2023-06-26 18:28:32] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 18:28:34] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 18:28:34] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 18:28:34] [INFO]: Usuario valido
+[2023-06-26 18:28:40] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 18:28:42] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 18:28:42] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 18:30:52] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:30:52] [INFO]: Socket creado correctamente
+[2023-06-26 18:30:52] [INFO]: Conexion establecida
+[2023-06-26 18:30:52] [INFO]: Menu biblioteca
+[2023-06-26 18:30:53] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 18:30:54] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 18:30:54] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 18:30:54] [INFO]: Usuario valido
+[2023-06-26 18:30:58] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 18:31:00] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 18:31:00] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 18:31:19] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:31:19] [INFO]: Socket creado correctamente
+[2023-06-26 18:31:19] [INFO]: Conexion establecida
+[2023-06-26 18:31:19] [INFO]: Menu biblioteca
+[2023-06-26 18:31:21] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 18:31:21] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 18:31:21] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 18:31:21] [INFO]: Usuario valido
+[2023-06-26 18:31:24] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 18:31:27] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 18:31:27] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 18:32:25] [INFO]: Winsock iniciado correctamente
+[2023-06-26 18:32:25] [INFO]: Socket creado correctamente
+[2023-06-26 18:32:25] [INFO]: Conexion establecida
+[2023-06-26 18:32:25] [INFO]: Menu biblioteca
+[2023-06-26 18:32:31] [INFO]: Seleccionado Iniciar sesion
+[2023-06-26 18:32:34] [INFO]: Enviado Socket para inicio de sesion
+[2023-06-26 18:32:34] [INFO]: Recivido Socket con la respuesta al inicio de sesion
+[2023-06-26 18:32:34] [INFO]: Usuario valido
+[2023-06-26 18:32:37] [INFO]: Seleccionado Buscar libro por titulo
+[2023-06-26 18:32:41] [INFO]: Enviado Socket buscar libro por titulo
+[2023-06-26 18:32:41] [INFO]: Recibida respuesta del Socket buscar libro por titulo
+[2023-06-26 18:32:42] [INFO]: Seleccionado Reservar libro
+[2023-06-26 18:32:48] [INFO]: Reserva iniciada
+[2023-06-26 18:32:50] [INFO]: Reserva cancelada
+[2023-06-26 18:32:56] [INFO]: Seleccionado Salir

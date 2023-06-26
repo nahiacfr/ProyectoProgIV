@@ -50,9 +50,7 @@ char* getFecha(Fecha *fecha)
 {   
     char* resultado;
     char dia[3];
-    printf("Check F2.1");
     itoa(fecha->dia, dia, 10);
-    printf("Check F2.2");
     char mes[3];
     itoa(fecha->mes, mes, 10);
     char anyo[5];
@@ -69,7 +67,6 @@ char* getFecha(Fecha *fecha)
 }
 Fecha* calcularFecha(Fecha *fechaIni, int dias)
 {       
-    printf("Fecha\n");
     if(dias >= 15)
     {
         dias = 15;
@@ -87,27 +84,22 @@ Fecha* calcularFecha(Fecha *fechaIni, int dias)
     case 8:
     case 10:
     case 12:
-    printf("Check 31");
         if(fechaIni->dia + dias > 31)
         {  
-            printf("Check +31");
             diasRest = dias - (31 - fechaIni->dia);
             fechaFin->dia = diasRest;
             if (fechaIni->mes + 1 > 12)
             {
-                printf("Check Mes > 12");
                 fechaFin->mes = 1;
                 fechaFin->anyo = fechaIni->anyo + 1;
             }else
             {
-                printf("Check Mes + 1");
                 fechaFin->mes = fechaIni->mes + 1;
                 fechaFin->anyo = fechaIni->anyo;
             }
             
         }else
         {
-            printf("Check -31");
             fechaFin->dia = fechaIni->dia + dias;
             fechaFin->mes = fechaIni->mes;
             fechaFin->anyo = fechaIni->anyo;

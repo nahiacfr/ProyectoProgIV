@@ -29,6 +29,7 @@ void buscarTitulo();
 void buscarAutor();
 void reservar(string nombre);
 void listarLibros();
+void preReserva();
 
 WSADATA wsaData;
 SOCKET s;
@@ -164,6 +165,7 @@ void inicioSesion()
     {
         usuarioActual = correo;
         logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Usuario valido");
+        cout <<"Usuario valido"<<endl;
         Sleep(SECONDS_TO_CONTINUE); //esperamos 2 segundos antes de "cambiar de pantalla"
         menuBuscar();
     }else
@@ -245,9 +247,8 @@ int menuBuscar()
         cout << "1.Buscar libro por titulo"<<endl<<"2.Buscar libro por autor"<<endl<<"3.Listar todos los libros"<<endl<<"4.Volver menu principal"<<endl<<"5.Salir"<<endl;
         
         int result;
-        cout << "Seleccion: "<<endl;
+        cout << endl << "Seleccion: "<<endl;
         cin>>result;
-    Sleep(SECONDS_TO_CONTINUE);
         switch (result)
         {
         case 1:
@@ -320,30 +321,7 @@ void buscarTitulo()
 
     cout << recvBuff << endl;
     //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
-    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl<<"Introduzca 1 para salir"<<endl;
-    //TODO for con print para cada libro que salga
-    cin>>seleccion;
-    if (seleccion=="0")
-    {
-        cout << "Volviendo al menu busqueda."<<endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
-    } else if (seleccion == "1"){
-        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Salir");
-            cout << "Has salido de la app"<<endl;
-            send(s, "BYE", 3, 0);
-    }
-
-    else
-    {
-        //TO DO: obtendremos el id o nombre del libro seleccionado y llamamos a reservar(), ese dato es el que pasamos [hecho con un int por sólo para probar]
-        reservar(seleccion); // seleccion.nombre || seleccion->nombre
-        
-        /**/cout << "Operacion realizada, volviendo al menu anterior..."<<endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
-    }
-    
+    preReserva();
     logCl->cerrar_log(logCl);
 }
 
@@ -383,30 +361,7 @@ void buscarAutor()
 
     cout << recvBuff << endl;
     //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
-    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl<<"Introduzca 1 para salir"<<endl;
-    //TODO for con print para cada libro que salga
-    cin>>seleccion;
-   
-    if (seleccion=="0")
-    {
-        cout << "Volviendo al menu busqueda."<<endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
-    } else if (seleccion == "1"){
-        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Salir");
-            cout << "Has salido de la app"<<endl;
-            send(s, "BYE", 3, 0);
-    }
-
-    else
-    {
-        //TO DO: obtendremos el id o nombre del libro seleccionado y llamamos a reservar(), ese dato es el que pasamos [hecho con un int por sólo para probar]
-        reservar(seleccion); // seleccion.nombre || seleccion->nombre
-        
-        /**/cout << "Operacion realizada, volviendo al menu anterior..."<<endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
-    }
+    preReserva();
     
     logCl->cerrar_log(logCl);
 }
@@ -441,29 +396,7 @@ void listarLibros()
 
     cout << recvBuff << endl;
     //buscar en la base de datos los títulos que coincidan; ej: si buscas "noche" puede salir "Las mil y una noches" y "Guardianes de la noche" etc
-    cout << "Introduzca el ISBN del libro para continuar con la reserva."<<endl<<"Introduzca 0 para volver al menu de busqueda"<<endl<<"Introduzca 1 para salir"<<endl;
-    //TODO for con print para cada libro que salga
-    cin>>seleccion;
-    if (seleccion=="0")
-    {
-        cout << "Volviendo al menu busqueda."<<endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
-    } else if (seleccion == "1"){
-        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Salir");
-            cout << "Has salido de la app"<<endl;
-            send(s, "BYE", 3, 0);
-    }
-
-    else
-    {
-        //TO DO: obtendremos el id o nombre del libro seleccionado y llamamos a reservar(), ese dato es el que pasamos [hecho con un int por sólo para probar]
-        reservar(seleccion); // seleccion.nombre || seleccion->nombre
-        
-        /**/cout << "Operacion realizada, volviendo al menu anterior..."<<endl;
-        Sleep(SECONDS_TO_CONTINUE);
-        menuBuscar();
-    }
+    preReserva();
     
     logCl->cerrar_log(logCl);
 }
@@ -483,7 +416,6 @@ void reservar(string isbn)
         cout<<"1.Si"<<endl<<"2.No"<<endl;
         
         int result;
-
         
         cin>>result;
         
@@ -545,4 +477,37 @@ void reservar(string isbn)
     }
     
     logCl->cerrar_log(logCl);
+}
+
+void preReserva()
+{
+    Log *logCl = new Log;
+    logCl = logCl->crear_log("Ficheros/Logs/LogCliente.txt");
+
+    string seleccion;
+    string isbn;
+    cout << "------------------------------------------"<<endl;
+    cout << "1. Reservar libro"<<endl<<"2. Volver al menu busqueda"<<endl<<"3. Salir"<<endl;
+    //TODO for con print para cada libro que salga
+    cin>>seleccion;
+    cout << "Check1" << endl;
+    if (seleccion == "1")
+    {
+        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Reservar libro");
+        cout << "Introduzca el ISBN:"<<endl;
+        cin >> isbn;
+        reservar(isbn);
+        cout << "Operacion realizada, volviendo al menu anterior..."<<endl;
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
+       
+    }else if (seleccion == "2"){
+        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Volver al menu busqueda");
+        Sleep(SECONDS_TO_CONTINUE);
+        menuBuscar();
+    }else if (seleccion == "3"){
+        logCl->escribir_mensaje(logCl, TipoMensaje::INFO, "Seleccionado Salir");
+        cout << "Has salido de la app"<<endl;
+        send(s, "BYE", 3, 0);
+    }
 }

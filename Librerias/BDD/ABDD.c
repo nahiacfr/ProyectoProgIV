@@ -497,7 +497,6 @@ int existeAutor(int idAu){
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
 			count++;
-			printf("%i\n", sqlite3_column_int(stmt, 0));
 		}
 	} while (result == SQLITE_ROW);
 	//Si hay 1 retorna 1, si no hay ninguna retorna 0
@@ -815,8 +814,6 @@ int verifyUserFromSocket(char buffer[], int length)
 	correo = strtok(NULL, "#");
 	contrasenya = strtok(NULL, "#");
 
-	printf("%s", correo);
-	printf("%s", contrasenya);
     /*Comprobar si el usuario es correcto*/
     char sql3[] = "select contraseña from usuario where correo = ?";
 	int count = 0;
@@ -853,7 +850,6 @@ char* searchBooks(char buffer[], int length){
 	
 	token = strtok(buffer, "##");
 	titulo = strtok(NULL, "#");
-	printf("%s", titulo);
     // Realizar la búsqueda en la base de datos
     char sql[] = "Select l.titulo,l.isbn,r.dni From libro l Left Join reserva As r On r.isbn=l.isbn Where l.titulo = ?";
     sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
@@ -871,7 +867,7 @@ char* searchBooks(char buffer[], int length){
 		strcat(nuevoChurro, sqlite3_column_text(stmt, 0));
 		strcat(nuevoChurro, "\nISBN: ");
         strcat(nuevoChurro, sqlite3_column_text(stmt, 1));
-		if(sqlite3_column_text(stmt, 1)!= NULL)
+		if(sqlite3_column_text(stmt, 2)!= NULL)
 		{
 			strcat(nuevoChurro, " *RESERVADO");
 		}
@@ -952,49 +948,30 @@ int reservarLibro(char buffer[], int length)
     // Obtener el título del libro enviado desde el cliente
     char *isbn, *correo, *dia, *mes, *anyo; 
 	char *dni = malloc(sizeof(char)*20);
-	printf("Check 1");
 	token = strtok(buffer, "##");
 	isbn = strtok(NULL, "#");
 	correo = strtok(NULL, "#");
 	dia = strtok(NULL, "#");
 	mes = strtok(NULL, "#");
 	anyo = strtok(NULL, "#");
-	printf("Check 2\n");
-	printf("ISBN: %s\n", isbn);
-	printf("Correo: %s\n", correo);
-	printf("DIa: %s\n", dia);
-	printf("Mes: %s\n", mes);
 
 	Fecha *fechaIni = crearFecha(strtol(dia, NULL, 10),strtol(mes, NULL, 10),strtol(anyo, NULL, 10));
-	printf("Check 3");
 	Fecha *fechaFin = calcularFecha(fechaIni, 15);
-	printf("Check 4");
 	
 	char sql[] = "Select dni from usuario where correo = ?";
     sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
     sqlite3_bind_text(stmt, 1, correo, strlen(correo), SQLITE_STATIC);
-	printf("Check 5.1");
 	if (sqlite3_step(stmt) == SQLITE_ROW)
 	{
 		strcpy(dni, (char*)sqlite3_column_text(stmt, 0));
-		printf("\nDNI: %s\n", dni);
 	}
-	printf("Check 5.2");
 	sqlite3_finalize(stmt);
-	printf("Check 6");
 	char sql2[] = "Insert into reserva values (?,?,?,?)";
     sqlite3_prepare_v2(db, sql2, strlen(sql2) + 1, &stmt, NULL);
-	printf("Check 6.1");
     sqlite3_bind_text(stmt, 1, isbn, strlen(isbn), SQLITE_STATIC);
-	printf("Check 6.2");
-	printf("\nDNI: %s\n", dni);
 	sqlite3_bind_text(stmt, 2, dni, strlen(dni), SQLITE_STATIC);
-	printf("\nDNI: %s\n", dni);
-	printf("Check 6.3");
 	sqlite3_bind_text(stmt, 3, getFecha(fechaIni), strlen(getFecha(fechaIni)), SQLITE_STATIC);
-	printf("Check 6.4");
 	sqlite3_bind_text(stmt, 4, getFecha(fechaFin), strlen(getFecha(fechaFin)), SQLITE_STATIC);
-	printf("Check 6.5");
 	if (sqlite3_step(stmt) == SQLITE_DONE)
 	{
 		sqlite3_finalize(stmt);
@@ -1014,7 +991,6 @@ char* listBooks(char buffer[], int length)
     // Obtener el título del libro enviado desde el cliente
     char *reservados;
 
-	printf("Check 1");
 	token = strtok(buffer, "##");
 	reservados = strtok(NULL, "#");
     // Realizar la búsqueda en la base de datos
@@ -1024,14 +1000,13 @@ char* listBooks(char buffer[], int length)
 		sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
 	}else if (strcmp (reservados, "2")==0)
 	{
-		char sql[] = "Select l.titulo,l.isbn,r.dni From libro l Left Join reserva As r On r.isbn=l.isbn where r.dni is not null";
+		char sql[] = "Select l.titulo,l.isbn,r.dni From libro l Left Join reserva As r On r.isbn=l.isbn where r.dni is null";
 		sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
 	}else
 	{
 		char sql[] = "Select l.titulo,l.isbn,r.dni From libro l Left Join reserva As r On r.isbn=l.isbn";
 		sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
 	}
-
     char *response = "";
     // Ejecutar la consulta y recopilar los resultados
 	int j = 0;
@@ -1044,7 +1019,7 @@ char* listBooks(char buffer[], int length)
 		strcat(nuevoChurro, sqlite3_column_text(stmt, 0));
 		strcat(nuevoChurro, "\nISBN: ");
         strcat(nuevoChurro, sqlite3_column_text(stmt, 1));
-		if(sqlite3_column_text(stmt, 1)!= NULL)
+		if(sqlite3_column_text(stmt, 2)!= NULL)
 		{
 			strcat(nuevoChurro, " *RESERVADO");
 		}
@@ -1061,7 +1036,7 @@ char* listBooks(char buffer[], int length)
     }
 	strcat(response, "\0");
 	sqlite3_finalize(stmt);
-    
+
 	if(j == 0)
 	{
 		return "No se han encontrado libros con ese titulo\n";
